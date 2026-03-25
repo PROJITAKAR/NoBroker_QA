@@ -3,33 +3,66 @@ package hooks;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import pageObjects.LoginPage;
 import utils.DriverFactory;
+import utils.CookieManager;
+import org.openqa.selenium.By;
 
 public class Hooks {
 
-    WebDriver driver;
+	WebDriver driver;
 
-    @Before
-    public void setup() {
-        
-        DriverFactory.getDriver().get("https://www.nobroker.in/");
-    }
+	@Before(order = 0)
+	public void setup() {
+		driver = DriverFactory.getDriver();
+		driver.get("https://www.nobroker.in/");
+	}
 
-    @Before("@LoginRequired")
-    public void loginSetup() throws InterruptedException {
+	// ✅ Try loading cookies FIRST (skip login)
+	@Before(order = 1)
+	public void loadSession() throws InterruptedException {
+	    CookieManager.loadCookies(driver);
+	    driver.navigate().refresh();
+	    Thread.sleep(5000); // wait for session restore
+	}
+	// ✅ Only login if needed
+	@Before(value = "@LoginRequired", order = 2)
+	public void loginSetup() throws Exception {
+		Thread.sleep(10000); 
+		
+	    // ✅ Check if already logged in using profile icon
+	    boolean isLoggedIn = driver.findElements(
+	        By.xpath("//div[@id='profile-icon']")
+	    ).size() > 0;
 
-        LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+	    if (!isLoggedIn) {
 
-        loginPage.loginClick();
-        loginPage.loginToNoBroker(""); // replace
-        Thread.sleep(40000);
-        loginPage.continueClick();
-    }
+	        System.out.println("Not logged in → Performing login");
 
-    @After
-    public void tearDown() {
-        DriverFactory.quitDriver();
-    }
+	        LoginPage loginPage = new LoginPage(driver);
+
+	        Thread.sleep(10000);
+	        loginPage.loginClick();
+	        Thread.sleep(5000);
+	        loginPage.loginToNoBroker("9832717056"); // your number
+
+	        System.out.println("Enter OTP manually and press ENTER...");
+//	        System.in.read();   // ✅ better than Thread.sleep
+	        Thread.sleep(30000);
+	        loginPage.continueClick();
+
+	        // ✅ Save cookies AFTER successful login
+	        CookieManager.saveCookies(driver);
+
+	    } else {
+	        System.out.println("Already logged in via cookies ✅");
+	    }
+	}
+
+	@After
+	public void tearDown() {
+		DriverFactory.quitDriver();
+	}
 }
