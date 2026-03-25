@@ -17,7 +17,7 @@ public class LoginPage {
 	@FindBy(xpath="//div[@id='navHeader']//div[text()='Log in']")
 	private WebElement loginBtn;
 	
-	@FindBy(id="signUp-phoneNumber")
+	@FindBy(xpath="//input[@id='signUp-phoneNumber']")
 	private WebElement phone;
 	
 	@FindBy(id="signUpSubmit")
