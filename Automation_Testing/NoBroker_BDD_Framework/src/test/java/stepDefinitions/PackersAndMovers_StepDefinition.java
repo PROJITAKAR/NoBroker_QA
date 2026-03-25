@@ -64,5 +64,54 @@ public class PackersAndMovers_StepDefinition {
         String actualMessage = inventoryPage.getNoItemMessage();
         Assert.assertEquals(actualMessage, "No items found");
     }
+    
+    // ================= SCENARIO 2 =================
+
+    @When("user selects the category {string}")
+    public void user_selects_the_category(String category) {
+        inventoryPage.sectionSelect(); // Bedrooms
+        inventoryPage.selectType();    // Bed
+    }
+
+    @And("adds item {string} and continues")
+    public void adds_item_and_continues(String item) {
+        inventoryPage.addItem();
+        inventoryPage.continueClick();
+    }
+
+    @And("selects a valid pickup date")
+    public void selects_valid_pickup_date() {
+        slotBookingPage.selectDate();
+    }
+
+    @And("selects a valid slot and confirms")
+    public void selects_valid_slot_and_confirms() {
+    	slotBookingPage.selectValidTime();
+    	slotBookingPage.confirm();
+    }
+
+    // ================= SCENARIO 3 =================
+
+    @When("user updates the added item and continues")
+    public void user_updates_item_and_continues() {
+
+        // Assuming item already added before reaching here
+        inventoryPage.increase();   // increase quantity
+        inventoryPage.decrease();   // decrease quantity (optional step)
+
+        inventoryPage.continueClick();
+    }
+
+    // ================= COMMON VALIDATION =================
+
+    @Then("Order summary page should open")
+    public void order_summary_page_should_open() {
+        String url = driver.getCurrentUrl();
+
+        Assert.assertTrue(
+            url.contains("summary") || url.contains("order"),
+            "Order Summary page not opened"
+        );
+    }
 
 }
