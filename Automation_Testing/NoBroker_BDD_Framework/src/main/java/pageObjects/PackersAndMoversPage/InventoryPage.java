@@ -1,85 +1,97 @@
 package pageObjects.PackersAndMoversPage;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class InventoryPage {
 
-	WebDriver driver;
+    WebDriver driver;
 
     public InventoryPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    //Search an item and add
-    @FindBy(xpath="//input[@placeholder='Search for any item']")
+    // ================= SEARCH =================
+
+    @FindBy(xpath = "//input[@placeholder='Search for any item']")
     private WebElement search;
-    
-    @FindBy(id="inventory-search")
+
+    @FindBy(id = "inventory-search")
     private WebElement enterData;
-    
-    @FindBy(xpath="//div[text()='No items found']")
+
+    @FindBy(xpath = "//div[text()='No items found']")
     private WebElement message;
-    
+
     public void searchItem() {
-    	search.click();
+        search.click();
     }
-    
+
     public void dataEntry(String item) {
-    	enterData.sendKeys(item+Keys.ENTER);
+        enterData.clear();
+        enterData.sendKeys(item + Keys.ENTER);
     }
-    
     public String getNoItemMessage() {
         return message.getText();
     }
-    
-    
-    //add an item via category
-    @FindBy(xpath="//a[text()='Bedrooms']")
-    private WebElement category;
-    
-    @FindBy(xpath="//div[@id='67d84a4ae50df484e137daeb']//div[text()='Bed']")
-    private WebElement type;
-    
-    @FindBy(xpath="//div[text()='King Size Bed - With Storage']/parent::div/following-sibling::div")
-    private WebElement add;
-    
-    @FindBy(xpath="//button//div//div[text()='Continue']")
+
+    // ================= CATEGORY (DYNAMIC) =================
+
+    public void selectCategory(String categoryName) {
+        WebElement category = driver.findElement(
+            By.xpath("//a[text()='" + categoryName + "']")
+        );
+        category.click();
+    }
+
+    public void selectType(String typeName) {
+        WebElement type = driver.findElement(
+            By.xpath("//div[text()='" + typeName + "']")
+        );
+        type.click();
+    }
+
+    // ================= ADD ITEM (DYNAMIC) =================
+
+    public void addItem(String itemName) {
+
+        WebElement item = driver.findElement(
+            By.xpath("//div[text()='" + itemName + "']/parent::div/following-sibling::div")
+        );
+
+        scrollToElement(item);
+        item.click();
+    }
+
+    @FindBy(xpath = "//button//div//div[text()='Continue']")
     private WebElement continueBtn;
-    
-    public void sectionSelect() {
-    	category.click();
-    }
-    
-    public void selectType() {
-    	type.click();
-    }
-    
-    public void addItem() {
-    	add.click();
-    }
-    
+
     public void continueClick() {
-    	continueBtn.click();
+        scrollToElement(continueBtn);
+        continueBtn.click();
     }
-    
-    //Update Item
-    @FindBy(id="decreament")
+
+    // ================= UPDATE ITEM =================
+
+    @FindBy(id = "decreament")
     private WebElement dec;
-    
-    @FindBy(id="increament")
+
+    @FindBy(id = "increament")
     private WebElement inc;
-    
+
     public void decrease() {
-    	dec.click();
+        dec.click();
     }
-    
+
     public void increase() {
-    	inc.click();
+        inc.click();
+    }
+
+    // ================= COMMON UTILS =================
+
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }
