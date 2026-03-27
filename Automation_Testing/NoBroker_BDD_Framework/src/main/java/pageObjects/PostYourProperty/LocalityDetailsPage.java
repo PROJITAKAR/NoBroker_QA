@@ -56,4 +56,18 @@ public class LocalityDetailsPage {
     public void clickBack() {
         backButton.click();
     }
+    
+    public void fillLocalityDetails(String locality, String landmark) throws InterruptedException {
+
+        enterLocality(locality);
+        Thread.sleep(2000);
+
+        enterLandmark(landmark);
+        Thread.sleep(2000);
+
+        clickSaveAndContinue();
+        Thread.sleep(5000);
+
+        System.out.println("✅ Locality Details filled and submitted");
+    }
 }
