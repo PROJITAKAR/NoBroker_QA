@@ -12,14 +12,13 @@ public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
 
-    // Constructor
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
-    // ================= COMMON =================
 
     @FindBy(xpath = "//div[contains(@class,'nb-select__control')]")
     WebElement cityDropdown;
@@ -35,7 +34,7 @@ public class HomePage {
     @FindBy(xpath = "//button[text()='Search']")
     WebElement searchButton;
 
-    // ================= TABS =================
+
 
     @FindBy(xpath = "//div[normalize-space()='Buy']")
     WebElement buyTab;
@@ -43,7 +42,7 @@ public class HomePage {
     @FindBy(xpath = "//div[normalize-space()='Rent']")
     WebElement rentTab;
 
-    // ================= BUY TAB =================
+
 
     @FindBy(xpath = "//label[normalize-space()='Full House']")
     WebElement buyFullHouse;
@@ -57,7 +56,7 @@ public class HomePage {
     @FindBy(xpath = "//div[contains(text(),'Property Status')]")
     WebElement propertyStatusDropdown;
 
-    // ================= RENT TAB =================
+
 
     @FindBy(xpath = "//label[.//input[@id='PG']]")
     WebElement rentPG;
@@ -71,9 +70,6 @@ public class HomePage {
     @FindBy(xpath = "//div[contains(text(),'Room Type')]")
     WebElement roomTypeDropdown;
 
-    // =========================================================
-    // ================= COMMON ACTIONS =========================
-    // =========================================================
 
     public void selectCity(String cityName) {
         wait.until(ExpectedConditions.elementToBeClickable(cityDropdown)).click();
@@ -99,9 +95,7 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(searchButton)).click();
     }
 
-    // =========================================================
-    // ================= TAB ACTIONS ============================
-    // =========================================================
+
 
     public void clickBuyTab() {
         wait.until(ExpectedConditions.elementToBeClickable(buyTab)).click();
@@ -111,9 +105,6 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(rentTab)).click();
     }
 
-    // =========================================================
-    // ================= BUY FLOW ===============================
-    // =========================================================
 
     public void selectBuyFullHouse() {
         wait.until(ExpectedConditions.elementToBeClickable(buyFullHouse)).click();
@@ -131,9 +122,7 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(propertyStatusDropdown)).click();
     }
 
-    // =========================================================
-    // ================= RENT FLOW ==============================
-    // =========================================================
+
 
     public void selectPGHostel() {
         wait.until(ExpectedConditions.elementToBeClickable(rentPG)).click();

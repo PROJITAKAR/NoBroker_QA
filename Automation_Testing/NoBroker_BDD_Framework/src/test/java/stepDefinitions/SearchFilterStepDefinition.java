@@ -1,4 +1,4 @@
-package StepDefinition;
+package stepDefinitions;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +8,7 @@ import io.cucumber.java.en.*;
 import pageObjects.SearchFilterPageObjects.FlatMateResults;
 import pageObjects.SearchFilterPageObjects.HomePage;
 import pageObjects.SearchFilterPageObjects.PGresultsPage;
-//import utils.ExcelUtils;
+
 
 public class SearchFilterStepDefinition {
 
@@ -20,7 +20,6 @@ public class SearchFilterStepDefinition {
     String city;
     String locality;
 
-    // ================= SETUP =================
 
     @Given("user opens NoBroker website")
     public void openWebsite() {
@@ -31,21 +30,20 @@ public class SearchFilterStepDefinition {
 
         home = new HomePage(driver);
 
-        // 🔥 Read data from Excel
         //city = ExcelUtils.getData(1, 0);
         //locality = ExcelUtils.getData(1, 1);
     }
 
-    // ================= HOME =================
+
 
     @When("user selects city {string}")
     public void selectCity(String cityFromFeature) {
-        home.selectCity(city);  // if your method supports param, pass 'city'
+        home.selectCity(city);  
     }
 
     @When("user enters locality {string} and selects suggestion")
     public void selectLocality(String locFromFeature) {
-        home.selectLocality(locality); // using Excel data
+        home.selectLocality(locality); 
     }
 
     @When("user clicks search button")
@@ -59,7 +57,6 @@ public class SearchFilterStepDefinition {
                 "User not navigated to results page");
     }
 
-    // ================= NEGATIVE =================
 
     @When("user clicks search without entering locality")
     public void searchWithoutInput() {
@@ -68,10 +65,9 @@ public class SearchFilterStepDefinition {
 
     @Then("validation error should be displayed")
     public void validationError() {
-        Assert.assertTrue(true, "Validation handled"); // can improve later
+        Assert.assertTrue(true, "Validation handled"); 
     }
 
-    // ================= BUY =================
 
     @When("user selects Buy tab")
     public void selectBuyTab() {
@@ -88,7 +84,6 @@ public class SearchFilterStepDefinition {
         Assert.assertTrue(true, "BHK visible");
     }
 
-    // ================= RENT PG =================
 
     @When("user selects Rent tab")
     public void selectRentTab() {
@@ -123,7 +118,7 @@ public class SearchFilterStepDefinition {
         Assert.assertTrue(true, "Multiple filters working");
     }
 
-    // ================= FLATMATE =================
+
 
     @When("user selects Flatmate option")
     public void selectFlatmate() {
@@ -149,7 +144,7 @@ public class SearchFilterStepDefinition {
         Assert.assertTrue(true, "Flatmate filters applied");
     }
 
-    // ================= RESET =================
+
 
     @When("user clicks reset button")
     public void resetFilters() {
@@ -161,23 +156,19 @@ public class SearchFilterStepDefinition {
         Assert.assertTrue(true, "Reset successful");
         driver.quit();
     }
- // ================= MISSING STEPS =================
 
- // 1️⃣ Property listings
  @Then("property listings should be displayed")
  public void property_listings_should_be_displayed() {
      Assert.assertTrue(driver.getCurrentUrl().contains("nobroker"),
              "Listings not displayed");
  }
 
- // 2️⃣ Property Status dropdown
  @Then("Property Status dropdown should be visible")
  public void property_status_dropdown_should_be_visible() {
      home.openPropertyStatusDropdown(); // your method exists
      Assert.assertTrue(true);
  }
 
- // 3️⃣ Combined search step
  @When("user searches with valid inputs")
  public void user_searches_with_valid_inputs() {
      home.selectCity(city);
@@ -185,7 +176,7 @@ public class SearchFilterStepDefinition {
      home.clickSearch();
  }
 
- // 4️⃣ Pre-applied filters (for reset scenario)
+
  @Given("user has applied filters")
  public void user_has_applied_filters() {
 
@@ -199,14 +190,14 @@ public class SearchFilterStepDefinition {
      pg.applyPGFilters();
  }
 
- // 5️⃣ City + locality combined
+
  @When("user selects city and locality")
  public void user_selects_city_and_locality() {
      home.selectCity(city);
      home.selectLocality(locality);
  }
 
- // 6️⃣ Generic search click
+
  @When("user clicks search")
  public void user_clicks_search_generic() {
      home.clickSearch();

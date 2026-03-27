@@ -1,63 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
+<<<<<<< HEAD
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-26T00:18:32 IST" name="Default suite" finished-at="2026-03-26T00:18:33 IST" duration-ms="1310">
+  <suite started-at="2026-03-27T15:28:43 IST" name="Default suite" finished-at="2026-03-27T15:33:06 IST" duration-ms="263414">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2026-03-26T00:18:32 IST" name="Default test" finished-at="2026-03-26T00:18:33 IST" duration-ms="1310">
-      <class name="runners.PostYourProperty_TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:32 IST" name="setUpClass" finished-at="2026-03-26T00:18:32 IST" duration-ms="753" status="PASS">
+    <test started-at="2026-03-27T15:28:43 IST" name="Default test" finished-at="2026-03-27T15:33:06 IST" duration-ms="263414">
+      <class name="runners.EPC_TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:28:43 IST" name="setUpClass" finished-at="2026-03-27T15:28:43 IST" duration-ms="560" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@9cd25ff]]>
+                <![CDATA[org.testng.TestRunner@641ed324]]>
+=======
+<testng-results ignored="0" total="3" passed="1" failed="2" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-03-27T12:11:44 IST" name="Default suite" finished-at="2026-03-27T12:16:57 IST" duration-ms="313715">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@2f9f7dcf]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2026-03-27T12:11:44 IST" name="Default test" finished-at="2026-03-27T12:16:57 IST" duration-ms="313715">
+      <class name="runners.PostYourProperty_TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.PostYourProperty_TestRunner@2f9f7dcf]" started-at="2026-03-27T12:11:44 IST" name="setUpClass" finished-at="2026-03-27T12:11:45 IST" duration-ms="857" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@3aed69dd]]>
+>>>>>>> main
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:32 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="215" status="PASS">
+<<<<<<< HEAD
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:28:43 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:29:14 IST" duration-ms="30446" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Verify Packers and Movers page"]]>
+                <![CDATA["Navigate from Homepage to Service tiles and verify empty cart validation"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Packers and Movers"]]>
+                <![CDATA["NoBroker Home Services Booking Flow"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="7" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:29:14 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:30:04 IST" duration-ms="50778" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Verify Packers and Movers page"]]>
+                <![CDATA["Add service verify order summary and navigate to address page"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Packers and Movers"]]>
+                <![CDATA["NoBroker Home Services Booking Flow"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="21" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:30:04 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:31:37 IST" duration-ms="92188" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["SC_01 — Navigate to Post Your Property page from Homepage"]]>
+                <![CDATA["Complete full booking flow from address entry to payment portal"]]>
+=======
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@2f9f7dcf]" started-at="2026-03-27T12:11:45 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T12:13:29 IST" duration-ms="104084" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["SC_02 — Submit valid Property Details with different apartment types and BHK configurations"]]>
+>>>>>>> main
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["NoBroker Home Services Booking Flow"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+<<<<<<< HEAD
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:31:37 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:33:06 IST" duration-ms="89311" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Complete full booking flow from address entry to payment portal"]]>
+=======
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@2f9f7dcf]" started-at="2026-03-27T12:13:29 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T12:14:33 IST" duration-ms="64049" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["SC_02 — Submit valid Property Details with different apartment types and BHK configurations"]]>
+>>>>>>> main
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["NoBroker Home Services Booking Flow"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[text()='Bangalore']"}
+  (Session info: chrome=146.0.7680.165)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: '4.39.0', revision: '126f156aee'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [b9c2cd374f6f44dc4e344c020d00be72, findElement {value=//div[text()='Bangalore'], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 146.0.7680.165, chrome: {chromedriverVersion: 146.0.7680.165 (4b989da09e1..., userDataDir: C:\Users\proji\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63959}, goog:processID: 26256, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63959/devtoo..., se:cdpVersion: 146.0.7680.165, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b9c2cd374f6f44dc4e344c020d00be72]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[text()='Bangalore']"}
+  (Session info: chrome=146.0.7680.165)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: '4.39.0', revision: '126f156aee'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [b9c2cd374f6f44dc4e344c020d00be72, findElement {value=//div[text()='Bangalore'], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 146.0.7680.165, chrome: {chromedriverVersion: 146.0.7680.165 (4b989da09e1..., userDataDir: C:\Users\proji\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63959}, goog:processID: 26256, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63959/devtoo..., se:cdpVersion: 146.0.7680.165, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b9c2cd374f6f44dc4e344c020d00be72
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:561)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:384)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:378)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at jdk.proxy2/jdk.proxy2.$Proxy24.click(Unknown Source)
+at pageObjects.PostYourProperty.StartPostingYourAD.selectCity(StartPostingYourAD.java:36)
+at pageObjects.PostYourProperty.StartPostingYourAD.goToPropertyDetailsPage(StartPostingYourAD.java:48)
+at stepDefinitions.PostYourProperty_StepDefinition.user_on_page(PostYourProperty_StepDefinition.java:147)
+at ✽.the user is on the "Property Details" page(file:///C:/Users/proji/Downloads/Projects/Capgemini_Sprint_NoBroker/Automation_Testing/NoBroker_BDD_Framework/src/test/resources/FeatureFiles/PostYourProperty/PostYourProperty.feature:38)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+<<<<<<< HEAD
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:33:06 IST" name="tearDownClass" finished-at="2026-03-27T15:33:06 IST" duration-ms="58" status="PASS">
+=======
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@2f9f7dcf]" started-at="2026-03-27T12:14:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T12:16:57 IST" duration-ms="144281" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["SC_02 — Submit valid Property Details with different apartment types and BHK configurations"]]>
               </value>
             </param>
             <param index="1">
@@ -66,110 +182,56 @@
               </value>
             </param>
           </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: //button[text()='Yes'] (tried for 40 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //button[text()='Yes'] (tried for 40 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at pageObjects.PostYourProperty.PropertyDetailsPage.clickYesButton(PropertyDetailsPage.java:90)
+at stepDefinitions.PostYourProperty_StepDefinition.select_apartment_bhk(PostYourProperty_StepDefinition.java:169)
+at ✽.the user selects "Studio Apartment" as Apartment Type and "1 BHK" as BHK(file:///C:/Users/proji/Downloads/Projects/Capgemini_Sprint_NoBroker/Automation_Testing/NoBroker_BDD_Framework/src/test/resources/FeatureFiles/PostYourProperty/PostYourProperty.feature:39)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[text()='Yes']"}
+  (Session info: chrome=146.0.7680.165)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: '4.39.0', revision: '126f156aee'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [b9c2cd374f6f44dc4e344c020d00be72, findElement {value=//button[text()='Yes'], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 146.0.7680.165, chrome: {chromedriverVersion: 146.0.7680.165 (4b989da09e1..., userDataDir: C:\Users\proji\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63959}, goog:processID: 26256, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63959/devtoo..., se:cdpVersion: 146.0.7680.165, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b9c2cd374f6f44dc4e344c020d00be72
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:561)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:384)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:378)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:174)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+... 3 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="30" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["SC_02 — Submit valid Property Details and navigate to Locality Details page"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Post Your Property – Residential Rental on NoBroker"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="15" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["SC_03 — Show validation errors when fields are empty"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Post Your Property – Residential Rental on NoBroker"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="32" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["SC_04 — Show validation error for mismatched city and locality"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Post Your Property – Residential Rental on NoBroker"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="22" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["SC_05 — Show validation error when deposit < rent"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Post Your Property – Residential Rental on NoBroker"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="15" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["SC_06 — Upload valid photos and verify preview"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Post Your Property – Residential Rental on NoBroker"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-26T00:18:33 IST" duration-ms="58" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["SC_07 — End-to-End: Complete full flow"]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA["Post Your Property – Residential Rental on NoBroker"]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.PostYourProperty_TestRunner@72967906]" started-at="2026-03-26T00:18:33 IST" name="tearDownClass" finished-at="2026-03-26T00:18:33 IST" duration-ms="24" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.PostYourProperty_TestRunner@2f9f7dcf]" started-at="2026-03-27T12:16:57 IST" name="tearDownClass" finished-at="2026-03-27T12:16:57 IST" duration-ms="61" status="PASS">
+>>>>>>> main
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-      </class> <!-- runners.PostYourProperty_TestRunner -->
+      </class> <!-- runners.EPC_TestRunner -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
