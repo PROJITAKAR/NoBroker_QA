@@ -1,12 +1,13 @@
-package runnerFile;
+package runners;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
+
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 
-    features = "D:\\capgemini OOPS QUESTIONS\\sprint\\Capgemini_Sprint_NoBroker\\Automation_Testing\\NoBroker_BDD_Framework\\src\\test\\java\\FeatureFile\\NoBroker.feature",   // path to feature file
-    glue = "StepDefinition",                 // where step defs are
+features = "C:\\Users\\Suvam Nath\\Desktop\\QA\\NoBroker_QA\\Automation_Testing\\NoBroker_BDD_Framework\\src\\test\\resources\\FeatureFiles\\SearchFilter.feature",
+glue = {"stepDefinitions","hooks"},                
 
     plugin = {
         "pretty",

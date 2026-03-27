@@ -18,35 +18,32 @@ public class BuyFullHouseFiltering {
         PageFactory.initElements(driver, this);
     }
 
-    // ================= FILTERS =================
 
     @FindBy(id = "resetButton")
     WebElement resetButton;
 
-    // BHK
+    
     @FindBy(xpath = "//div[text()='1 BHK']")
     WebElement oneBHK;
 
-    // Property Status
+    
     @FindBy(xpath = "//input[@id='prop_status_2']/parent::label")
     WebElement readyProperty;
 
-    // Furnishing
+    
     @FindBy(xpath = "//input[@id='furnishingFull']/parent::label")
     WebElement fullFurnish;
 
-    // Property Type
     @FindBy(xpath = "//input[@id='apartment']/parent::label")
     WebElement apartmentType;
 
-    // Parking
+    
     @FindBy(xpath = "//input[@id='parking_4_wheeler']/parent::label")
     WebElement fourWheeler;
 
-    // Property Results
+    
     By results = By.xpath("//div[contains(@class,'infinite-scroll-component')]//article");
 
-    // ================= ACTIONS =================
 
     public void resetFilters() {
         wait.until(ExpectedConditions.elementToBeClickable(resetButton)).click();
@@ -62,7 +59,6 @@ public class BuyFullHouseFiltering {
 
     public void clickFirstProperty() {
 
-        // IMPORTANT: re-fetch elements (avoid stale)
         List<WebElement> list = wait.until(
                 ExpectedConditions.presenceOfAllElementsLocatedBy(results)
         );

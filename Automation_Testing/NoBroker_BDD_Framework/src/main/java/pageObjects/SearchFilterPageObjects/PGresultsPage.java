@@ -18,12 +18,10 @@ public class PGresultsPage {
         PageFactory.initElements(driver, this);
     }
 
-    // ================= RESET =================
 
     @FindBy(id = "resetButton")
     WebElement resetButton;
 
-    // ================= FILTERS =================
 
     @FindBy(id = "pg_boys")
     WebElement boys;
@@ -43,27 +41,36 @@ public class PGresultsPage {
     @FindBy(xpath = "//div[text()='With Photos']")
     WebElement photos;
 
-    // ================= RESULTS =================
 
     By results = By.xpath("//div[contains(@class,'infinite-scroll-component')]//article");
 
-    // =========================================================
-    // ================= COMMON UTILITY =========================
-    // =========================================================
 
     public void safeClick(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
 
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
     }
 
-    // =========================================================
-    // ================= ACTION METHODS =========================
-    // =========================================================
 
+
+    public void handleMetroPopup() {
+        try {
+            List<WebElement> skip = driver.findElements(
+                    By.xpath("//span[contains(text(),'Skip')]")
+            );
+
+            if (!skip.isEmpty()) {
+                wait.until(ExpectedConditions.elementToBeClickable(skip.get(0))).click();
+            }
+        } catch (Exception e) {
+            
+        }
+    }
+    
     public void resetFilters() {
+    	handleMetroPopup();
         safeClick(resetButton);
     }
 

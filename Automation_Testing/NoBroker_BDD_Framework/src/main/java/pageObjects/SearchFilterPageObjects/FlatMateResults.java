@@ -18,17 +18,13 @@ public class FlatMateResults {
         PageFactory.initElements(driver, this);
     }
 
-    // ================= POPUP =================
 
     @FindBy(xpath = "//span[normalize-space()='Skip']")
     WebElement skipPopup;
 
-    // ================= RESET =================
-
     @FindBy(id = "resetButton")
     WebElement resetButton;
 
-    // ================= ROOM TYPE =================
 
     @FindBy(id = "roomtype_shared")
     WebElement sharedRoom;
@@ -36,7 +32,6 @@ public class FlatMateResults {
     @FindBy(id = "roomtype_single")
     WebElement singleRoom;
 
-    // ================= TENANT TYPE =================
 
     @FindBy(id = "tenant_male")
     WebElement male;
@@ -44,28 +39,22 @@ public class FlatMateResults {
     @FindBy(id = "tenant_female")
     WebElement female;
 
-    // ================= FURNISHING =================
 
     @FindBy(id = "furnishingFull")
     WebElement furnishingFull;
 
-    // ================= PROPERTY TYPE =================
 
     @FindBy(id = "apartment")
     WebElement apartment;
 
-    // ================= PARKING =================
 
     @FindBy(id = "4-wheeler")
     WebElement fourWheeler;
 
-    // ================= RESULTS =================
 
     By results = By.xpath("//div[contains(@class,'infinite-scroll-component')]//article");
 
-    // =========================================================
-    // ================= COMMON UTIL ============================
-    // =========================================================
+ 
 
     public void safeClick(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
@@ -75,9 +64,6 @@ public class FlatMateResults {
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
     }
 
-    // =========================================================
-    // ================= ACTION METHODS =========================
-    // =========================================================
 
     public void handlePopup() {
         try {
