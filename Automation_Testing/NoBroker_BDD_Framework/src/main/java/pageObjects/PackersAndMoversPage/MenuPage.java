@@ -25,7 +25,7 @@ public class MenuPage {
     private WebElement option;
     
     public void MenuClick() {
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(menu)).click();
     }
     
