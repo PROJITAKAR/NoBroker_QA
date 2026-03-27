@@ -3,11 +3,17 @@ package stepDefinitions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.openqa.selenium.chrome.ChromeOptions;
+import utils.DriverFactory;
+import pageObjects.LoginPage;
+import hooks.Hooks;
 
 import io.cucumber.java.en.*;
 import pageObjects.SearchFilterPageObjects.FlatMateResults;
 import pageObjects.SearchFilterPageObjects.HomePage;
 import pageObjects.SearchFilterPageObjects.PGresultsPage;
+import utils.Search_Filtering_TestData;
+import pageObjects.SearchFilterPageObjects.*;
 
 
 public class SearchFilterStepDefinition {
@@ -16,7 +22,6 @@ public class SearchFilterStepDefinition {
     HomePage home;
     PGresultsPage pg;
     FlatMateResults flat;
-
     String city;
     String locality;
 
@@ -24,26 +29,30 @@ public class SearchFilterStepDefinition {
     @Given("user opens NoBroker website")
     public void openWebsite() {
 
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.nobroker.in/");
+
+        driver = DriverFactory.getDriver();
+
+
+        Search_Filtering_TestData.loadExcel("Search_Filtering.xlsx", "Sheet1");
+        
+        this.locality = Search_Filtering_TestData.getData(1, 1);
+        this.city = Search_Filtering_TestData.getData(1,0);
+
+        System.out.println("City: " + this.city);
+        System.out.println("Locality: " + this.locality);
 
         home = new HomePage(driver);
-
-        //city = ExcelUtils.getData(1, 0);
-        //locality = ExcelUtils.getData(1, 1);
     }
 
 
-
-    @When("user selects city {string}")
-    public void selectCity(String cityFromFeature) {
-        home.selectCity(city);  
+    @When("user selects city")
+    public void selectCity() {
+        home.selectCity(this.city);   
     }
 
-    @When("user enters locality {string} and selects suggestion")
-    public void selectLocality(String locFromFeature) {
-        home.selectLocality(locality); 
+    @When("user enters locality and selects suggestion")
+    public void selectLocality() {
+        home.selectLocality(this.locality);  
     }
 
     @When("user clicks search button")
@@ -65,7 +74,7 @@ public class SearchFilterStepDefinition {
 
     @Then("validation error should be displayed")
     public void validationError() {
-        Assert.assertTrue(true, "Validation handled"); 
+        Assert.assertTrue(true, "Validation handled");
     }
 
 
@@ -119,7 +128,6 @@ public class SearchFilterStepDefinition {
     }
 
 
-
     @When("user selects Flatmate option")
     public void selectFlatmate() {
         home.selectFlatmates();
@@ -145,61 +153,62 @@ public class SearchFilterStepDefinition {
     }
 
 
-
     @When("user clicks reset button")
     public void resetFilters() {
+        home.handleMetroPopup();
         pg.resetFilters();
     }
 
     @Then("all filters should be cleared")
-    public void verifyReset() {
+    public void verifyReset() throws InterruptedException {
         Assert.assertTrue(true, "Reset successful");
-        driver.quit();
+        Thread.sleep(3000);
+        //driver.quit();
     }
 
- @Then("property listings should be displayed")
- public void property_listings_should_be_displayed() {
-     Assert.assertTrue(driver.getCurrentUrl().contains("nobroker"),
-             "Listings not displayed");
- }
+    @Then("property listings should be displayed")
+    public void property_listings_should_be_displayed() {
+        Assert.assertTrue(driver.getCurrentUrl().contains("nobroker"),
+                "Listings not displayed");
+    }
 
- @Then("Property Status dropdown should be visible")
- public void property_status_dropdown_should_be_visible() {
-     home.openPropertyStatusDropdown(); // your method exists
-     Assert.assertTrue(true);
- }
+    @Then("Property Status dropdown should be visible")
+    public void property_status_dropdown_should_be_visible() {
+        home.isPropertyStatusVisible();
+        Assert.assertTrue(true);
+    }
 
- @When("user searches with valid inputs")
- public void user_searches_with_valid_inputs() {
-     home.selectCity(city);
-     home.selectLocality(locality);
-     home.clickSearch();
- }
-
-
- @Given("user has applied filters")
- public void user_has_applied_filters() {
-
-     home.clickRentTab();
-     home.selectPGHostel();
-     home.selectCity(city);
-     home.selectLocality(locality);
-     home.clickSearch();
-
-     pg = new PGresultsPage(driver);
-     pg.applyPGFilters();
- }
+    @When("user searches with valid inputs")
+    public void user_searches_with_valid_inputs() {
+    
+        home.selectCity(this.city);
+        home.selectLocality(this.locality);
+        home.clickSearch();
+    }
 
 
- @When("user selects city and locality")
- public void user_selects_city_and_locality() {
-     home.selectCity(city);
-     home.selectLocality(locality);
- }
+    @Given("user has applied filters")
+    public void user_has_applied_filters() {
+        home.clickRentTab();
+        home.selectPGHostel();
+        home.selectCity(this.city);
+        home.selectLocality(this.locality);
+        home.clickSearch();
+
+        pg = new PGresultsPage(driver);
+        pg.applyPGFilters();
+    }
 
 
- @When("user clicks search")
- public void user_clicks_search_generic() {
-     home.clickSearch();
- }
+    @When("user selects city and locality")
+    public void user_selects_city_and_locality() {
+        home.selectCity(this.city);
+        home.selectLocality(this.locality);
+    }
+
+
+    @When("user clicks search")
+    public void user_clicks_search_generic() {
+        home.clickSearch();
+    }
 }

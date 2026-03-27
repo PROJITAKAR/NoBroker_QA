@@ -22,29 +22,27 @@ public class BuyFullHouseFiltering {
     @FindBy(id = "resetButton")
     WebElement resetButton;
 
-  
+    
     @FindBy(xpath = "//div[text()='1 BHK']")
     WebElement oneBHK;
 
-
+    
     @FindBy(xpath = "//input[@id='prop_status_2']/parent::label")
     WebElement readyProperty;
 
-
+    
     @FindBy(xpath = "//input[@id='furnishingFull']/parent::label")
     WebElement fullFurnish;
-
 
     @FindBy(xpath = "//input[@id='apartment']/parent::label")
     WebElement apartmentType;
 
-
+    
     @FindBy(xpath = "//input[@id='parking_4_wheeler']/parent::label")
     WebElement fourWheeler;
 
     
     By results = By.xpath("//div[contains(@class,'infinite-scroll-component')]//article");
-
 
 
     public void resetFilters() {
@@ -60,7 +58,6 @@ public class BuyFullHouseFiltering {
     }
 
     public void clickFirstProperty() {
-
 
         List<WebElement> list = wait.until(
                 ExpectedConditions.presenceOfAllElementsLocatedBy(results)

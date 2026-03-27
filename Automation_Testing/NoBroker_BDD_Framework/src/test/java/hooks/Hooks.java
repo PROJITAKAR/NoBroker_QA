@@ -78,6 +78,12 @@ public class Hooks {
 		}
 	}
 
+	@After
+	public void tearDown() throws InterruptedException {
+		Thread.sleep(3000);
+		DriverFactory.quitDriver();
+	}
+
 //	@After
 //	public void tearDown() {
 //		DriverFactory.quitDriver();

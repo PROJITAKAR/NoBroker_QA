@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-03-27T15:55:44 IST" name="Default suite" finished-at="2026-03-27T15:57:12 IST" duration-ms="87857">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2026-03-27T15:55:44 IST" name="Default test" finished-at="2026-03-27T15:57:12 IST" duration-ms="87857">
+      <class name="runners.SearchFilter_TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:55:44 IST" name="setUpClass" finished-at="2026-03-27T15:55:45 IST" duration-ms="393" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6f986501]]>
+=======
+<<<<<<< HEAD
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
@@ -34,6 +52,7 @@
               <value>
                 <![CDATA[org.testng.TestRunner@3aed69dd]]>
 >>>>>>> main
+>>>>>>> main
               </value>
             </param>
           </params>
@@ -41,38 +60,69 @@
           </reporter-output>
         </test-method> <!-- setUpClass -->
 <<<<<<< HEAD
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:55:45 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:56:00 IST" duration-ms="15072" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Search property with valid inputs"]]>
+=======
+<<<<<<< HEAD
         <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:28:43 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:29:14 IST" duration-ms="30446" status="PASS">
           <params>
             <param index="0">
               <value>
                 <![CDATA["Navigate from Homepage to Service tiles and verify empty cart validation"]]>
+>>>>>>> main
               </value>
             </param>
             <param index="1">
               <value>
+<<<<<<< HEAD
+                <![CDATA["NoBroker Core Property Search and Filtering"]]>
+=======
                 <![CDATA["NoBroker Home Services Booking Flow"]]>
+>>>>>>> main
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
+<<<<<<< HEAD
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:56:00 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:56:07 IST" duration-ms="7006" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Search without entering locality"]]>
+=======
         <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:29:14 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:30:04 IST" duration-ms="50778" status="PASS">
           <params>
             <param index="0">
               <value>
                 <![CDATA["Add service verify order summary and navigate to address page"]]>
+>>>>>>> main
               </value>
             </param>
             <param index="1">
               <value>
+<<<<<<< HEAD
+                <![CDATA["NoBroker Core Property Search and Filtering"]]>
+=======
                 <![CDATA["NoBroker Home Services Booking Flow"]]>
+>>>>>>> main
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
+<<<<<<< HEAD
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:56:07 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:56:15 IST" duration-ms="7774" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify Buy Full House flow"]]>
+=======
         <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.EPC_TestRunner@351d00c0]" started-at="2026-03-27T15:30:04 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:31:37 IST" duration-ms="92188" status="PASS">
           <params>
             <param index="0">
@@ -174,11 +224,12 @@ at ✽.the user is on the "Property Details" page(file:///C:/Users/proji/Downloa
             <param index="0">
               <value>
                 <![CDATA["SC_02 — Submit valid Property Details with different apartment types and BHK configurations"]]>
+>>>>>>> main
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Post Your Property – Residential Rental on NoBroker"]]>
+                <![CDATA["NoBroker Core Property Search and Filtering"]]>
               </value>
             </param>
           </params>
@@ -226,12 +277,68 @@ at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
+<<<<<<< HEAD
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:56:15 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:56:32 IST" duration-ms="17384" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Apply PG filters"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["NoBroker Core Property Search and Filtering"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:56:32 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:56:50 IST" duration-ms="18423" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Apply Flatmate filters"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["NoBroker Core Property Search and Filtering"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:56:50 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-27T15:57:12 IST" duration-ms="21757" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Reset filters functionality"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["NoBroker Core Property Search and Filtering"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.SearchFilter_TestRunner@351d00c0]" started-at="2026-03-27T15:57:12 IST" name="tearDownClass" finished-at="2026-03-27T15:57:12 IST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- runners.SearchFilter_TestRunner -->
+=======
         <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.PostYourProperty_TestRunner@2f9f7dcf]" started-at="2026-03-27T12:16:57 IST" name="tearDownClass" finished-at="2026-03-27T12:16:57 IST" duration-ms="61" status="PASS">
 >>>>>>> main
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- runners.EPC_TestRunner -->
+>>>>>>> main
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
