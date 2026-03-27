@@ -6,13 +6,11 @@ import org.testng.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pageObjects.PackersAndMoversPage;
 import utils.DriverFactory;
 
 public class PostYourProperty_StepDefinition {
 	
 	WebDriver driver = DriverFactory.getDriver();
-    PackersAndMoversPage page = new PackersAndMoversPage(driver);
 
 
     @Given("the user is on the NoBroker Homepage")

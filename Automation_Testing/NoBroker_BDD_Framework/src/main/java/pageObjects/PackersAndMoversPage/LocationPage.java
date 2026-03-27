@@ -43,25 +43,27 @@ public class LocationPage {
     
     public void pickupLoc(String loc) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(cancel1)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(pickup)).click();
 
-        pickup.sendKeys(loc);
+        wait.until(ExpectedConditions.elementToBeClickable(cancel1)).click();
+
+        WebElement pickupField = wait.until(ExpectedConditions.elementToBeClickable(pickup));
+        pickupField.clear();
+        pickupField.sendKeys(loc);
 
         wait.until(ExpectedConditions.visibilityOf(firstSuggestion)).click();
     }
     
     public void dropLoc(String loc) {
-    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-            wait.until(ExpectedConditions.elementToBeClickable(cancel2)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(cancel2)).click();
 
-    	    wait.until(ExpectedConditions.elementToBeClickable(drop)).click();
-    	    drop.sendKeys(loc+ Keys.ENTER);
+        WebElement dropField = wait.until(ExpectedConditions.elementToBeClickable(drop));
+        dropField.clear();
+        dropField.sendKeys(loc);
 
-    	    wait.until(ExpectedConditions.visibilityOf(firstSuggestion)).click();
-    	}
-    
+        wait.until(ExpectedConditions.visibilityOf(firstSuggestion)).click();
+    }
     public void type() {
     	type.click();
     }
