@@ -19,31 +19,38 @@ public class SchedulePage {
     // ================= LOCATORS =================
 
     // Availability Options
-    @FindBy(xpath = "//div[contains(text(),'Everyday')]")
+    @FindBy(id = "EVERYDAY")
     WebElement everydayOption;
 
-    @FindBy(xpath = "//div[contains(text(),'Weekday')]")
-    WebElement weekdayOption;
-
-    @FindBy(xpath = "//div[contains(text(),'Weekend')]")
-    WebElement weekendOption;
+//    @FindBy(xpath = "//div[contains(text(),'Weekday')]")
+//    WebElement weekdayOption;
+//
+//    @FindBy(xpath = "//div[contains(text(),'Weekend')]")
+//    WebElement weekendOption;
 
     // Time Inputs
     @FindBy(xpath = "//input[@placeholder='Start time']")
-    WebElement startTimeInput;
+    WebElement startTimeInputdropdown;
+    
+  
+    @FindBy(xpath = "//input[@placeholder='Start time']/../../following-sibling::div//li[text()='09:00 AM']")
+    WebElement startTimeInputOption;
 
     @FindBy(xpath = "//input[@placeholder='End time']")
-    WebElement endTimeInput;
+    WebElement endTimeInputdropdown;
+    
+    @FindBy(xpath = "//input[@placeholder='End time']/../../following-sibling::div//li[text()='06:00 PM']")
+    WebElement endTimeInputOption;
 
-    // Available All Day Checkbox
-    @FindBy(xpath = "//input[@type='checkbox']")
-    WebElement availableAllDayCheckbox;
+//    // Available All Day Checkbox
+//    @FindBy(xpath = "//input[@type='checkbox']")
+//    WebElement availableAllDayCheckbox;
 
     // Buttons
-    @FindBy(id = "finishPosting")
+    @FindBy(xpath = "//button[text()='Finish Posting']")
     WebElement finishPostingButton;
 
-    @FindBy(id = "back")
+    @FindBy(xpath="//button[text()='Back']")
     WebElement backButton;
 
     // ================= ACTION METHODS =================
@@ -52,29 +59,28 @@ public class SchedulePage {
         everydayOption.click();
     }
 
-    public void selectWeekday() {
-        weekdayOption.click();
-    }
-
-    public void selectWeekend() {
-        weekendOption.click();
-    }
+//    public void selectWeekday() {
+//        weekdayOption.click();
+//    }
+//
+//    public void selectWeekend() {
+//        weekendOption.click();
+//    }
 
     public void enterStartTime(String time) {
-        startTimeInput.clear();
-        startTimeInput.sendKeys(time);
-        startTimeInput.sendKeys(Keys.ENTER);
+        startTimeInputdropdown.click();
+        startTimeInputOption.click();
     }
 
     public void enterEndTime(String time) {
-        endTimeInput.clear();
-        endTimeInput.sendKeys(time);
-        endTimeInput.sendKeys(Keys.ENTER);
+        endTimeInputdropdown.click();
+        endTimeInputOption.click();
+        
     }
 
-    public void selectAvailableAllDay() {
-        availableAllDayCheckbox.click();
-    }
+//    public void selectAvailableAllDay() {
+//        availableAllDayCheckbox.click();
+//    }
 
     public void clickFinishPosting() {
         finishPostingButton.click();
@@ -82,5 +88,29 @@ public class SchedulePage {
 
     public void clickBack() {
         backButton.click();
+    }
+    
+    public void fillScheduleDetails(String day, String startTime, String endTime) throws InterruptedException {
+
+        // Availability
+        if (day.equalsIgnoreCase("Everyday")) {
+            selectEveryday();
+        }
+
+        Thread.sleep(2000);
+
+        // Start Time
+        enterStartTime(startTime);
+        Thread.sleep(2000);
+
+        // End Time
+        enterEndTime(endTime);
+        Thread.sleep(2000);
+
+        // Finish Posting
+        clickFinishPosting();
+        Thread.sleep(5000);
+
+        System.out.println("Schedule Page completed");
     }
 }

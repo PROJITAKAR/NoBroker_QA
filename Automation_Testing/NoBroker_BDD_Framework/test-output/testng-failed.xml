@@ -6,7 +6,11 @@
       <class name="runners.EPC_TestRunner">
         <methods>
           <include name="setUpClass"/>
+<<<<<<< HEAD
           <include name="runScenario" invocation-numbers="0 1"/>
+=======
+          <include name="runScenario" invocation-numbers="0 1 2"/>
+>>>>>>> main
           <include name="tearDownClass"/>
         </methods>
       </class> <!-- runners.EPC_TestRunner -->
