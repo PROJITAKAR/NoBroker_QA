@@ -18,23 +18,23 @@ public class SuccessPage {
     // ================= LOCATORS =================
 
     // Success Message
-    @FindBy(xpath = "//div[contains(text(),'Congratulations')]")
+    @FindBy(xpath = "//div[text()='Congratulations!']")
     WebElement successMessage;
 
-    // Sub message
-    @FindBy(xpath = "//div[contains(text(),'successfully posted your property')]")
-    WebElement subMessage;
+//    // Sub message
+//    @FindBy(xpath = "//div[contains(text(),'successfully posted your property')]")
+//    WebElement subMessage;
 
     // Buttons
-    @FindBy(xpath = "//button[contains(text(),'Edit')]")
+    @FindBy(id = "editProperty")
     WebElement editButton;
 
-    @FindBy(xpath = "//button[contains(text(),'Preview Listing')]")
+    @FindBy(id = "previewListing")
     WebElement previewListingButton;
 
-    // Optional section (Rentometer)
-    @FindBy(xpath = "//div[contains(text(),'Rentometer')]")
-    WebElement rentometerSection;
+//    // Optional section (Rentometer)
+//    @FindBy(xpath = "//div[contains(text(),'Rentometer')]")
+//    WebElement rentometerSection;
 
     // ================= ACTION METHODS =================
 
@@ -42,9 +42,9 @@ public class SuccessPage {
         return successMessage.isDisplayed();
     }
 
-    public boolean isSubMessageDisplayed() {
-        return subMessage.isDisplayed();
-    }
+//    public boolean isSubMessageDisplayed() {
+//        return subMessage.isDisplayed();
+//    }
 
     public void clickEdit() {
         editButton.click();
@@ -54,7 +54,25 @@ public class SuccessPage {
         previewListingButton.click();
     }
 
-    public boolean isRentometerVisible() {
-        return rentometerSection.isDisplayed();
+//    public boolean isRentometerVisible() {
+//        return rentometerSection.isDisplayed();
+//    }
+    
+    public void verifyAndHandleSuccess() throws InterruptedException {
+
+        // Verify success message
+        if (isSuccessMessageDisplayed()) {
+            System.out.println("✅ Property posted successfully");
+        } else {
+            throw new AssertionError("❌ Success message not displayed");
+        }
+
+        Thread.sleep(2000);
+
+        // Optional action (you can choose one)
+        // clickEdit();
+         clickPreviewListing();
+
+        System.out.println("✅ Success Page verified");
     }
 }

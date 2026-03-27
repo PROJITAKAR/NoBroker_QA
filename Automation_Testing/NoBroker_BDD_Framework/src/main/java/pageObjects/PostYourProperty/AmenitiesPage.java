@@ -18,71 +18,71 @@ public class AmenitiesPage {
     // ================= LOCATORS =================
 
     // Bathroom & Balcony
-    @FindBy(xpath = "//div[label[contains(text(),'Bathroom')]]//button[2]")
+    @FindBy(id = "inc-btn-bathroom-counter-input-filed")
     WebElement bathroomPlus;
 
-    @FindBy(xpath = "//div[label[contains(text(),'Balcony')]]//button[2]")
+    @FindBy(id = "inc-btn-balconie-counter-input-field")
     WebElement balconyPlus;
 
     // Water Supply
-    @FindBy(xpath = "//div[contains(text(),'Water Supply')]/following::div[text()='Select']")
+    @FindBy(id = "amenitiesPypForm-waterSupply-nbInput")
     WebElement waterSupplyDropdown;
 
-    @FindBy(xpath = "//div[contains(text(),'Borewell')]")
+    @FindBy(xpath = "//div[@id='amenitiesPypForm-waterSupply-nbInput-container']//div[text()='Borewell']")
     WebElement waterSupplyOption;
 
     // Toggles
-    @FindBy(id = "petAllowedYes")
+    @FindBy(xpath = "//div[@id='pet-toogle-input-field']//input[@id='positive-btn']")
     WebElement petAllowedYes;
 
-    @FindBy(id = "gymYes")
+    @FindBy(xpath = "//div[@id='amenitiesPypForm-gym-nbInput-container']//input[@id='positive-btn']")
     WebElement gymYes;
 
-    @FindBy(id = "nonVegAllowedYes")
+    @FindBy(xpath = "//div[@id='non-veg-toggle-input-field']//input[@id='positive-btn']")
     WebElement nonVegYes;
 
-    @FindBy(id = "gatedSecurityYes")
+    @FindBy(xpath = "//div[@id='gated-security-toggle-input-field']//input[@id='positive-btn']")
     WebElement gatedSecurityYes;
 
     // Who will show property
-    @FindBy(xpath = "//div[contains(text(),'Who will show the property')]/following::div[text()='Select']")
+    @FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']")
     WebElement showPropertyDropdown;
 
-    @FindBy(xpath = "//div[contains(text(),'Neighbours')]")
+    @FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']/div/div//div[text()='Neighbours']")
     WebElement showPropertyOption;
 
     // Property Condition
-    @FindBy(xpath = "//div[contains(text(),'Current Property Condition')]/following::div[text()='Select']")
+    @FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']")
     WebElement propertyConditionDropdown;
 
-    @FindBy(xpath = "//div[contains(text(),'New Property')]")
+    @FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']/div/div//div[text()='New Property']")
     WebElement propertyConditionOption;
 
-    // Secondary Number
-    @FindBy(xpath = "//input[contains(@placeholder,'Secondary Number')]")
-    WebElement secondaryNumberInput;
-
-    // More properties
-    @FindBy(xpath = "//label[contains(text(),'Yes')]")
-    WebElement morePropertiesYes;
+//    // Secondary Number
+//    @FindBy(xpath = "//input[contains(@placeholder,'Secondary Number')]")
+//    WebElement secondaryNumberInput;
+//
+//    // More properties
+//    @FindBy(xpath = "//label[contains(text(),'Yes')]")
+//    WebElement morePropertiesYes;
 
     // Directions
-    @FindBy(xpath = "//textarea[contains(@placeholder,'Take the road')]")
+    @FindBy(xpath = "//div[@controlid='directions']")
     WebElement directionsInput;
 
     // ================= AMENITIES CHECKBOX =================
 
-    @FindBy(xpath = "//label[contains(text(),'Lift')]")
+    @FindBy(xpath = "//input[@id='LIFT']")
     WebElement lift;
 
-    @FindBy(xpath = "//label[contains(text(),'Swimming Pool')]")
+    @FindBy(xpath = "//input[@id='POOL']")
     WebElement swimmingPool;
 
-    @FindBy(xpath = "//label[contains(text(),'Power Backup')]")
-    WebElement powerBackup;
-
-    @FindBy(xpath = "//label[contains(text(),'Park')]")
-    WebElement park;
+//    @FindBy(xpath = "//label[contains(text(),'Power Backup')]")
+//    WebElement powerBackup;
+//
+//    @FindBy(xpath = "//label[contains(text(),'Park')]")
+//    WebElement park;
 
     // ================= BUTTONS =================
 
@@ -137,14 +137,14 @@ public class AmenitiesPage {
         propertyConditionOption.click();
     }
 
-    public void enterSecondaryNumber(String number) {
-        secondaryNumberInput.clear();
-        secondaryNumberInput.sendKeys(number);
-    }
-
-    public void selectMorePropertiesYes() {
-        morePropertiesYes.click();
-    }
+//    public void enterSecondaryNumber(String number) {
+//        secondaryNumberInput.clear();
+//        secondaryNumberInput.sendKeys(number);
+//    }
+//
+//    public void selectMorePropertiesYes() {
+//        morePropertiesYes.click();
+//    }
 
     public void enterDirections(String text) {
         directionsInput.clear();
@@ -155,8 +155,8 @@ public class AmenitiesPage {
     public void selectAmenities() {
         lift.click();
         swimmingPool.click();
-        powerBackup.click();
-        park.click();
+//        powerBackup.click();
+//        park.click();
     }
 
     public void clickSaveAndContinue() {
@@ -165,5 +165,54 @@ public class AmenitiesPage {
 
     public void clickBack() {
         backButton.click();
+    }
+    
+    public void fillAmenitiesDetails() throws InterruptedException {
+
+        // Bathroom & Balcony
+        increaseBathroom(1);
+        Thread.sleep(1000);
+
+        increaseBalcony(1);
+        Thread.sleep(1000);
+
+        // Water Supply
+        selectWaterSupply();
+        Thread.sleep(2000);
+
+        // Toggles
+        selectPetAllowed();
+        Thread.sleep(1000);
+
+        selectGym();
+        Thread.sleep(1000);
+
+        selectNonVeg();
+        Thread.sleep(1000);
+
+        selectGatedSecurity();
+        Thread.sleep(1000);
+
+        // Who will show property
+        selectWhoWillShowProperty();
+        Thread.sleep(2000);
+
+        // Property condition
+        selectPropertyCondition();
+        Thread.sleep(2000);
+
+        // Directions
+        enterDirections("Near main road");
+        Thread.sleep(2000);
+
+        // Amenities
+        selectAmenities();
+        Thread.sleep(2000);
+
+        // Save
+        clickSaveAndContinue();
+        Thread.sleep(5000);
+
+        System.out.println("✅ Amenities Details filled and submitted");
     }
 }

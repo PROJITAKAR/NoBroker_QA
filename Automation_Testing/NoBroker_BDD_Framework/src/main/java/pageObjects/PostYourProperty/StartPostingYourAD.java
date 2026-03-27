@@ -40,6 +40,20 @@ public class StartPostingYourAD {
 		startPost.click();
 	}
 	
+	public void goToPropertyDetailsPage() throws InterruptedException {
+
+	    clickCityDropDown();
+	    Thread.sleep(2000);
+
+	    selectCity();
+	    Thread.sleep(2000);
+
+	    clickStartPost();
+	    Thread.sleep(5000);
+
+	    System.out.println("✅ Navigated to Property Details Page");
+	}
+	
 	public boolean isCityErrorDisplayed() {
         return cityError.isDisplayed();
     }
