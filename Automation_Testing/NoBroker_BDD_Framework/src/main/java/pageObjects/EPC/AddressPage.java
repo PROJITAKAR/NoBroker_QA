@@ -1,5 +1,6 @@
 package pageObjects.EPC;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,19 +22,31 @@ public class AddressPage {
     @FindBy(xpath = "//input[@id='address']")
     WebElement landmarkField;
 
-    @FindBy(xpath = "//input[@id='submit-address']")
+    @FindBy(xpath = "//button[text()='Proceed']")
     WebElement proceedButton;
     
     @FindBy(xpath="//button[@id='saveAs'][1]")
     WebElement SaveAsHome;
+    
+    @FindBy(xpath="//button[@id='saveAs'][2]")
+    WebElement SaveAsWork;
 
     public AddressPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void searchLocation(String location) {
+    public void searchAndSelectLocation(String location) throws InterruptedException {
         locationSearchBar.sendKeys(location);
+        
+
+            Thread.sleep(4000); 
+        
+
+        locationSearchBar.sendKeys(Keys.ARROW_DOWN);
+        locationSearchBar.sendKeys(Keys.ENTER);
+        
+        Thread.sleep(2000);
     }
 
     public void enterFlatNo(String flatNo) {
@@ -44,8 +57,12 @@ public class AddressPage {
         landmarkField.sendKeys(landmark);
     }
     
-    public void setSaveAs() {
+    public void setSaveAsHome() {
     	SaveAsHome.click();
+    }
+    
+    public void setSaveAsWork() {
+    	SaveAsWork.click();
     }
     
     public void ClickConfirmLoc() {
@@ -55,4 +72,6 @@ public class AddressPage {
     public void clickProceed() {
         proceedButton.click();
     }
+    
+    
 }
