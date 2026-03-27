@@ -10,7 +10,10 @@ public class NavigationToPostYourProperty {
 	WebDriver driver;
 	
 	 // Locate Elements
-    @FindBy(xpath = "//div[@id='navHeader']//button")
+    @FindBy(id = "main-menu")
+    WebElement menu;
+    
+    @FindBy(xpath="//div[@id='main-menu']//div//a[text()='Post Your Property']")
     WebElement postPropertyBtn;
 
     // Constructor
@@ -23,6 +26,7 @@ public class NavigationToPostYourProperty {
 
     // Actions / Methods
     public void clickPostProperty() {
-        postPropertyBtn.click();
+    	menu.click();
+    	postPropertyBtn.click();
     }
 }
