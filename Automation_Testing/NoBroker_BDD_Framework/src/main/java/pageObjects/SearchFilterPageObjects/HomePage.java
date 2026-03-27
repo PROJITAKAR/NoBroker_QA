@@ -160,7 +160,6 @@ public class HomePage {
     }
 
 
-
     public void selectBuyFullHouse() {
         wait.until(ExpectedConditions.elementToBeClickable(buyFullHouse)).click();
     }

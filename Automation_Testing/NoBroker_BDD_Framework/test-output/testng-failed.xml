@@ -3,6 +3,7 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+<<<<<<< HEAD
       <class name="runners.SearchFilter_TestRunner">
         <methods>
           <include name="setUpClass"/>
@@ -10,6 +11,19 @@
           <include name="tearDownClass"/>
         </methods>
       </class> <!-- runners.SearchFilter_TestRunner -->
+=======
+      <class name="runners.EPC_TestRunner">
+        <methods>
+          <include name="setUpClass"/>
+<<<<<<< HEAD
+          <include name="runScenario" invocation-numbers="0 1"/>
+=======
+          <include name="runScenario" invocation-numbers="0 1 2"/>
+>>>>>>> main
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- runners.EPC_TestRunner -->
+>>>>>>> main
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
