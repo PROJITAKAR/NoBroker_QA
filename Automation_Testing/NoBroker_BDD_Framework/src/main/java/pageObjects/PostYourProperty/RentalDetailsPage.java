@@ -1,6 +1,7 @@
 package pageObjects.PostYourProperty;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -92,6 +93,9 @@ public class RentalDetailsPage {
 	@FindBy(id = "back")
 	WebElement backButton;
 
+	@FindBy(xpath = "//div[@validationstate='error']")
+	List<WebElement> validationErrors;
+
 	// ================= ACTION METHODS =================
 
 	public void selectOnlyRent() {
@@ -119,43 +123,80 @@ public class RentalDetailsPage {
 
 	public void selectAvailableDate(String day) {
 
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-	    // Step 1: Open calendar
-	    wait.until(ExpectedConditions.elementToBeClickable(availableFromInput)).click();
+		// Step 1: Open calendar
+		wait.until(ExpectedConditions.elementToBeClickable(availableFromInput)).click();
 
-	    // Step 2: Select date (ignore disabled dates)
-	    WebElement dateElement = wait.until(ExpectedConditions.elementToBeClickable(
-	        By.xpath("//div[not(contains(@class,'disabled')) and text()='" + day + "']")
-	    ));
+		// Step 2: Select date (ignore disabled dates)
+		WebElement dateElement = wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//div[not(contains(@class,'disabled')) and text()='" + day + "']")));
 
-	    dateElement.click();
+		dateElement.click();
 	}
 
 	public void selectFamilyTenant() {
-        familyOption.click();
-    }
+		familyOption.click();
+	}
 
 	public void selectFurnishing() {
-        furnishingDropdown.click();
-        furnishingOption.click();
-    }
+		furnishingDropdown.click();
+		furnishingOption.click();
+	}
 
 	public void selectParking() {
-        parkingDropdown.click();
-        parkingOption.click();
-    }
+		parkingDropdown.click();
+		parkingOption.click();
+	}
 
 	public void enterDescription(String desc) {
-        descriptionInput.clear();
-        descriptionInput.sendKeys(desc);
-    }
+		descriptionInput.clear();
+		descriptionInput.sendKeys(desc);
+	}
 
 	public void clickSaveAndContinue() {
-        saveAndContinueButton.click();
-    }
+		saveAndContinueButton.click();
+	}
 
 	public void clickBack() {
-        backButton.click();
+		backButton.click();
+	}
+	
+	public boolean hasValidationError() {
+        return validationErrors.size() > 0;
     }
+    
+
+	public void fillRentalDetails(String rent, String deposit) throws InterruptedException {
+
+		selectOnlyRent();
+		Thread.sleep(2000);
+
+		enterRent(rent);
+		Thread.sleep(2000);
+
+		enterDeposit(deposit);
+		Thread.sleep(2000);
+
+		selectMaintenance();
+		Thread.sleep(2000);
+
+		selectFamilyTenant();
+		Thread.sleep(2000);
+
+		selectFurnishing();
+		Thread.sleep(2000);
+
+		selectParking();
+		Thread.sleep(2000);
+
+		// selecting date (example: 1)
+		selectAvailableDate("1");
+		Thread.sleep(2000);
+
+		clickSaveAndContinue();
+		Thread.sleep(5000);
+
+		System.out.println("✅ Rental Details filled and submitted");
+	}
 }

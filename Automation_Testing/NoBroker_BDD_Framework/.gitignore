@@ -6,3 +6,4 @@ cookies.json
 
 # Ignore logs
 *.log
+.metadata
