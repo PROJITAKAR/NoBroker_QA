@@ -19,20 +19,18 @@ public class FlatMateResults {
     }
 
 
-
     @FindBy(xpath = "//span[normalize-space()='Skip']")
     WebElement skipPopup;
 
-
     @FindBy(id = "resetButton")
     WebElement resetButton;
+
 
     @FindBy(id = "roomtype_shared")
     WebElement sharedRoom;
 
     @FindBy(id = "roomtype_single")
     WebElement singleRoom;
-
 
 
     @FindBy(id = "tenant_male")
@@ -42,23 +40,21 @@ public class FlatMateResults {
     WebElement female;
 
 
-
     @FindBy(id = "furnishingFull")
     WebElement furnishingFull;
-
 
 
     @FindBy(id = "apartment")
     WebElement apartment;
 
+
     @FindBy(id = "4-wheeler")
     WebElement fourWheeler;
 
-    
 
     By results = By.xpath("//div[contains(@class,'infinite-scroll-component')]//article");
 
-
+ 
 
     public void safeClick(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
@@ -67,7 +63,6 @@ public class FlatMateResults {
 
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
     }
-
 
 
     public void handlePopup() {

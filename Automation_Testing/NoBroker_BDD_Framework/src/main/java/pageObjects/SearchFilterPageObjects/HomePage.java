@@ -12,10 +12,9 @@ public class HomePage {
     WebDriver driver;
     WebDriverWait wait;
 
-
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
     }
 
@@ -23,17 +22,19 @@ public class HomePage {
     @FindBy(xpath = "//div[contains(@class,'nb-select__control')]")
     WebElement cityDropdown;
 
-    @FindBy(xpath = "//div[contains(@class,'nb-select__menu-list')]//div[contains(text(),'Hyderabad')]")
-    WebElement cityOption;
-
     @FindBy(id = "listPageSearchLocality")
     WebElement localityInput;
 
-    By suggestions = By.xpath("//div[contains(@class,'autocomplete-dropdown-container')]//div");
 
-    @FindBy(xpath = "//button[text()='Search']")
+    By suggestionContainer = By.xpath("//*[@role='option']");
+
+    @FindBy(xpath =
+        "//button[normalize-space(text())='Search' or " +
+        "normalize-space(text())='SEARCH' or " +
+        "normalize-space(.)='Search' or " +
+        "normalize-space(.)='SEARCH']"
+    )
     WebElement searchButton;
-
 
 
     @FindBy(xpath = "//div[normalize-space()='Buy']")
@@ -43,12 +44,8 @@ public class HomePage {
     WebElement rentTab;
 
 
-
     @FindBy(xpath = "//label[normalize-space()='Full House']")
     WebElement buyFullHouse;
-
-    @FindBy(xpath = "//label[normalize-space()='Land/Plot']")
-    WebElement buyLandPlot;
 
     @FindBy(xpath = "//div[contains(text(),'BHK Type')]")
     WebElement bhkDropdown;
@@ -57,42 +54,99 @@ public class HomePage {
     WebElement propertyStatusDropdown;
 
 
-
     @FindBy(xpath = "//label[.//input[@id='PG']]")
     WebElement rentPG;
 
     @FindBy(xpath = "//label[.//input[@value='SHARED']]")
     WebElement rentFlatmates;
 
-    @FindBy(xpath = "//div[contains(text(),'Tenant Type')]")
-    WebElement tenantTypeDropdown;
-
-    @FindBy(xpath = "//div[contains(text(),'Room Type')]")
-    WebElement roomTypeDropdown;
-
 
     public void selectCity(String cityName) {
-        wait.until(ExpectedConditions.elementToBeClickable(cityDropdown)).click();
+        try {
+            Thread.sleep(1500);
 
-        By city = By.xpath("//div[contains(@class,'nb-select__menu-list')]//div[contains(text(),'" + cityName + "')]");
-        wait.until(ExpectedConditions.elementToBeClickable(city)).click();
+            WebElement dropdown = wait.until(
+                ExpectedConditions.elementToBeClickable(cityDropdown)
+            );
+            ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView(true);", dropdown
+            );
+            dropdown.click();
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[contains(@class,'nb-select__menu-list')]")
+            ));
+
+            By cityOption = By.xpath(
+                "//div[contains(@class,'nb-select__menu-list')]" +
+                "//div[contains(@class,'nb-select__option') and normalize-space(text())='" + cityName + "']"
+            );
+
+            WebElement option = wait.until(ExpectedConditions.elementToBeClickable(cityOption));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public void selectLocality(String locality) {
-        localityInput.clear();
-        localityInput.sendKeys(locality);
+        try {
+            WebElement input = wait.until(
+                ExpectedConditions.elementToBeClickable(localityInput)
+            );
 
-        List<WebElement> options = wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(suggestions)
-        );
+            Thread.sleep(500);
+            input.click();
+            input.clear();
+            input.sendKeys(locality);
 
-        if (!options.isEmpty()) {
-            options.get(0).click();
+            Thread.sleep(2500);
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(suggestionContainer));
+
+            List<WebElement> options = driver.findElements(suggestionContainer);
+
+            if (!options.isEmpty()) {
+                WebElement first = options.get(0);
+
+
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", first);
+
+            } else {
+                System.out.println("[WARN] No locality suggestions found for: " + locality);
+            }
+
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 
     public void clickSearch() {
-        wait.until(ExpectedConditions.elementToBeClickable(searchButton)).click();
+        try {
+            Thread.sleep(500);
+            WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(searchButton));
+            try {
+                btn.click();
+            } catch (ElementClickInterceptedException e) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void handleMetroPopup() {
+        try {
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement skipBtn = shortWait.until(
+                ExpectedConditions.elementToBeClickable(
+                    By.xpath("//span[contains(text(),'Skip')]")
+                )
+            );
+            skipBtn.click();
+        } catch (Exception e) {
+        }
     }
 
 
@@ -110,16 +164,12 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(buyFullHouse)).click();
     }
 
-    public void selectBuyLandPlot() {
-        wait.until(ExpectedConditions.elementToBeClickable(buyLandPlot)).click();
+    public void isBHKDropdownVisible() {
+        wait.until(ExpectedConditions.visibilityOf(bhkDropdown));
     }
 
-    public void openBHKDropdown() {
-        wait.until(ExpectedConditions.elementToBeClickable(bhkDropdown)).click();
-    }
-
-    public void openPropertyStatusDropdown() {
-        wait.until(ExpectedConditions.elementToBeClickable(propertyStatusDropdown)).click();
+    public void isPropertyStatusVisible() {
+        wait.until(ExpectedConditions.visibilityOf(propertyStatusDropdown));
     }
 
 
@@ -130,13 +180,5 @@ public class HomePage {
 
     public void selectFlatmates() {
         wait.until(ExpectedConditions.elementToBeClickable(rentFlatmates)).click();
-    }
-
-    public void openTenantTypeDropdown() {
-        wait.until(ExpectedConditions.elementToBeClickable(tenantTypeDropdown)).click();
-    }
-
-    public void openRoomTypeDropdown() {
-        wait.until(ExpectedConditions.elementToBeClickable(roomTypeDropdown)).click();
     }
 }

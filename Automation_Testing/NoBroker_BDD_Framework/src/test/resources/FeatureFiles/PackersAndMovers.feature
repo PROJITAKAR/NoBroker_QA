@@ -16,23 +16,25 @@ Feature: Packers and Movers
 | TC02  |
 
 
-  Scenario Outline: Verify user can search, add an item and selects a valid slot 
-    Given user loads test data "<TC_ID>"
-    And user navigates to Packers and Movers Page
-    And user selects a city, pickup and drop location
-   When user selects category "<category>", type "<type>" and adds item "<item>"
-    And selects a valid pickup date 
-    And selects a valid slot and confirms
-    Then Order summary page should open
+  Scenario Outline: Verify user can search, add item and select valid slot
+  Given user loads test data "<TC_ID>"
+  And user navigates to Packers and Movers Page
+  And user selects a city, pickup and drop location
+  And navigates to inventory Page
+  When user selects category and adds item
+  And selects a valid pickup date
+  And selects a valid slot and confirms
+  Then Order summary page should open
 
-    Examples:
-| TC_ID | category | type | item                         |
-| TC03  | Bedroom  | Bed  | King Size Bed - With Storage |
+Examples:
+| TC_ID |
+| TC03  |
 
   Scenario Outline: Verify user can add and update an item
     Given user loads test data "<TC_ID>"
     And user navigates to Packers and Movers Page
     And user selects a city, pickup and drop location
+    And navigates to inventory Page
     When user updates the added item and continues
     And selects a valid pickup date 
     And selects a valid slot and confirms
