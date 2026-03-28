@@ -1,62 +1,69 @@
 package pageObjects.PostYourProperty;
 
+import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AmenitiesPage {
 
-    WebDriver driver;
+	WebDriver driver;
+	WebDriverWait wait;
 
-    // Constructor
-    public AmenitiesPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+	// Constructor
+	public AmenitiesPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	}
 
-    // ================= LOCATORS =================
+	// ================= LOCATORS =================
 
-    // Bathroom & Balcony
-    @FindBy(id = "inc-btn-bathroom-counter-input-filed")
-    WebElement bathroomPlus;
+	// Bathroom & Balcony
+	@FindBy(id = "inc-btn-bathroom-counter-input-filed")
+	WebElement bathroomPlus;
 
-    @FindBy(id = "inc-btn-balconie-counter-input-field")
-    WebElement balconyPlus;
+	@FindBy(id = "inc-btn-balconie-counter-input-field")
+	WebElement balconyPlus;
 
-    // Water Supply
-    @FindBy(id = "amenitiesPypForm-waterSupply-nbInput")
-    WebElement waterSupplyDropdown;
+	// Water Supply
+	@FindBy(id = "amenitiesPypForm-waterSupply-nbInput")
+	WebElement waterSupplyDropdown;
 
-    @FindBy(xpath = "//div[@id='amenitiesPypForm-waterSupply-nbInput-container']//div[text()='Borewell']")
-    WebElement waterSupplyOption;
+	@FindBy(xpath = "//div[@id='amenitiesPypForm-waterSupply-nbInput-container']//div[text()='Borewell']")
+	WebElement waterSupplyOption;
 
-    // Toggles
-    @FindBy(xpath = "//div[@id='pet-toogle-input-field']//input[@id='positive-btn']")
-    WebElement petAllowedYes;
+	// Toggles
+	@FindBy(xpath = "//div[@id='amenitiesPypForm-aea__PET-nbInput-container']//input[@value='true']")
+	WebElement petAllowedYes;
 
-    @FindBy(xpath = "//div[@id='amenitiesPypForm-gym-nbInput-container']//input[@id='positive-btn']")
-    WebElement gymYes;
+	@FindBy(xpath = "//div[@id='amenitiesPypForm-gym-nbInput-container']//input[@value='true']")
+	WebElement gymYes;
 
-    @FindBy(xpath = "//div[@id='non-veg-toggle-input-field']//input[@id='positive-btn']")
-    WebElement nonVegYes;
+	@FindBy(xpath = "//div[@id='amenitiesPypForm-aea__NON_VEG_ALLOWED-nbInput-container']//input[@value='true']")
+	WebElement nonVegYes;
 
-    @FindBy(xpath = "//div[@id='gated-security-toggle-input-field']//input[@id='positive-btn']")
-    WebElement gatedSecurityYes;
+	@FindBy(xpath = "//div[@id='amenitiesPypForm-aea__GATED_SECURITY-nbInput-container']//input[@value='true']")
+	WebElement gatedSecurityYes;
 
-    // Who will show property
-    @FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']")
-    WebElement showPropertyDropdown;
+	// Who will show property
+	@FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']")
+	WebElement showPropertyDropdown;
 
-    @FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']/div/div//div[text()='Neighbours']")
-    WebElement showPropertyOption;
+	@FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']/div/div//div[text()='Neighbours']")
+	WebElement showPropertyOption;
 
-    // Property Condition
-    @FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']")
-    WebElement propertyConditionDropdown;
+	// Property Condition
+	@FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']")
+	WebElement propertyConditionDropdown;
 
-    @FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']/div/div//div[text()='New Property']")
-    WebElement propertyConditionOption;
+	@FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']/div/div//div[text()='New Property']")
+	WebElement propertyConditionOption;
 
 //    // Secondary Number
 //    @FindBy(xpath = "//input[contains(@placeholder,'Secondary Number')]")
@@ -66,17 +73,17 @@ public class AmenitiesPage {
 //    @FindBy(xpath = "//label[contains(text(),'Yes')]")
 //    WebElement morePropertiesYes;
 
-    // Directions
-    @FindBy(xpath = "//div[@controlid='directions']")
-    WebElement directionsInput;
+	// Directions
+	@FindBy(xpath = "//textarea[contains(@placeholder,'Eg. Take the road')]")
+	WebElement directionsInput;
 
-    // ================= AMENITIES CHECKBOX =================
+	// ================= AMENITIES CHECKBOX =================
 
-    @FindBy(xpath = "//input[@id='LIFT']")
-    WebElement lift;
+	@FindBy(xpath = "//input[@id='LIFT']")
+	WebElement lift;
 
-    @FindBy(xpath = "//input[@id='POOL']")
-    WebElement swimmingPool;
+	@FindBy(xpath = "//input[@id='POOL']")
+	WebElement swimmingPool;
 
 //    @FindBy(xpath = "//label[contains(text(),'Power Backup')]")
 //    WebElement powerBackup;
@@ -84,135 +91,149 @@ public class AmenitiesPage {
 //    @FindBy(xpath = "//label[contains(text(),'Park')]")
 //    WebElement park;
 
-    // ================= BUTTONS =================
+	// ================= BUTTONS =================
 
-    @FindBy(id = "saveAndContinue")
-    WebElement saveAndContinueButton;
+	@FindBy(id = "saveAndContinue")
+	WebElement saveAndContinueButton;
 
-    @FindBy(id = "back")
-    WebElement backButton;
+	@FindBy(id = "back")
+	WebElement backButton;
 
-    // ================= ACTION METHODS =================
+	// ================= ACTION METHODS =================
 
-    public void increaseBathroom(int count) {
-        for (int i = 0; i < count; i++) {
-            bathroomPlus.click();
-        }
-    }
+	// ================= ACTION METHODS =================
 
-    public void increaseBalcony(int count) {
-        for (int i = 0; i < count; i++) {
-            balconyPlus.click();
-        }
-    }
+	public void increaseBathroom(int count) {
+		for (int i = 0; i < count; i++) {
+			wait.until(ExpectedConditions.elementToBeClickable(bathroomPlus));
+			bathroomPlus.click();
+		}
+	}
 
-    public void selectWaterSupply() {
-        waterSupplyDropdown.click();
-        waterSupplyOption.click();
-    }
+	public void increaseBalcony(int count) {
+		for (int i = 0; i < count; i++) {
+			wait.until(ExpectedConditions.elementToBeClickable(balconyPlus));
+			balconyPlus.click();
+		}
+	}
 
-    public void selectPetAllowed() {
-        petAllowedYes.click();
-    }
+	public void selectWaterSupply() {
+		wait.until(ExpectedConditions.elementToBeClickable(waterSupplyDropdown)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(waterSupplyOption)).click();
+	}
 
-    public void selectGym() {
-        gymYes.click();
-    }
+	public void selectPetAllowed() {
+	    ((JavascriptExecutor) driver)
+	        .executeScript("arguments[0].click();", petAllowedYes);
+	}
 
-    public void selectNonVeg() {
-        nonVegYes.click();
-    }
+	public void selectGym() {
+	    ((JavascriptExecutor) driver)
+	        .executeScript("arguments[0].click();", gymYes);
+	}
 
-    public void selectGatedSecurity() {
-        gatedSecurityYes.click();
-    }
+	public void selectNonVeg() {
+	    ((JavascriptExecutor) driver)
+	        .executeScript("arguments[0].click();", nonVegYes);
+	}
 
-    public void selectWhoWillShowProperty() {
-        showPropertyDropdown.click();
-        showPropertyOption.click();
-    }
+	public void selectGatedSecurity() {
+	    ((JavascriptExecutor) driver)
+	        .executeScript("arguments[0].click();", gatedSecurityYes);
+	}
 
-    public void selectPropertyCondition() {
-        propertyConditionDropdown.click();
-        propertyConditionOption.click();
-    }
+	public void selectWhoWillShowProperty() {
+		wait.until(ExpectedConditions.elementToBeClickable(showPropertyDropdown)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(showPropertyOption)).click();
+	}
 
-//    public void enterSecondaryNumber(String number) {
-//        secondaryNumberInput.clear();
-//        secondaryNumberInput.sendKeys(number);
-//    }
-//
-//    public void selectMorePropertiesYes() {
-//        morePropertiesYes.click();
-//    }
+	public void selectPropertyCondition() {
+		wait.until(ExpectedConditions.elementToBeClickable(propertyConditionDropdown)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(propertyConditionOption)).click();
+	}
 
-    public void enterDirections(String text) {
-        directionsInput.clear();
-        directionsInput.sendKeys(text);
-    }
+	public void enterDirections(String text) {
+		wait.until(ExpectedConditions.visibilityOf(directionsInput));
+		directionsInput.clear();
+		directionsInput.sendKeys(text);
+	}
 
-    // Amenities
-    public void selectAmenities() {
-        lift.click();
-        swimmingPool.click();
-//        powerBackup.click();
-//        park.click();
-    }
+	// 🔥 Safe click for amenities (same pattern you used)
+	public void selectAmenities() {
 
-    public void clickSaveAndContinue() {
-        saveAndContinueButton.click();
-    }
+		// Lift
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", lift);
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(lift));
+			lift.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", lift);
+		}
 
-    public void clickBack() {
-        backButton.click();
-    }
-    
-    public void fillAmenitiesDetails() throws InterruptedException {
+		// Swimming Pool
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", swimmingPool);
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(swimmingPool));
+			swimmingPool.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", swimmingPool);
+		}
+	}
 
-        // Bathroom & Balcony
-        increaseBathroom(1);
-        Thread.sleep(1000);
+	public void clickSaveAndContinue() {
+		wait.until(ExpectedConditions.elementToBeClickable(saveAndContinueButton)).click();
+	}
 
-        increaseBalcony(1);
-        Thread.sleep(1000);
+	public void clickBack() {
+		wait.until(ExpectedConditions.elementToBeClickable(backButton)).click();
+	}
 
-        // Water Supply
-        selectWaterSupply();
-        Thread.sleep(2000);
+	public void fillAmenitiesDetails() throws InterruptedException {
 
-        // Toggles
-        selectPetAllowed();
-        Thread.sleep(1000);
+		// Bathroom & Balcony
+		increaseBathroom(1);
+		Thread.sleep(1000);
 
-        selectGym();
-        Thread.sleep(1000);
+		increaseBalcony(1);
+		Thread.sleep(1000);
 
-        selectNonVeg();
-        Thread.sleep(1000);
+		// Water Supply
+		selectWaterSupply();
+		Thread.sleep(2000);
 
-        selectGatedSecurity();
-        Thread.sleep(1000);
+		// Toggles
+		selectPetAllowed();
+		Thread.sleep(1000);
 
-        // Who will show property
-        selectWhoWillShowProperty();
-        Thread.sleep(2000);
+		selectGym();
+		Thread.sleep(1000);
 
-        // Property condition
-        selectPropertyCondition();
-        Thread.sleep(2000);
+		selectNonVeg();
+		Thread.sleep(1000);
 
-        // Directions
-        enterDirections("Near main road");
-        Thread.sleep(2000);
+		selectGatedSecurity();
+		Thread.sleep(1000);
 
-        // Amenities
-        selectAmenities();
-        Thread.sleep(2000);
+		// Who will show property
+		selectWhoWillShowProperty();
+		Thread.sleep(2000);
 
-        // Save
-        clickSaveAndContinue();
-        Thread.sleep(5000);
+		// Property condition
+		selectPropertyCondition();
+		Thread.sleep(2000);
 
-        System.out.println("✅ Amenities Details filled and submitted");
-    }
+		// Directions
+		enterDirections("Near main road");
+		Thread.sleep(2000);
+
+		// Amenities
+		selectAmenities();
+		Thread.sleep(2000);
+
+		// Save
+		clickSaveAndContinue();
+		Thread.sleep(5000);
+
+		System.out.println("✅ Amenities Details filled and submitted");
+	}
 }
