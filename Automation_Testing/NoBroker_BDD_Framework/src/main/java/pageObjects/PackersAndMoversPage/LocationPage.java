@@ -19,6 +19,12 @@ public class LocationPage {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(xpath="//p[text()='Select City']/following-sibling::div//div//input")
+    private WebElement city;
+    
+    @FindBy(xpath="//img[@class='rounded-100pe w-5p h-5p' and @alt='Bangalore']")
+    private WebElement selectcity;
+    
     @FindBy(xpath="(//span[@class='right-input-icon custom-pnm-right-icon'])[1]")
     private WebElement cancel1;
     
@@ -41,34 +47,47 @@ public class LocationPage {
     private WebElement checkPricesBtn;
     
     
-    public void pickupLoc(String loc) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public void pickupLoc(String loc) throws InterruptedException {
+    	city.click();
+    	Thread.sleep(3000);
+    	selectcity.click();
+    	Thread.sleep(3000);
+    	
+    	try {
+            if (cancel1.isDisplayed()) {
+                cancel1.click();
+            }
+        } catch (Exception e) {
+            // Element not present → ignore
+        }
 
-        wait.until(ExpectedConditions.elementToBeClickable(cancel1)).click();
-
-        WebElement pickupField = wait.until(ExpectedConditions.elementToBeClickable(pickup));
-        pickupField.clear();
-        pickupField.sendKeys(loc);
-
-        wait.until(ExpectedConditions.visibilityOf(firstSuggestion)).click();
+    	Thread.sleep(3000);
+    	pickup.sendKeys(loc);
+    	Thread.sleep(3000);
+    	firstSuggestion.click();
     }
     
-    public void dropLoc(String loc) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public void dropLoc(String loc) throws InterruptedException {
+    	try {
+            if (cancel2.isDisplayed()) {
+                cancel2.click();
+            }
+        } catch (Exception e) {
+            // Element not present → ignore
+        }
 
-        wait.until(ExpectedConditions.elementToBeClickable(cancel2)).click();
-
-        WebElement dropField = wait.until(ExpectedConditions.elementToBeClickable(drop));
-        dropField.clear();
-        dropField.sendKeys(loc);
-
-        wait.until(ExpectedConditions.visibilityOf(firstSuggestion)).click();
+    	Thread.sleep(3000);
+    	drop.sendKeys(loc);
+    	Thread.sleep(3000);
+    	firstSuggestion.click();
     }
-    public void type() {
+    public void type() throws InterruptedException {
+    	Thread.sleep(3000);
     	type.click();
     }
     
-    public void checkPrices() {
+    public void checkPrices() throws InterruptedException {
+    	Thread.sleep(3000);
     	checkPricesBtn.click();
     }
 }

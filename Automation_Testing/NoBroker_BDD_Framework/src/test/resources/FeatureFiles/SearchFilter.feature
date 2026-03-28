@@ -1,16 +1,16 @@
 Feature: NoBroker Core Property Search and Filtering
-
   Background:
     Given user opens NoBroker website
 
 
   @Smoke @Positive
-  Scenario: Search property with valid inputs
-    When user selects city "Hyderabad"
-    And user enters locality "Bandra" and selects suggestion
-    And user clicks search button
-    Then user should be navigated to results page
-    And property listings should be displayed
+@Smoke @Positive
+Scenario: Search property with valid inputs
+  When user selects city
+  And user enters locality and selects suggestion
+  And user clicks search button
+  Then user should be navigated to results page
+  And property listings should be displayed
 
   @Smoke @Negative
   Scenario: Search without entering locality

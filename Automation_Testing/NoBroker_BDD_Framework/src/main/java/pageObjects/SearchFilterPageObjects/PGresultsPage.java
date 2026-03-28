@@ -19,10 +19,8 @@ public class PGresultsPage {
     }
 
 
-
     @FindBy(id = "resetButton")
     WebElement resetButton;
-
 
 
     @FindBy(id = "pg_boys")
@@ -44,12 +42,11 @@ public class PGresultsPage {
     WebElement photos;
 
 
-
     By results = By.xpath("//div[contains(@class,'infinite-scroll-component')]//article");
 
 
     public void safeClick(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
 
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 
@@ -58,7 +55,22 @@ public class PGresultsPage {
 
 
 
+    public void handleMetroPopup() {
+        try {
+            List<WebElement> skip = driver.findElements(
+                    By.xpath("//span[contains(text(),'Skip')]")
+            );
+
+            if (!skip.isEmpty()) {
+                wait.until(ExpectedConditions.elementToBeClickable(skip.get(0))).click();
+            }
+        } catch (Exception e) {
+            
+        }
+    }
+    
     public void resetFilters() {
+    	handleMetroPopup();
         safeClick(resetButton);
     }
 
