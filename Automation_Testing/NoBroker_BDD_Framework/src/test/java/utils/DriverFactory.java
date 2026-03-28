@@ -30,6 +30,6 @@ public class DriverFactory {
 //			driver.quit();
 //			driver = null;
 //		}
-		driver.close();
+//		driver.close();
 	}
 }
