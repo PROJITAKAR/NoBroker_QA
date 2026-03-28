@@ -24,15 +24,6 @@ public class DriverFactory {
 
         WebDriver localDriver;
 
-<<<<<<< HEAD
-	public static void quitDriver() {
-//		if (driver != null) {
-//			driver.quit();
-//			driver = null;
-//		}
-//		driver.close();
-	}
-=======
         switch (browser.toLowerCase()) {
 
             case "chrome":
@@ -81,5 +72,4 @@ public class DriverFactory {
             browserName.remove();     // 🔥 equally important
         }
     }
->>>>>>> main
 }
