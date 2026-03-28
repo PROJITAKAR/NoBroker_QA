@@ -7,8 +7,7 @@ import io.cucumber.testng.CucumberOptions;
 	features = "src/test/resources/FeatureFiles/EPC.feature",
     glue = {"stepDefinitions", "hooks"},
     plugin = {"pretty", "html:target/cucumber-report.html"},
-    monochrome = true,
-    tags = "@LoginRequired and @RunThis"
+    monochrome = true
 )
 public class EPC_TestRunner extends AbstractTestNGCucumberTests {
 }

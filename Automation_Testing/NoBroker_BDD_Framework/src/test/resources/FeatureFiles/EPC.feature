@@ -3,7 +3,7 @@ Feature: NoBroker Home Services Booking Flow
 
   Background:
     Given User is on the NoBroker homepage
-	@RunThis
+	
   Scenario: Navigate from Homepage to Service tiles and verify empty cart validation
     When User clicks on Painting and Cleaning option
     Then Home Services landing page should be displayed with all service tiles
@@ -11,7 +11,7 @@ Feature: NoBroker Home Services Booking Flow
     Then Electrician sub-services page should be displayed with name and price
     When User does not select any service
     Then Proceed button should not be visible
-	@RunThis
+	
   Scenario: Add service verify order summary and navigate to address page
     When User clicks on Painting and Cleaning option
     And User clicks on Electrician tile
@@ -20,7 +20,7 @@ Feature: NoBroker Home Services Booking Flow
     When User clicks Proceed
     Then Address page should be displayed with location search bar
 
-  @RunThis
+  
   Scenario Outline: Complete full booking flow from address entry to payment portal
     Given User loads EPC test data "<TC_ID>"
     When User clicks on Painting and Cleaning option

@@ -197,7 +197,7 @@ public class EPC_StepDefinition {
 	public void user_clicks_proceed_on_date_slot_page() throws InterruptedException {
 	    // Write code here that turns the phrase above into concrete actions
 		dateSlotPage.clickProceed();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 	    
 	}
 
