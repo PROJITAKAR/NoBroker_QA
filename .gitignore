@@ -1,1 +1,10 @@
 /.metadata/
+# Build folders
+target/
+test-output/
+
+# Logs
+*.log
+
+# Others
+cookies.json
