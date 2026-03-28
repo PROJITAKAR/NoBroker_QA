@@ -16,6 +16,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -126,7 +127,7 @@ public class PostYourProperty_StepDefinition {
 	}
 
 	@Given("the user is on the {string} page")
-	public void user_on_page(String page) throws InterruptedException {
+	public void user_on_page(String page) throws Exception {
 		Thread.sleep(1000);
 		String currentUrl = driver.getCurrentUrl();
 		Thread.sleep(1000);
@@ -140,6 +141,9 @@ public class PostYourProperty_StepDefinition {
 			Assert.assertTrue(driver.getCurrentUrl().contains("/locality"), "Not on Locality page");
 			Thread.sleep(1000);
 		} else if (page.equalsIgnoreCase("Rental Details")) {
+			startPosting.goToPropertyDetailsPage();
+			propertyDetail.fillPropertyDetails("600");
+			localityPage.fillLocalityDetails("Gurgaon", "Near Metro station");
 			Thread.sleep(1000);
 			Assert.assertTrue(driver.getCurrentUrl().contains("/rental"), "Not on Rental page");
 			Thread.sleep(1000);
@@ -164,14 +168,18 @@ public class PostYourProperty_StepDefinition {
 	}
 
 	@When("the user selects {string} as Apartment Type and {string} as BHK")
-	public void select_apartment_bhk(String type, String bhk) throws InterruptedException {
-		Thread.sleep(8000);
+	public void select_apartment_bhk(String type, String bhk) throws Exception {
+;
+		
+		Thread.sleep(2000);
 		propertyDetail.clickYesButton();
-		Thread.sleep(1000);
-		propertyDetail.selectApartmentType();
-		Thread.sleep(1000);
-		propertyDetail.selectBHK();
-		Thread.sleep(1000);
+
+	    // Fill form while watcher runs in background
+	    Thread.sleep(1000);
+	    propertyDetail.selectApartmentType();
+	    Thread.sleep(1000);
+	    propertyDetail.selectBHK();
+	    Thread.sleep(1000);
 	}
 
 	@When("the user selects {string} as Floor and {string} as Property Age")
