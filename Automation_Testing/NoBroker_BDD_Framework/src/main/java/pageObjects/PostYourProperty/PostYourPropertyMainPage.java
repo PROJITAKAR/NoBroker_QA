@@ -25,8 +25,8 @@ public class PostYourPropertyMainPage {
 	}
 
 	public void clickPostNow() throws InterruptedException {
-		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		Thread.sleep(10000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 		WebElement postNowBtn = wait.until(
 		        ExpectedConditions.elementToBeClickable(By.id("postNow"))

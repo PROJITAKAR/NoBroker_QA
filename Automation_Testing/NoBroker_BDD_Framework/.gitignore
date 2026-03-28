@@ -1,9 +1,0 @@
-# Ignore cookies file
-cookies.json
-
-# Ignore build files
-/target/
-
-# Ignore logs
-*.log
-.metadata

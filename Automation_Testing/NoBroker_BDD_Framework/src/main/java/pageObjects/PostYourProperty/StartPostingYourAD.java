@@ -1,9 +1,14 @@
 package pageObjects.PostYourProperty;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class StartPostingYourAD {
 	WebDriver driver;
@@ -12,7 +17,7 @@ public class StartPostingYourAD {
 	@FindBy(xpath = "//div[@id='citySelectContainer']")
 	WebElement citySelector;
 	
-	@FindBy(xpath = "//div[text()='Bangalore']")
+	@FindBy(xpath = "//div[text()='Pune']")
 	WebElement selectedCity;
 	
 	@FindBy(xpath = "//div[@id='citySelectContainer']/../../../following-sibling::div//button")
@@ -31,9 +36,16 @@ public class StartPostingYourAD {
 	{
 		citySelector.click();
 	}
-	public void selectCity()
-	{
-		selectedCity.click();
+	public void selectCity() {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+	    By cityLocator = By.xpath("//div[text()='Pune']");
+
+	    WebElement city = wait.until(
+	        ExpectedConditions.visibilityOfElementLocated(cityLocator)
+	    );
+
+	    city.click();
 	}
 	public void clickStartPost()
 	{
@@ -41,15 +53,21 @@ public class StartPostingYourAD {
 	}
 	
 	public void goToPropertyDetailsPage() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-	    clickCityDropDown();
-	    Thread.sleep(2000);
+	    // Click dropdown
+	    wait.until(ExpectedConditions.elementToBeClickable(citySelector)).click();
 
-	    selectCity();
-	    Thread.sleep(2000);
+	    // WAIT for city options
+	    By cityLocator = By.xpath("//div[text()='Pune']");
+	    WebElement city = wait.until(
+	        ExpectedConditions.visibilityOfElementLocated(cityLocator)
+	    );
 
-	    clickStartPost();
-	    Thread.sleep(5000);
+	    city.click();
+
+	    // Click Start Post
+	    wait.until(ExpectedConditions.elementToBeClickable(startPost)).click();
 
 	    System.out.println("✅ Navigated to Property Details Page");
 	}
