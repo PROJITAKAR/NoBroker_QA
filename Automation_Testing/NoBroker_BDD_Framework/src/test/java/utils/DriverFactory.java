@@ -3,27 +3,73 @@ package utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverFactory {
+    // 🔥 ThreadLocal for Driver
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    private static WebDriver driver;
+    // 🔥 ThreadLocal for Browser
+    private static ThreadLocal<String> browserName = new ThreadLocal<>();
 
-    public static WebDriver getDriver() {
-        if (driver == null) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--disable-notifications");
-            options.addArguments("--disable-infobars");
-            options.addArguments("--disable-extensions");
-            driver = new ChromeDriver(options);
-            driver.manage().window().maximize();
+
+    // Initialize driver
+    public static void initDriver(String browser) {
+
+        // store browser per thread
+        browserName.set(browser);
+
+        WebDriver localDriver;
+
+        switch (browser.toLowerCase()) {
+
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--disable-infobars");
+                chromeOptions.addArguments("--disable-extensions");
+                localDriver = new ChromeDriver(chromeOptions);
+                break;
+
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--disable-notifications");
+                localDriver = new EdgeDriver(edgeOptions);
+                break;
+
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                localDriver = new FirefoxDriver(firefoxOptions);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Browser not supported: " + browser);
         }
-        return driver;
+
+        localDriver.manage().window().maximize();
+
+        driver.set(localDriver);
     }
 
+    // Get driver for current thread
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    // Get browser name for current thread
+    public static String getBrowser() {
+        return browserName.get();
+    }
+
+    // Quit driver safely
     public static void quitDriver() {
-        if (driver != null) {
-            driver.quit();   // fully terminates browser
-            driver = null;   // reset so next scenario gets a fresh driver
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();          // 🔥 prevent memory leak
+            browserName.remove();     // 🔥 equally important
         }
     }
 }

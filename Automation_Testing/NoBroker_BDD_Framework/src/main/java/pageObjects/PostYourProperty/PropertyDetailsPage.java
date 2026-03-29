@@ -1,11 +1,16 @@
 package pageObjects.PostYourProperty;
 
+import java.awt.Robot;
 import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,161 +19,186 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PropertyDetailsPage {
 
 	WebDriver driver;
+	WebDriverWait wait;
 
 	// Constructor
 	public PropertyDetailsPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 	}
 
-	// ================= DROPDOWNS =================
+	// ================= ELEMENTS =================
 
 	@FindBy(xpath = "//button[text()='Yes']")
 	WebElement clickYes;
 
-	// Apartment Type
 	@FindBy(xpath = "//div[@id='apartmentType']//div[text()='Select']")
 	WebElement apartmentTypeDropdown;
 
 	@FindBy(xpath = "//div[@id='apartmentType']//div[text()='Independent House/Villa']")
 	WebElement apartmentTypeOption;
 
-	// BHK
 	@FindBy(xpath = "//div[@id='bhkType']//div[text()='Select']")
 	WebElement bhkDropdown;
 
 	@FindBy(xpath = "//div[@id='bhkType']//div[text()='2 BHK']")
 	WebElement bhkOption;
 
-//    // Floor
-//    @FindBy(xpath = "//div[@id='commercialFloorSearch']//div[text()='Select']")
-//    WebElement floorDropdown;
-//
-//    @FindBy(xpath = "//div[@id='commercialFloorSearch']//div[text()='1']")
-//    WebElement floorOption;
-
-	// Total Floor
 	@FindBy(xpath = "//div[@id='commercialTotalSearch']//div[text()='Select']")
 	WebElement totalFloorDropdown;
 
 	@FindBy(xpath = "//div[@id='commercialTotalSearch']//div[text()='3']")
 	WebElement totalFloorOption;
 
-	// Property Age
 	@FindBy(xpath = "//div[@id='propertyAge']//div[text()='Select']")
 	WebElement propertyAgeDropdown;
 
 	@FindBy(xpath = "//div[@id='propertyAge']//div[text()='5 to 10 year']")
 	WebElement propertyAgeOption;
 
-	// Facing
 	@FindBy(xpath = "//div[@id='propertyFacing']//div[text()='Select']")
 	WebElement facingDropdown;
 
 	@FindBy(xpath = "//div[@id='propertyFacing']//div[text()='East']")
 	WebElement facingOption;
 
-	// Built Up Area
 	@FindBy(id = "propertySize")
 	WebElement builtUpAreaInput;
 
-	// Save & Continue
 	@FindBy(id = "saveAndContinue")
-	WebElement SaveAndContinue;
+	WebElement saveAndContinue;
 
 	@FindBy(xpath = "//div[@validationstate='error']")
 	List<WebElement> validationErrors;
 
-	// ================= ACTION METHODS =================
+	// ================= WAIT UTIL =================
 
-	public void clickYesButton() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-
-	    By yesLocator = By.xpath("//button[text()='Yes']");
-
-	    // 1️⃣ Wait for presence
-	    WebElement yesBtn = wait.until(
-	        ExpectedConditions.presenceOfElementLocated(yesLocator)
-	    );
-
-	    // 2️⃣ Wait for visibility
-	    wait.until(ExpectedConditions.visibilityOf(yesBtn));
-
-	    // 3️⃣ Wait for clickable
-	    wait.until(ExpectedConditions.elementToBeClickable(yesBtn));
-
-	    // 4️⃣ Click ONLY ONCE
-	    yesBtn.click();
+	private void waitForClick(WebElement element) {
+		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 
-	public void selectApartmentType() {
+	private void waitForVisibility(WebElement element) {
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+
+	// ================= ACTION METHODS =================
+
+	public void clickYesButton() throws Exception {
+
+	    Thread.sleep(3000);
+
+	    Robot robot = new Robot();
+
+	    // 🔥 Step 1: Ensure cursor starts INSIDE browser
+	    Point loc = apartmentTypeDropdown.getLocation();
+	    Dimension size = apartmentTypeDropdown.getSize();
+
+	    int insideX = loc.getX() + size.getWidth()/2;
+	    int insideY = loc.getY() + size.getHeight()/2;
+
+	    robot.mouseMove(insideX, insideY);
+	    Thread.sleep(1000);
+
+	    // 🔥 Step 2: Move OUTSIDE browser (TRIGGER)
+	    Dimension windowSize = driver.manage().window().getSize();
+
+	    robot.mouseMove(windowSize.getWidth() + 300, windowSize.getHeight() + 300);
+	    Thread.sleep(2000);  // 🔥 IMPORTANT: let popup appear
+
+	    // 🔥 Step 3: Now directly find popup (DON'T move back yet)
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    WebElement yesButton = wait.until(
+	        ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Yes']"))
+	    );
+
+	    // 🔥 Step 4: Move slightly back near button ONLY IF needed
+	    robot.mouseMove(insideX, insideY);
+	    Thread.sleep(500);
+
+	    yesButton.click();
+	}
+
+	public void selectApartmentType() throws InterruptedException {
+		Thread.sleep(2000);
+		waitForClick(apartmentTypeDropdown);
 		apartmentTypeDropdown.click();
+
+		waitForClick(apartmentTypeOption);
 		apartmentTypeOption.click();
 	}
 
-	public void selectBHK() {
+	public void selectBHK() throws InterruptedException {
+		Thread.sleep(2000);
+		waitForClick(bhkDropdown);
 		bhkDropdown.click();
+
+		waitForClick(bhkOption);
 		bhkOption.click();
 	}
 
-//    public void selectFloor() {
-//        floorDropdown.click();
-//        floorOption.click();
-//    }
-
-	public void selectTotalFloor() {
+	public void selectTotalFloor() throws InterruptedException {
+		Thread.sleep(2000);
+		waitForClick(totalFloorDropdown);
 		totalFloorDropdown.click();
+
+		waitForClick(totalFloorOption);
 		totalFloorOption.click();
 	}
 
-	public void selectPropertyAge() {
+	public void selectPropertyAge() throws InterruptedException {
+		Thread.sleep(2000);
+		waitForClick(propertyAgeDropdown);
 		propertyAgeDropdown.click();
+
+		waitForClick(propertyAgeOption);
 		propertyAgeOption.click();
 	}
 
-	public void selectFacing() {
+	public void selectFacing() throws InterruptedException {
+		Thread.sleep(2000);
+		waitForClick(facingDropdown);
 		facingDropdown.click();
+
+		waitForClick(facingOption);
 		facingOption.click();
 	}
 
-	public void enterBuiltUpArea(String area) {
+	public void enterBuiltUpArea(String area) throws InterruptedException {
+		Thread.sleep(2000);
+		waitForVisibility(builtUpAreaInput);
 		builtUpAreaInput.clear();
 		builtUpAreaInput.sendKeys(area);
 	}
 
-	public void clickSaveAndContinue() {
-		SaveAndContinue.click();
+	public void clickSaveAndContinue() throws InterruptedException {
+		Thread.sleep(2000);
+		waitForClick(saveAndContinue);
+		saveAndContinue.click();
 	}
 
 	public boolean hasValidationError() {
 		return validationErrors.size() > 0;
 	}
 
-	public void fillPropertyDetails(String area) throws InterruptedException {
+	// ================= MAIN FLOW =================
+
+	public void fillPropertyDetails(String area) throws Exception {
+
+		Thread.sleep(5000); // kept
 
 		clickYesButton();
-		Thread.sleep(2000);
 
 		selectApartmentType();
-		Thread.sleep(2000);
-
 		selectBHK();
-		Thread.sleep(2000);
-
 		selectTotalFloor();
-		Thread.sleep(2000);
-
 		selectPropertyAge();
-		Thread.sleep(2000);
-
 		selectFacing();
-		Thread.sleep(2000);
-
 		enterBuiltUpArea(area);
-		Thread.sleep(2000);
-
 		clickSaveAndContinue();
-		Thread.sleep(5000);
+
+		Thread.sleep(5000); // kept
 
 		System.out.println("Property Details filled and submitted");
 	}
