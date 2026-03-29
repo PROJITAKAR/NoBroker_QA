@@ -6,30 +6,24 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverFactory {
 
-	private static WebDriver driver;
+    private static WebDriver driver;
 
-	public static WebDriver getDriver() {
-		if (driver == null) {
-			ChromeOptions options = new ChromeOptions();
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--disable-notifications");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-extensions");
+            driver = new ChromeDriver(options);
+            driver.manage().window().maximize();
+        }
+        return driver;
+    }
 
-			// 🔥 Disable notifications
-			options.addArguments("--disable-notifications");
-
-			// Optional but useful
-			options.addArguments("--disable-infobars");
-			options.addArguments("--disable-extensions");
-
-			driver = new ChromeDriver(options);
-			driver.manage().window().maximize();
-		}
-		return driver;
-	}
-
-	public static void quitDriver() {
-//		if (driver != null) {
-//			driver.quit();
-//			driver = null;
-//		}
-		driver.close();
-	}
+    public static void quitDriver() {
+        if (driver != null) {
+            driver.quit();   // fully terminates browser
+            driver = null;   // reset so next scenario gets a fresh driver
+        }
+    }
 }

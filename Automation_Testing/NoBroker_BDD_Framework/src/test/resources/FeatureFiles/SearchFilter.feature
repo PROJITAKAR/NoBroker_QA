@@ -44,7 +44,6 @@ Scenario: Search property with valid inputs
     And user selects Flatmate option
     And user searches with valid inputs
     Then Flatmate results should be displayed
-
     When user handles popup and applies filters
     Then filtered Flatmate listings should be displayed
 

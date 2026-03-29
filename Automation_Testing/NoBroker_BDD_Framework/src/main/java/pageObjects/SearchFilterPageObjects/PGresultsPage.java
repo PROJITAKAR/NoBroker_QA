@@ -71,6 +71,7 @@ public class PGresultsPage {
     
     public void resetFilters() {
     	handleMetroPopup();
+    	//Thread.sleep(3000);
         safeClick(resetButton);
     }
 

@@ -1,12 +1,10 @@
-package stepDefinitions;
 
+package stepDefinitions;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.openqa.selenium.chrome.ChromeOptions;
 import utils.DriverFactory;
 import pageObjects.LoginPage;
-import hooks.Hooks;
+//import hooks.Hooks;
 
 import io.cucumber.java.en.*;
 import pageObjects.SearchFilterPageObjects.FlatMateResults;
@@ -85,6 +83,7 @@ public class SearchFilterStepDefinition {
 
     @When("user selects Full House option")
     public void selectFullHouse() {
+    	home.ClickLocalitySection();
         home.selectBuyFullHouse();
     }
 
@@ -97,10 +96,12 @@ public class SearchFilterStepDefinition {
     @When("user selects Rent tab")
     public void selectRentTab() {
         home.clickRentTab();
+        home.ClickLocalitySection();
     }
 
     @When("user selects PG\\/Hostel option")
     public void selectPG() {
+    	home.ClickLocalitySection();
         home.selectPGHostel();
     }
 
@@ -115,9 +116,28 @@ public class SearchFilterStepDefinition {
         pg.applyPGFilters();
     }
 
+//    @Then("filtered PG listings should be displayed")
+//    public void pgFiltered() {
+//        pg.clickFirstProperty();
+//        Assert.assertTrue(true, "PG filters applied");
+//    }
+    
     @Then("filtered PG listings should be displayed")
     public void pgFiltered() {
+
+        String parent = driver.getWindowHandle();
         pg.clickFirstProperty();
+
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(parent)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+        driver.close();
+
+        driver.switchTo().window(parent);
+
         Assert.assertTrue(true, "PG filters applied");
     }
 
@@ -142,13 +162,24 @@ public class SearchFilterStepDefinition {
     @When("user handles popup and applies filters")
     public void flatmateFilters() {
         flat.handlePopup();
-        flat.resetFilters();
         flat.applyFlatmateFilters();
     }
 
     @Then("filtered Flatmate listings should be displayed")
     public void flatmateFiltered() {
+
+        String parent = driver.getWindowHandle();
         flat.clickFirstProperty();
+
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(parent)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+        driver.close();
+
+        driver.switchTo().window(parent);
         Assert.assertTrue(true, "Flatmate filters applied");
     }
 
@@ -190,10 +221,13 @@ public class SearchFilterStepDefinition {
     @Given("user has applied filters")
     public void user_has_applied_filters() {
         home.clickRentTab();
+        home.ClickLocalitySection();
         home.selectPGHostel();
         home.selectCity(this.city);
         home.selectLocality(this.locality);
         home.clickSearch();
+        
+        
 
         pg = new PGresultsPage(driver);
         pg.applyPGFilters();

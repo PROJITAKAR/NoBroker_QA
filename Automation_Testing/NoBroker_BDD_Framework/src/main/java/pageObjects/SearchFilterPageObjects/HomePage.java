@@ -1,5 +1,7 @@
 package pageObjects.SearchFilterPageObjects;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.time.Duration;
 import java.util.List;
 
@@ -61,6 +63,8 @@ public class HomePage {
     WebElement rentFlatmates;
 
 
+
+
     public void selectCity(String cityName) {
         try {
             Thread.sleep(1500);
@@ -88,6 +92,13 @@ public class HomePage {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+    
+    public void ClickLocalitySection() {
+        WebElement input = wait.until(
+                ExpectedConditions.elementToBeClickable(localityInput)
+            );
+        input.click();
     }
 
     public void selectLocality(String locality) {
@@ -121,13 +132,13 @@ public class HomePage {
             Thread.currentThread().interrupt();
         }
     }
-
     public void clickSearch() {
         try {
             Thread.sleep(500);
             WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(searchButton));
             try {
                 btn.click();
+                Thread.sleep(3000);
             } catch (ElementClickInterceptedException e) {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
             }
