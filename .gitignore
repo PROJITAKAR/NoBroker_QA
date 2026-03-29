@@ -1,7 +1,7 @@
-# Maven
+# Maven / Build
 target/
 
-# TestNG / Reports
+# Test Reports
 test-output/
 reports/
 *.html
@@ -9,14 +9,20 @@ reports/
 # Logs
 *.log
 
-# OS files
-.DS_Store
+# Compiled files
+*.class
 
-# IntelliJ / Eclipse
+# IDE files (IntelliJ / Eclipse)
 .idea/
 .project
 .classpath
 .settings/
 
-# Compiled files
-*.class
+# OS files
+.DS_Store
+
+# Workspace metadata
+/.metadata/
+
+# Others
+cookies.json
