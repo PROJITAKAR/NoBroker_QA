@@ -1,11 +1,28 @@
-!PostYourProperty.xml
-/.metadata/
-# Build folders
+# Maven / Build
 target/
+
+# Test Reports
 test-output/
+reports/
+*.html
 
 # Logs
 *.log
+
+# Compiled files
+*.class
+
+# IDE files (IntelliJ / Eclipse)
+.idea/
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+
+# Workspace metadata
+/.metadata/
 
 # Others
 cookies.json

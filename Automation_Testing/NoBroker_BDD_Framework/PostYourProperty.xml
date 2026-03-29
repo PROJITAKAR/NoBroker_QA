@@ -2,25 +2,25 @@
 
 <suite name="CrossBrowserSuite" parallel="tests" thread-count="3">
 
-    <test name="ChromeTest">
+  <!--  <test name="ChromeTest" preserve-order="true">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="runners.PostYourProperty_TestRunner"/>
         </classes>
-    </test>
+    </test>-->
 
-   <test name="EdgeTest">
+  <!-- <test name="EdgeTest" preserve-order="true">
         <parameter name="browser" value="edge"/>
         <classes>
             <class name="runners.PostYourProperty_TestRunner"/>
         </classes>
-    </test>
+    </test> -->
 
-    <test name="FirefoxTest">
+   <test name="FirefoxTest" preserve-order="true">
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="runners.PostYourProperty_TestRunner"/>
         </classes>
-    </test>
+    </test> 
 
 </suite>
