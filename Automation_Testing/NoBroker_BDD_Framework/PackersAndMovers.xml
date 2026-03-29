@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="Single Browser Suite">
 
-    <test name="Edge Test">
+<suite name="CrossBrowserSuite" parallel="tests" thread-count="3">
+
+    <test name="ChromeTest">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="runners.PackersAndMovers_TestRunner"/>
+        </classes>
+    </test>
+
+   <test name="EdgeTest">
         <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="runners.PackersAndMovers_TestRunner"/>
+        </classes>
+    </test>
+
+    <test name="FirefoxTest">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="runners.PackersAndMovers_TestRunner"/>
         </classes>

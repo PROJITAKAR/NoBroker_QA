@@ -78,8 +78,8 @@ public class Hooks {
 		}
 	}
 
-	@After
+/*	@After
 	public void tearDown() {
 		DriverFactory.quitDriver();
-	}
+	}*/
 }
