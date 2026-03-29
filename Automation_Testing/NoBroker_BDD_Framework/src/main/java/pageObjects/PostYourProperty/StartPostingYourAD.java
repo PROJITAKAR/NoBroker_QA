@@ -3,6 +3,7 @@ package pageObjects.PostYourProperty;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,68 +17,108 @@ public class StartPostingYourAD {
 	// Locate Elements
 	@FindBy(xpath = "//div[@id='citySelectContainer']")
 	WebElement citySelector;
-	
+
 	@FindBy(xpath = "//div[text()='Pune']")
 	WebElement selectedCity;
-	
+
 	@FindBy(xpath = "//div[@id='citySelectContainer']/../../../following-sibling::div//button")
 	WebElement startPost;
-	
+
 	@FindBy(xpath = "//span[contains(text(),'Please select a valid city')]")
-    WebElement cityError;
+	WebElement cityError;
 	
-	public StartPostingYourAD(WebDriver driver)
-	{
-		this.driver= driver;
+	
+
+	public StartPostingYourAD(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void clickCityDropDown()
-	{
-		citySelector.click();
-	}
-	public void selectCity() {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+	
 
-	    By cityLocator = By.xpath("//div[text()='Pune']");
+	public void clickCityDropDown() throws InterruptedException {
+		Thread.sleep(500);
 
-	    WebElement city = wait.until(
-	        ExpectedConditions.visibilityOfElementLocated(cityLocator)
-	    );
+		try {
+			citySelector.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", citySelector);
+		}
 
-	    city.click();
-	}
-	public void clickStartPost()
-	{
-		startPost.click();
 	}
 	
-	public void goToPropertyDetailsPage() throws InterruptedException {
+	
+
+	public void selectCity() throws InterruptedException {
+		Thread.sleep(500);
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-	    // Click dropdown
-	    wait.until(ExpectedConditions.elementToBeClickable(citySelector)).click();
+		By cityLocator = By.xpath("//div[text()='Pune']");
 
-	    // WAIT for city options
-	    By cityLocator = By.xpath("//div[text()='Pune']");
-	    WebElement city = wait.until(
-	        ExpectedConditions.visibilityOfElementLocated(cityLocator)
-	    );
+		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(cityLocator));
 
-	    city.click();
-
-	    // Click Start Post
-	    wait.until(ExpectedConditions.elementToBeClickable(startPost)).click();
-
-	    System.out.println("✅ Navigated to Property Details Page");
+		try {
+			city.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", city);
+		}
 	}
 	
-	public boolean isCityErrorDisplayed() {
-        return cityError.isDisplayed();
-    }
-
-    public String getCityErrorMessage() {
-        return cityError.getText();
-    }
 	
+
+	public void clickStartPost() {
+		try {
+			startPost.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", startPost);
+		}
+	}
+	
+	
+
+	public void goToPropertyDetailsPage() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(citySelector)).click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", citySelector);
+		}
+		By cityLocator = By.xpath("//div[text()='Pune']");
+		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(cityLocator));
+
+		try {
+			city.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", city);
+		}
+
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(startPost)).click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", startPost);
+		}
+
+		System.out.println("✅ Navigated to Property Details Page");
+	}
+	
+	
+
+	public boolean isCityErrorDisplayed() {
+		try {
+			return cityError.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	
+
+	public String getCityErrorMessage() {
+		try {
+			return cityError.getText();
+		} catch (Exception e) {
+			return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].innerText;", cityError);
+		}
+	}
 }

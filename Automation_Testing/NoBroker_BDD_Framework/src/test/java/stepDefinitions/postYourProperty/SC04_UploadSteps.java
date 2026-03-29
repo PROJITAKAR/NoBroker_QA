@@ -1,42 +1,54 @@
 package stepDefinitions.postYourProperty;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 
 import pageObjects.PostYourProperty.UploadMediaPage;
 import utils.DriverFactory;
+import utils.ExcelUtil;
 
 public class SC04_UploadSteps {
 
-    WebDriver driver = DriverFactory.getDriver();
-    UploadMediaPage uploadPage = new UploadMediaPage(driver);
+	WebDriver driver = DriverFactory.getDriver();
+	UploadMediaPage uploadPage = new UploadMediaPage(driver);
+	Map<String, String> data;
 
-    @When("the user uploads {string} and {string} \\(each under 5MB)")
-    public void upload_files(String file1, String file2) throws InterruptedException {
+	@Given("the user loads photo upload test data {string} from sheet {string}")
+	public void the_user_loads_photo_upload_test_data_from_sheet(String tcId, String sheetName) {
+		data = ExcelUtil.getTestData("PostYourProperty", sheetName, tcId);
+	}
 
-        // 🔹 Provide full path (IMPORTANT)
-        String imagePath = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\" + file1;
-        String videoPath = System.getProperty("user.dir") + "\\src\\test\\resources\\TestData\\" + file2;
+	@When("the user uploads photo and video from test data")
+	public void the_user_uploads_photo_and_video_from_test_data() throws InterruptedException {
+		String file1 = data.get("file1"); // image
+		String file2 = data.get("file2"); // video
 
-        uploadPage.uploadImage(imagePath);
-        Thread.sleep(2000);
+		String imagePath = System.getProperty("user.dir") + "\\src\\test\\resources\\testfiles\\images\\" + file1;
+	    String videoPath = System.getProperty("user.dir") + "\\src\\test\\resources\\testfiles\\videos\\" + file2;
 
-        uploadPage.uploadVideo(videoPath);
-        Thread.sleep(3000);
+		uploadPage.uploadImage(imagePath);
+		Thread.sleep(2000);
 
-        System.out.println("Uploaded: " + file1 + " and " + file2);
-    }
+		uploadPage.uploadVideo(videoPath);
+		Thread.sleep(3000);
 
-    @Then("the file should be uploaded successfully and preview thumbnail should be visible")
-    public void verify_upload() {
+		System.out.println("Uploaded: " + file1 + " and " + file2);
+	}
 
-        boolean result = uploadPage.areMediaUploaded();
+	@Then("the file should be uploaded successfully and preview thumbnail should be visible")
+	public void verify_upload() {
 
-        if(result) {
-            System.out.println("✅ Upload success and preview visible");
-        } else {
-            throw new AssertionError("❌ Upload failed or preview not visible");
-        }
-    }
+		boolean result = uploadPage.areMediaUploaded();
+
+		if (result) {
+			System.out.println("✅ Upload success and preview visible");
+		} else {
+			throw new AssertionError("❌ Upload failed or preview not visible");
+		}
+	}
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+
+        <!-- report theme -->
+        <theme>light</theme>
+
+        <!-- document encoding -->
+        <encoding>UTF-8</encoding>
+
+        <!-- protocol -->
+        <protocol>https</protocol>
+
+        <!-- timeline (shows step duration graph) -->
+        <timelineEnabled>true</timelineEnabled>
+
+        <!-- offline mode -->
+        <enableOfflineMode>false</enableOfflineMode>
+
+        <!-- title of the report -->
+        <documentTitle>NoBroker Automation Report</documentTitle>
+
+        <!-- report name -->
+        <reportName>NoBroker BDD - Extent Spark Report</reportName>
+
+        <!-- date & time format -->
+        <dateFormat>yyyy-MM-dd</dateFormat>
+        <timeFormat>HH:mm:ss</timeFormat>
+
+        <!-- chart location -->
+        <testViewChartLocation>bottom</testViewChartLocation>
+
+        <!-- custom javascript -->
+        <scripts>
+            <![CDATA[
+            ]]>
+        </scripts>
+
+        <!-- custom css -->
+        <styles>
+            <![CDATA[
+            ]]>
+        </styles>
+
+    </configuration>
+</extentreports>
