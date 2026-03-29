@@ -13,10 +13,7 @@ public class SC01_PropertyTypeSteps {
 
     @When("the user selects Residential as Property Type and Rent as Ad Type and {string} as City")
     public void select_property_type(String city) throws InterruptedException {
-        Thread.sleep(1000);
         startPosting.clickCityDropDown();
-        Thread.sleep(1000);
         startPosting.selectCity();
-        Thread.sleep(1000);
     }
 }

@@ -12,34 +12,47 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PostYourPropertyMainPage {
-	WebDriver driver;
+    
+    WebDriver driver;
 
-	// Locate Elements
-	@FindBy(xpath = "//button[@id='postNow']")
-	WebElement postNowBtn;
+    // Locate Elements
+    @FindBy(xpath = "//button[@id='postNow']")
+    WebElement postNowBtn;
 
-	// Constructor
-	public PostYourPropertyMainPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
+    // Constructor
+    public PostYourPropertyMainPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
 
-	public void clickPostNow() throws InterruptedException {
-		Thread.sleep(10000);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    public void clickPostNow() throws InterruptedException {
+        Thread.sleep(3000);
 
-		WebElement postNowBtn = wait.until(
-		        ExpectedConditions.elementToBeClickable(By.id("postNow"))
-		);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        
+        try {
+            WebElement postNowBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.id("postNow"))
+            );
+            ((JavascriptExecutor) driver)
+                .executeScript("arguments[0].scrollIntoView({block:'center'});", postNowBtn);
+            Thread.sleep(500);
+            ((JavascriptExecutor) driver)
+                .executeScript("arguments[0].click();", postNowBtn);
+            System.out.println("✅ Clicked postNow button");
 
-		// Scroll into view
-		((JavascriptExecutor) driver)
-		        .executeScript("arguments[0].scrollIntoView(true);", postNowBtn);
-
-		Thread.sleep(1000); // small buffer
-
-		// Click using JS (bypass overlay)
-		((JavascriptExecutor) driver)
-		        .executeScript("arguments[0].click();", postNowBtn);
-	}
+        } catch (Exception e) {
+            try {
+                new WebDriverWait(driver, Duration.ofSeconds(5)).until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//div[@id='citySelectContainer']")
+                    )
+                );
+                System.out.println("✅ Rare case — already on Start Posting AD section, skipping postNow");
+            } catch (Exception ex) {
+                throw new RuntimeException("❌ postNow failed and not on Start AD page. URL: "
+                    + driver.getCurrentUrl());
+            }
+        }
+    }
 }

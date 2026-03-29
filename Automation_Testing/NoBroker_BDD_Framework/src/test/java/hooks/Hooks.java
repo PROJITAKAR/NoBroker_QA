@@ -1,6 +1,7 @@
 package hooks;
 
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.After;
 
 import java.time.Duration;
@@ -14,6 +15,9 @@ import pageObjects.LoginPage;
 import utils.DriverFactory;
 import utils.CookieManager;
 import org.openqa.selenium.By;
+
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.OutputType;
 
 public class Hooks {
 
@@ -77,9 +81,17 @@ public class Hooks {
 			return false;
 		}
 	}
-
 	@After
-	public void tearDown() {
-		DriverFactory.quitDriver();
+	public void tearDown(Scenario scenario) {
+	    if (scenario.isFailed()) {
+	        byte[] screenshot = ((TakesScreenshot) driver)
+	                .getScreenshotAs(OutputType.BYTES);
+	        scenario.attach(screenshot, "image/png", scenario.getName());
+	    }
 	}
+
+//	@After
+//	public void tearDown() {
+//		DriverFactory.quitDriver();
+//	}
 }

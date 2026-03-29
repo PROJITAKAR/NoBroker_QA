@@ -1,5 +1,6 @@
 package pageObjects.PostYourProperty;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,7 @@ public class SchedulePage {
     // ================= LOCATORS =================
 
     // Availability Options
-    @FindBy(id = "EVERYDAY")
+    @FindBy(name = "EVERYDAY")
     WebElement everydayOption;
 
 //    @FindBy(xpath = "//div[contains(text(),'Weekday')]")
@@ -55,8 +56,14 @@ public class SchedulePage {
 
     // ================= ACTION METHODS =================
 
-    public void selectEveryday() {
-        everydayOption.click();
+    public void selectEveryday() throws InterruptedException {
+        try {
+            everydayOption.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", everydayOption);
+        }
+        Thread.sleep(2000);
     }
 
 //    public void selectWeekday() {
@@ -67,27 +74,53 @@ public class SchedulePage {
 //        weekendOption.click();
 //    }
 
-    public void enterStartTime(String time) {
-        startTimeInputdropdown.click();
-        startTimeInputOption.click();
+    public void enterStartTime(String time) throws InterruptedException {
+        try {
+            startTimeInputdropdown.click();
+            startTimeInputOption.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", startTimeInputdropdown);
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", startTimeInputOption);
+        }
+        Thread.sleep(2000);
     }
 
-    public void enterEndTime(String time) {
-        endTimeInputdropdown.click();
-        endTimeInputOption.click();
-        
+    public void enterEndTime(String time) throws InterruptedException {
+        try {
+            endTimeInputdropdown.click();
+            endTimeInputOption.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", endTimeInputdropdown);
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", endTimeInputOption);
+        }
+        Thread.sleep(2000);
     }
 
 //    public void selectAvailableAllDay() {
 //        availableAllDayCheckbox.click();
 //    }
 
-    public void clickFinishPosting() {
-        finishPostingButton.click();
+    public void clickFinishPosting() throws InterruptedException {
+        try {
+            finishPostingButton.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", finishPostingButton);
+        }
+        Thread.sleep(5000);
     }
 
     public void clickBack() {
-        backButton.click();
+        try {
+            backButton.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", backButton);
+        }
     }
     
     public void fillScheduleDetails(String day, String startTime, String endTime) throws InterruptedException {
@@ -97,20 +130,15 @@ public class SchedulePage {
             selectEveryday();
         }
 
-        Thread.sleep(2000);
-
         // Start Time
         enterStartTime(startTime);
-        Thread.sleep(2000);
-
+        
         // End Time
         enterEndTime(endTime);
-        Thread.sleep(2000);
-
+        
         // Finish Posting
         clickFinishPosting();
-        Thread.sleep(5000);
-
+        
         System.out.println("Schedule Page completed");
     }
 }
