@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,228 +13,227 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AmenitiesPage {
 
-	WebDriver driver;
-	WebDriverWait wait;
+    WebDriver driver;
+    WebDriverWait wait;
 
-	// Constructor
-	public AmenitiesPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
+    public AmenitiesPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
-	// ================= LOCATORS =================
+    // LOCATORS
+    @FindBy(id = "inc-btn-bathroom-counter-input-filed")
+    WebElement bathroomPlus;
 
-	// Bathroom & Balcony
-	@FindBy(id = "inc-btn-bathroom-counter-input-filed")
-	WebElement bathroomPlus;
+    @FindBy(id = "inc-btn-balconie-counter-input-field")
+    WebElement balconyPlus;
 
-	@FindBy(id = "inc-btn-balconie-counter-input-field")
-	WebElement balconyPlus;
+    @FindBy(id = "amenitiesPypForm-waterSupply-nbInput")
+    WebElement waterSupplyDropdown;
 
-	// Water Supply
-	@FindBy(id = "amenitiesPypForm-waterSupply-nbInput")
-	WebElement waterSupplyDropdown;
+    @FindBy(xpath = "//div[@id='amenitiesPypForm-waterSupply-nbInput-container']//div[text()='Borewell']")
+    WebElement waterSupplyOption;
 
-	@FindBy(xpath = "//div[@id='amenitiesPypForm-waterSupply-nbInput-container']//div[text()='Borewell']")
-	WebElement waterSupplyOption;
+    @FindBy(xpath = "//div[@id='amenitiesPypForm-aea__PET-nbInput-container']//input[@value='true']")
+    WebElement petAllowedYes;
 
-	// Toggles
-	@FindBy(xpath = "//div[@id='amenitiesPypForm-aea__PET-nbInput-container']//input[@value='true']")
-	WebElement petAllowedYes;
+    @FindBy(xpath = "//div[@id='amenitiesPypForm-gym-nbInput-container']//input[@value='true']")
+    WebElement gymYes;
 
-	@FindBy(xpath = "//div[@id='amenitiesPypForm-gym-nbInput-container']//input[@value='true']")
-	WebElement gymYes;
+    @FindBy(xpath = "//div[@id='amenitiesPypForm-aea__NON_VEG_ALLOWED-nbInput-container']//input[@value='true']")
+    WebElement nonVegYes;
 
-	@FindBy(xpath = "//div[@id='amenitiesPypForm-aea__NON_VEG_ALLOWED-nbInput-container']//input[@value='true']")
-	WebElement nonVegYes;
+    @FindBy(xpath = "//div[@id='amenitiesPypForm-aea__GATED_SECURITY-nbInput-container']//input[@value='true']")
+    WebElement gatedSecurityYes;
 
-	@FindBy(xpath = "//div[@id='amenitiesPypForm-aea__GATED_SECURITY-nbInput-container']//input[@value='true']")
-	WebElement gatedSecurityYes;
+    @FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']")
+    WebElement showPropertyDropdown;
 
-	// Who will show property
-	@FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']")
-	WebElement showPropertyDropdown;
+    @FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']/div/div//div[text()='Neighbours']")
+    WebElement showPropertyOption;
 
-	@FindBy(xpath = "//div[@id='aea__HOUSE_KEY_WITH-aea__HOUSE_KEY_WITH-nbInput']/div/div//div[text()='Neighbours']")
-	WebElement showPropertyOption;
+    @FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']")
+    WebElement propertyConditionDropdown;
 
-	// Property Condition
-	@FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']")
-	WebElement propertyConditionDropdown;
+    @FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']/div/div//div[text()='New Property']")
+    WebElement propertyConditionOption;
 
-	@FindBy(xpath = "//div[@id='CURRENT_SITUATION-CURRENT_SITUATION-nbInput']/div/div//div[text()='New Property']")
-	WebElement propertyConditionOption;
+    @FindBy(xpath = "//textarea[contains(@placeholder,'Eg. Take the road')]")
+    WebElement directionsInput;
 
-//    // Secondary Number
-//    @FindBy(xpath = "//input[contains(@placeholder,'Secondary Number')]")
-//    WebElement secondaryNumberInput;
-//
-//    // More properties
-//    @FindBy(xpath = "//label[contains(text(),'Yes')]")
-//    WebElement morePropertiesYes;
+    @FindBy(xpath = "//input[@id='LIFT']")
+    WebElement lift;
 
-	// Directions
-	@FindBy(xpath = "//textarea[contains(@placeholder,'Eg. Take the road')]")
-	WebElement directionsInput;
+    @FindBy(xpath = "//input[@id='POOL']")
+    WebElement swimmingPool;
 
-	// ================= AMENITIES CHECKBOX =================
+    @FindBy(id = "saveAndContinue")
+    WebElement saveAndContinueButton;
 
-	@FindBy(xpath = "//input[@id='LIFT']")
-	WebElement lift;
+    @FindBy(id = "back")
+    WebElement backButton;
 
-	@FindBy(xpath = "//input[@id='POOL']")
-	WebElement swimmingPool;
+    // METHODS
 
-//    @FindBy(xpath = "//label[contains(text(),'Power Backup')]")
-//    WebElement powerBackup;
-//
-//    @FindBy(xpath = "//label[contains(text(),'Park')]")
-//    WebElement park;
+    public void increaseBathroom(int count) throws InterruptedException {
+        for (int i = 0; i < count; i++) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(bathroomPlus));
+                bathroomPlus.click();
+            } catch (Exception e) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", bathroomPlus);
+            }
+            Thread.sleep(500);
+        }
+    }
 
-	// ================= BUTTONS =================
+    public void increaseBalcony(int count) throws InterruptedException {
+        for (int i = 0; i < count; i++) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(balconyPlus));
+                balconyPlus.click();
+            } catch (Exception e) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", balconyPlus);
+            }
+        }
+        Thread.sleep(500);
+    }
 
-	@FindBy(id = "saveAndContinue")
-	WebElement saveAndContinueButton;
+    public void selectWaterSupply() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(waterSupplyDropdown)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(waterSupplyOption)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", waterSupplyDropdown);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", waterSupplyOption);
+        }
+        Thread.sleep(500);
+    }
 
-	@FindBy(id = "back")
-	WebElement backButton;
+    public void selectPetAllowed() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(petAllowedYes)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", petAllowedYes);
+        }
+        Thread.sleep(500);
+    }
 
-	// ================= ACTION METHODS =================
+    public void selectGym() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(gymYes)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", gymYes);
+        }
+        Thread.sleep(500);
+    }
 
-	// ================= ACTION METHODS =================
+    public void selectNonVeg() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(nonVegYes)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nonVegYes);
+        }
+        Thread.sleep(500);
+    }
 
-	public void increaseBathroom(int count) {
-		for (int i = 0; i < count; i++) {
-			wait.until(ExpectedConditions.elementToBeClickable(bathroomPlus));
-			bathroomPlus.click();
-		}
-	}
+    public void selectGatedSecurity() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(gatedSecurityYes)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", gatedSecurityYes);
+        }
+        Thread.sleep(500);
+    }
 
-	public void increaseBalcony(int count) {
-		for (int i = 0; i < count; i++) {
-			wait.until(ExpectedConditions.elementToBeClickable(balconyPlus));
-			balconyPlus.click();
-		}
-	}
+    public void selectWhoWillShowProperty() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(showPropertyDropdown)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(showPropertyOption)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", showPropertyDropdown);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", showPropertyOption);
+        }
+        Thread.sleep(500);
+    }
 
-	public void selectWaterSupply() {
-		wait.until(ExpectedConditions.elementToBeClickable(waterSupplyDropdown)).click();
-		wait.until(ExpectedConditions.elementToBeClickable(waterSupplyOption)).click();
-	}
+    public void selectPropertyCondition() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(propertyConditionDropdown)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(propertyConditionOption)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", propertyConditionDropdown);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", propertyConditionOption);
+        }
+        Thread.sleep(500);
+    }
 
-	public void selectPetAllowed() {
-	    ((JavascriptExecutor) driver)
-	        .executeScript("arguments[0].click();", petAllowedYes);
-	}
+    public void enterDirections(String text) throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(directionsInput));
+            directionsInput.clear();
+            directionsInput.sendKeys(text);
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].value='" + text + "';", directionsInput);
+        }
+        Thread.sleep(500);
+    }
 
-	public void selectGym() {
-	    ((JavascriptExecutor) driver)
-	        .executeScript("arguments[0].click();", gymYes);
-	}
+    public void selectAmenities() throws InterruptedException {
 
-	public void selectNonVeg() {
-	    ((JavascriptExecutor) driver)
-	        .executeScript("arguments[0].click();", nonVegYes);
-	}
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", lift);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(lift));
+            lift.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", lift);
+        }
 
-	public void selectGatedSecurity() {
-	    ((JavascriptExecutor) driver)
-	        .executeScript("arguments[0].click();", gatedSecurityYes);
-	}
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", swimmingPool);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(swimmingPool));
+            swimmingPool.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", swimmingPool);
+        }
 
-	public void selectWhoWillShowProperty() {
-		wait.until(ExpectedConditions.elementToBeClickable(showPropertyDropdown)).click();
-		wait.until(ExpectedConditions.elementToBeClickable(showPropertyOption)).click();
-	}
+        Thread.sleep(500);
+    }
 
-	public void selectPropertyCondition() {
-		wait.until(ExpectedConditions.elementToBeClickable(propertyConditionDropdown)).click();
-		wait.until(ExpectedConditions.elementToBeClickable(propertyConditionOption)).click();
-	}
+    public void clickSaveAndContinue() throws InterruptedException {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(saveAndContinueButton)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveAndContinueButton);
+        }
+        Thread.sleep(1000);
+    }
 
-	public void enterDirections(String text) {
-		wait.until(ExpectedConditions.visibilityOf(directionsInput));
-		directionsInput.clear();
-		directionsInput.sendKeys(text);
-	}
+    public void clickBack() {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(backButton)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", backButton);
+        }
+    }
 
-	// 🔥 Safe click for amenities (same pattern you used)
-	public void selectAmenities() {
+    public void fillAmenitiesDetails() throws InterruptedException {
 
-		// Lift
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", lift);
-		try {
-			wait.until(ExpectedConditions.elementToBeClickable(lift));
-			lift.click();
-		} catch (Exception e) {
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", lift);
-		}
+        increaseBathroom(1);
+        increaseBalcony(1);
+        selectWaterSupply();
+        selectPetAllowed();
+        selectGym();
+        selectNonVeg();
+        selectGatedSecurity();
+        selectWhoWillShowProperty();
+        selectPropertyCondition();
+        enterDirections("Near main road");
+        selectAmenities();
+        clickSaveAndContinue();
 
-		// Swimming Pool
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", swimmingPool);
-		try {
-			wait.until(ExpectedConditions.elementToBeClickable(swimmingPool));
-			swimmingPool.click();
-		} catch (Exception e) {
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", swimmingPool);
-		}
-	}
-
-	public void clickSaveAndContinue() {
-		wait.until(ExpectedConditions.elementToBeClickable(saveAndContinueButton)).click();
-	}
-
-	public void clickBack() {
-		wait.until(ExpectedConditions.elementToBeClickable(backButton)).click();
-	}
-
-	public void fillAmenitiesDetails() throws InterruptedException {
-
-		// Bathroom & Balcony
-		increaseBathroom(1);
-		Thread.sleep(1000);
-
-		increaseBalcony(1);
-		Thread.sleep(1000);
-
-		// Water Supply
-		selectWaterSupply();
-		Thread.sleep(2000);
-
-		// Toggles
-		selectPetAllowed();
-		Thread.sleep(1000);
-
-		selectGym();
-		Thread.sleep(1000);
-
-		selectNonVeg();
-		Thread.sleep(1000);
-
-		selectGatedSecurity();
-		Thread.sleep(1000);
-
-		// Who will show property
-		selectWhoWillShowProperty();
-		Thread.sleep(2000);
-
-		// Property condition
-		selectPropertyCondition();
-		Thread.sleep(2000);
-
-		// Directions
-		enterDirections("Near main road");
-		Thread.sleep(2000);
-
-		// Amenities
-		selectAmenities();
-		Thread.sleep(2000);
-
-		// Save
-		clickSaveAndContinue();
-		Thread.sleep(5000);
-
-		System.out.println("✅ Amenities Details filled and submitted");
-	}
+        System.out.println("✅ Amenities Details filled and submitted");
+    }
 }

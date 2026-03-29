@@ -1,5 +1,6 @@
 package stepDefinitions.postYourProperty;
 
+import java.awt.AWTException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -19,8 +20,8 @@ public class SC05_ValidationSteps {
 	PropertyDetailsPage propertyPage = new PropertyDetailsPage(driver);
 
 	@When("the user leaves all mandatory fields empty")
-	public void empty_fields() {
-		System.out.println("Leaving fields empty");
+	public void empty_fields() throws InterruptedException, AWTException {
+		propertyPage.clickYesButton();
 	}
 
 	@Then("validation messages should be shown for all empty mandatory fields")
