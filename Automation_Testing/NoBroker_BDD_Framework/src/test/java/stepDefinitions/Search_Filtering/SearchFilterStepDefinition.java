@@ -1,5 +1,5 @@
 
-package stepDefinitions;
+package stepDefinitions.Search_Filtering;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import utils.DriverFactory;
@@ -28,7 +28,7 @@ public class SearchFilterStepDefinition {
     public void openWebsite() {
 
 
-        driver = DriverFactory.getDriver();
+        driver = DriverFactory.getDriver();         
 
 
         Search_Filtering_TestData.loadExcel("Search_Filtering.xlsx", "Sheet1");
@@ -123,11 +123,12 @@ public class SearchFilterStepDefinition {
 //    }
     
     @Then("filtered PG listings should be displayed")
-    public void pgFiltered() {
+    public void pgFiltered() throws InterruptedException {
 
         String parent = driver.getWindowHandle();
         pg.clickFirstProperty();
-
+        Thread.sleep(3000);
+        
         for (String handle : driver.getWindowHandles()) {
             if (!handle.equals(parent)) {
                 driver.switchTo().window(handle);
@@ -166,10 +167,11 @@ public class SearchFilterStepDefinition {
     }
 
     @Then("filtered Flatmate listings should be displayed")
-    public void flatmateFiltered() {
+    public void flatmateFiltered() throws InterruptedException {
 
         String parent = driver.getWindowHandle();
         flat.clickFirstProperty();
+        Thread.sleep(3000);
 
         for (String handle : driver.getWindowHandles()) {
             if (!handle.equals(parent)) {

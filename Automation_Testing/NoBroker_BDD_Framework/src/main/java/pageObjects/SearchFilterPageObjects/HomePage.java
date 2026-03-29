@@ -63,8 +63,6 @@ public class HomePage {
     WebElement rentFlatmates;
 
 
-
-
     public void selectCity(String cityName) {
         try {
             Thread.sleep(1500);
@@ -72,9 +70,9 @@ public class HomePage {
             WebElement dropdown = wait.until(
                 ExpectedConditions.elementToBeClickable(cityDropdown)
             );
-            ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView(true);", dropdown
-            );
+//            ((JavascriptExecutor) driver).executeScript(
+//                "arguments[0].scrollIntoView(true);", dropdown
+//            );
             dropdown.click();
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(
