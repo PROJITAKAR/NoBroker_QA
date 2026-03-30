@@ -10,6 +10,7 @@ import org.testng.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import managers.PageObjectManager;
 import pageObjects.PostYourProperty.AmenitiesPage;
 import pageObjects.PostYourProperty.LocalityDetailsPage;
 import pageObjects.PostYourProperty.NavigationToPostYourProperty;
@@ -24,16 +25,16 @@ import utils.DriverFactory;
 public class CommonSteps {
 
 	WebDriver driver = DriverFactory.getDriver();
-	RentalDetailsPage rentalPage = new RentalDetailsPage(driver);
-
-	NavigationToPostYourProperty navigate = new NavigationToPostYourProperty(driver);
-	PostYourPropertyMainPage mainPropertyPage = new PostYourPropertyMainPage(driver);
-	StartPostingYourAD startPosting = new StartPostingYourAD(driver);
-	PropertyDetailsPage propertyDetail = new PropertyDetailsPage(driver);
-	LocalityDetailsPage localityPage = new LocalityDetailsPage(driver);
-	AmenitiesPage amenitiesPage = new AmenitiesPage(driver);
-	UploadMediaPage gallery = new UploadMediaPage(driver);
-	SchedulePage schedule = new SchedulePage(driver);
+	private PageObjectManager pm = new PageObjectManager(driver);
+	private RentalDetailsPage rentalPage = pm.rentalDetailsPage();
+	private NavigationToPostYourProperty navigate = pm.navigationPage();
+	private PostYourPropertyMainPage mainPropertyPage = pm.mainPage();
+	private StartPostingYourAD startPosting = pm.startPage();
+	private PropertyDetailsPage propertyDetail = pm.propertyDetailsPage();
+	private LocalityDetailsPage localityPage = pm.localityDetailsPage();
+	private AmenitiesPage amenitiesPage = pm.amenitiesPage();
+	private UploadMediaPage gallery = pm.uploadMediaPage();
+	private SchedulePage schedule = pm.schedulePage();
 
 	@Given("the user is on the NoBroker Homepage")
 	public void verify_homepage() throws InterruptedException {

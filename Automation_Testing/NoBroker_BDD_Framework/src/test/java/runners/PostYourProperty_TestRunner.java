@@ -1,5 +1,6 @@
 package runners;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
@@ -18,7 +19,7 @@ import utils.DriverFactory;
 	        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 	    monochrome = true,
 	    dryRun = false,
-	    tags = "@All"
+	    tags = "@Sc_4"
 	)
 public class PostYourProperty_TestRunner extends AbstractTestNGCucumberTests{
 	@Override
@@ -26,9 +27,14 @@ public class PostYourProperty_TestRunner extends AbstractTestNGCucumberTests{
     public Object[][] scenarios() {
         return super.scenarios();
     }
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	@Parameters("browser")
 	public void setup(@Optional("chrome") String browser) {
 	    DriverFactory.initDriver(browser);
+	}
+	
+	@AfterClass(alwaysRun = true)
+	public void tearDown() {
+	    DriverFactory.quitDriver();
 	}
 }
