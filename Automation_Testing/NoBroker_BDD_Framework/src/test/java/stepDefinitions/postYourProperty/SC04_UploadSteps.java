@@ -3,6 +3,7 @@ package stepDefinitions.postYourProperty;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import managers.PageObjectManager;
 
 import java.util.Map;
 
@@ -15,7 +16,8 @@ import utils.ExcelUtil;
 public class SC04_UploadSteps {
 
 	WebDriver driver = DriverFactory.getDriver();
-	UploadMediaPage uploadPage = new UploadMediaPage(driver);
+	private PageObjectManager pm = new PageObjectManager(driver);
+	private UploadMediaPage uploadPage = pm.uploadMediaPage();
 	Map<String, String> data;
 
 	@Given("the user loads photo upload test data {string} from sheet {string}")
@@ -25,8 +27,8 @@ public class SC04_UploadSteps {
 
 	@When("the user uploads photo and video from test data")
 	public void the_user_uploads_photo_and_video_from_test_data() throws InterruptedException {
-		String file1 = data.get("file1"); // image
-		String file2 = data.get("file2"); // video
+		String file1 = data.get("file1");
+		String file2 = data.get("file2");
 
 		String imagePath = System.getProperty("user.dir") + "\\src\\test\\resources\\testfiles\\images\\" + file1;
 	    String videoPath = System.getProperty("user.dir") + "\\src\\test\\resources\\testfiles\\videos\\" + file2;

@@ -11,14 +11,15 @@ import org.testng.Assert;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import managers.PageObjectManager;
 import pageObjects.PostYourProperty.PropertyDetailsPage;
 import utils.DriverFactory;
 
 public class SC05_ValidationSteps {
 
 	WebDriver driver = DriverFactory.getDriver();
-	PropertyDetailsPage propertyPage = new PropertyDetailsPage(driver);
-
+	private PageObjectManager pm = new PageObjectManager(driver);
+	private PropertyDetailsPage propertyPage = pm.propertyDetailsPage();
 	@When("the user leaves all mandatory fields empty")
 	public void empty_fields() throws InterruptedException, AWTException {
 		propertyPage.clickYesButton();

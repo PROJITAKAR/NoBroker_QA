@@ -7,14 +7,16 @@ import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import managers.PageObjectManager;
 import pageObjects.PostYourProperty.PropertyDetailsPage;
 import utils.DriverFactory;
 import utils.ExcelUtil;
 
 public class SC02_PropertyDetailsSteps {
 
-	WebDriver driver = DriverFactory.getDriver();
-	PropertyDetailsPage propertyDetail = new PropertyDetailsPage(driver);
+	private WebDriver driver = DriverFactory.getDriver();
+	private PageObjectManager pm = new PageObjectManager(driver);
+	private PropertyDetailsPage propertyDetail = pm.propertyDetailsPage();
 	Map<String, String> data;
 
 	@Given("the user loads property detail test data {string} from sheet {string}")
