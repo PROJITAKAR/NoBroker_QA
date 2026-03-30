@@ -2,6 +2,7 @@ package utils;
 
 import payloads.Booking;
 import payloads.BookingDates;
+import payloads.PartialBooking;
 
 public class TestDataBuilder {
 
@@ -37,6 +38,17 @@ public class TestDataBuilder {
 
         booking.bookingdates = dates;
         booking.additionalneeds = "Lunch";
+
+        return booking;
+    }
+    
+    
+    public static PartialBooking partialUpdatePayload() {
+
+        PartialBooking booking = new PartialBooking();
+
+        booking.firstname = "James";
+        booking.lastname = "Brown";
 
         return booking;
     }
