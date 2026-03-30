@@ -37,6 +37,7 @@ public class AddressPage {
     }
 
     public void searchAndSelectLocation(String location) throws InterruptedException {
+    	locationSearchBar.clear();
         locationSearchBar.sendKeys(location);
         
 

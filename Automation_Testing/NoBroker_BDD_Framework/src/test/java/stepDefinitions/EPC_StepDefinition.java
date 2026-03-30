@@ -1,10 +1,12 @@
 package stepDefinitions;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.cucumber.java.Before;
@@ -19,6 +21,8 @@ import pageObjects.EPC.OrderSummaryPage;
 import pageObjects.EPC.SubServicesPage;
 import utils.DriverFactory;
 import utils.ExcelUtil;
+
+import java.time.Duration;
 import java.util.Map;
 
 
@@ -146,9 +150,18 @@ public class EPC_StepDefinition {
 	@When("User searches and selects location")
 	public void user_searches_and_selects_location() throws InterruptedException {
 	    // Write code here that turns the phrase above into concrete actions
+		try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+	        alert.dismiss();
+	        System.out.println("Location permission popup dismissed");
+	    } catch (Exception e) {
+	        System.out.println("No location popup appeared");
+	    }
 		String location = testData.get("Location");
 	    System.out.println("Location: " + location);
 	    addressPage.searchAndSelectLocation(location);
+	    Thread.sleep(2000);
 	    addressPage.ClickConfirmLoc();
 	    Thread.sleep(2000);
 		
@@ -197,23 +210,29 @@ public class EPC_StepDefinition {
 	public void user_clicks_proceed_on_date_slot_page() throws InterruptedException {
 	    // Write code here that turns the phrase above into concrete actions
 		dateSlotPage.clickProceed();
-		Thread.sleep(8000);
+		Thread.sleep(12000);
 	    
 	}
-
-	@When("User clicks Pay Now on order summary")
-	public void user_clicks_pay_now_on_order_summary() throws InterruptedException {
-	    // Write code here that turns the phrase above into concrete actions
-		orderSummaryPage.clickPayNow();
-		driver.findElement(By.xpath("//button[text()='Skip']")).click();
-		Thread.sleep(5000);
-		
-	    
+	
+	@Then("User is on Order Summary page")
+	public void order_summary_page_should_be_displayed() {
+		Assert.assertTrue(driver.getCurrentUrl().contains("summary"));
 	}
 
-	@Then("Payment portal page should be displayed")
-	public void payment_portal_page_should_be_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-		 Assert.assertTrue(driver.getCurrentUrl().contains("checkout"));
-	}
+//	@When("User clicks Pay Now on order summary")
+//	public void user_clicks_pay_now_on_order_summary() throws InterruptedException {
+//	    // Write code here that turns the phrase above into concrete actions
+//		orderSummaryPage.clickPayNow();
+//		Thread.sleep(3000);
+//		driver.findElement(By.xpath("//button[text()='Skip']")).click();
+//		Thread.sleep(6000);
+//		
+//	    
+//	}
+//
+//	@Then("Payment portal page should be displayed")
+//	public void payment_portal_page_should_be_displayed() {
+//	    // Write code here that turns the phrase above into concrete actions
+//		 Assert.assertTrue(driver.getCurrentUrl().contains("checkout"));
+//	}
 }

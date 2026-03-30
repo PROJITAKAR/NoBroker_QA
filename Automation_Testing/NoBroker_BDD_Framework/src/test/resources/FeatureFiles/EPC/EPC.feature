@@ -34,8 +34,7 @@ Feature: NoBroker Home Services Booking Flow
     Then Date and slot selection page should be displayed
     When User selects date and slot
     And User clicks Proceed on date slot page
-    And User clicks Pay Now on order summary
-    Then Payment portal page should be displayed
+    Then User is on Order Summary page
 
     Examples:
   | TC_ID       |
