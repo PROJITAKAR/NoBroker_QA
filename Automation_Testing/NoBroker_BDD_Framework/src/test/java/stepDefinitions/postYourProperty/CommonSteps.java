@@ -16,6 +16,7 @@ import pageObjects.PostYourProperty.NavigationToPostYourProperty;
 import pageObjects.PostYourProperty.PostYourPropertyMainPage;
 import pageObjects.PostYourProperty.PropertyDetailsPage;
 import pageObjects.PostYourProperty.RentalDetailsPage;
+import pageObjects.PostYourProperty.SchedulePage;
 import pageObjects.PostYourProperty.StartPostingYourAD;
 import pageObjects.PostYourProperty.UploadMediaPage;
 import utils.DriverFactory;
@@ -32,34 +33,42 @@ public class CommonSteps {
 	LocalityDetailsPage localityPage = new LocalityDetailsPage(driver);
 	AmenitiesPage amenitiesPage = new AmenitiesPage(driver);
 	UploadMediaPage gallery = new UploadMediaPage(driver);
+	SchedulePage schedule = new SchedulePage(driver);
 
 	@Given("the user is on the NoBroker Homepage")
 	public void verify_homepage() throws InterruptedException {
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		String currentUrl = driver.getCurrentUrl();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		Assert.assertTrue(currentUrl.contains("nobroker"), "Not on homepage");
 	}
 
 	@When("the user clicks {string}")
 	public void the_user_clicks_post_your_property(String button) throws InterruptedException {
 		if (button.equalsIgnoreCase("Post Your Property")) {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			navigate.clickPostProperty();
 			Thread.sleep(1000);
 
 		} else if (button.equalsIgnoreCase("Post Now")) {
-			Thread.sleep(8000);
+			Thread.sleep(5000);
 			mainPropertyPage.clickPostNow();
 			Thread.sleep(5000);
+			
 		} else if (button.equalsIgnoreCase("Start Posting Your AD For Free")) {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			startPosting.clickStartPost();
 			Thread.sleep(1000);
+			
 		} else if (button.equalsIgnoreCase("Save & Continue")) {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			propertyDetail.clickSaveAndContinue();
 			Thread.sleep(8000);
+		}
+		else if (button.equalsIgnoreCase("Finish Posting")) {
+			Thread.sleep(500);
+			schedule.clickFinishPosting();
+			Thread.sleep(1000);
 		}
 	}
 
@@ -102,34 +111,33 @@ public class CommonSteps {
 
 	@Then("the page should load successfully without errors")
 	public void verify_page_load() throws InterruptedException {
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		String title = driver.getTitle();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		Assert.assertFalse(title.isEmpty(), "Page not loaded properly");
-		Thread.sleep(1000);
+		Thread.sleep(500);
 	}
 
 	@Given("the user is on the {string} page")
 	public void user_on_page(String page) throws Exception {
 		Thread.sleep(1000);
 		String currentUrl = driver.getCurrentUrl();
-		Thread.sleep(1000);
-
+		
 		if (page.equalsIgnoreCase("Post Your Property")) {
 			Thread.sleep(1000);
 			Assert.assertTrue(currentUrl.contains("list-your-property"));
-			Thread.sleep(1000);
+			
 		} else if (page.equalsIgnoreCase("Locality Details")) {
 			Thread.sleep(1000);
 			Assert.assertTrue(driver.getCurrentUrl().contains("/locality"));
-			Thread.sleep(1000);
+			
 		} else if (page.equalsIgnoreCase("Rental Details")) {
 			startPosting.goToPropertyDetailsPage();
 			propertyDetail.fillPropertyDetails("600");
 			localityPage.fillLocalityDetails("Gurgaon", "Near Metro station");
 			Thread.sleep(1000);
 			Assert.assertTrue(driver.getCurrentUrl().contains("/rental"));
-			Thread.sleep(1000);
+			
 		} else if (page.equalsIgnoreCase("Photo Upload")) {
 			startPosting.goToPropertyDetailsPage();
 			propertyDetail.fillPropertyDetails("600");
@@ -139,12 +147,12 @@ public class CommonSteps {
 			gallery.goToGallery();
 			Thread.sleep(1000);
 			Assert.assertTrue(driver.getCurrentUrl().contains("/gallery"));
-			Thread.sleep(1000);
+			
 		} else if (page.equalsIgnoreCase("Property Details")) {
 			startPosting.goToPropertyDetailsPage();
 			Thread.sleep(1000);
 			Assert.assertTrue(driver.getCurrentUrl().contains("/property"));
-			Thread.sleep(1000);
+			
 		}
 	}
 
@@ -156,15 +164,12 @@ public class CommonSteps {
 		if (page.equalsIgnoreCase("Property Details")) {
 			Thread.sleep(1000);
 			errorPresent = propertyDetail.hasValidationError();
-			Thread.sleep(1000);
 		} else if (page.equalsIgnoreCase("Rental Details")) {
 			Thread.sleep(1000);
 			errorPresent = rentalPage.hasValidationError();
-			Thread.sleep(1000);
 		}
 
 		if (errorPresent) {
-			Thread.sleep(1000);
 			throw new AssertionError("❌ Validation error found on " + page + " page!");
 		}
 
@@ -186,7 +191,7 @@ public class CommonSteps {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//div[@class='pyp-form-header-container' and text()='Property Details']")));
 
-			System.out.println("✅ User remains on Property Details page");
+			System.out.println("User remains on Property Details page");
 		} else if (page.equalsIgnoreCase("Rental Details")) {
 
 			wait.until(ExpectedConditions.urlContains("/rental"));
@@ -194,10 +199,9 @@ public class CommonSteps {
 			Assert.assertTrue(driver.getCurrentUrl().contains("/rental"),
 					"User navigated away from Rental Details page!");
 
-			// Optional (add if you have stable element)
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rent"))); // rent field present
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rent")));
 
-			System.out.println("✅ User remains on Rental Details page");
+			System.out.println("User remains on Rental Details page");
 		}
 	}
 

@@ -1,5 +1,6 @@
 package pageObjects.PostYourProperty;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,77 +18,113 @@ public class PreviewListingPage {
 
     // ================= LOCATORS =================
 
-    // Property Title
     @FindBy(xpath = "//h1[contains(text(),'BHK')]")
     WebElement propertyTitle;
 
-    // Rent
     @FindBy(xpath = "//div[contains(text(),'Rent')]/preceding-sibling::div")
     WebElement rentValue;
 
-    // Deposit
     @FindBy(xpath = "//div[contains(text(),'Deposit')]/preceding-sibling::div")
     WebElement depositValue;
 
-    // Area
     @FindBy(xpath = "//div[contains(text(),'Sq.Ft')]/preceding-sibling::div")
     WebElement areaValue;
 
-    // Edit Property Button
     @FindBy(xpath = "//button[contains(text(),'Edit Property')]")
     WebElement editPropertyButton;
 
-    // Shortlist Button
     @FindBy(xpath = "//button[contains(text(),'Shortlist')]")
     WebElement shortlistButton;
 
-    // Add Photos Button
     @FindBy(xpath = "//button[contains(text(),'Add Photos')]")
     WebElement addPhotosButton;
 
-    // Preferred Tenant
     @FindBy(xpath = "//div[contains(text(),'Preferred Tenant')]/preceding-sibling::div")
     WebElement preferredTenant;
 
-    // Parking
     @FindBy(xpath = "//div[contains(text(),'Parking')]/preceding-sibling::div")
     WebElement parking;
 
     // ================= ACTION METHODS =================
 
     public String getPropertyTitle() {
-        return propertyTitle.getText();
+        try {
+            return propertyTitle.getText();
+        } catch (Exception e) {
+            return (String) ((JavascriptExecutor) driver)
+                    .executeScript("return arguments[0].innerText;", propertyTitle);
+        }
     }
 
     public String getRent() {
-        return rentValue.getText();
+        try {
+            return rentValue.getText();
+        } catch (Exception e) {
+            return (String) ((JavascriptExecutor) driver)
+                    .executeScript("return arguments[0].innerText;", rentValue);
+        }
     }
 
     public String getDeposit() {
-        return depositValue.getText();
+        try {
+            return depositValue.getText();
+        } catch (Exception e) {
+            return (String) ((JavascriptExecutor) driver)
+                    .executeScript("return arguments[0].innerText;", depositValue);
+        }
     }
 
     public String getArea() {
-        return areaValue.getText();
+        try {
+            return areaValue.getText();
+        } catch (Exception e) {
+            return (String) ((JavascriptExecutor) driver)
+                    .executeScript("return arguments[0].innerText;", areaValue);
+        }
     }
 
     public String getPreferredTenant() {
-        return preferredTenant.getText();
+        try {
+            return preferredTenant.getText();
+        } catch (Exception e) {
+            return (String) ((JavascriptExecutor) driver)
+                    .executeScript("return arguments[0].innerText;", preferredTenant);
+        }
     }
 
     public String getParking() {
-        return parking.getText();
+        try {
+            return parking.getText();
+        } catch (Exception e) {
+            return (String) ((JavascriptExecutor) driver)
+                    .executeScript("return arguments[0].innerText;", parking);
+        }
     }
 
     public void clickEditProperty() {
-        editPropertyButton.click();
+        try {
+            editPropertyButton.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", editPropertyButton);
+        }
     }
 
     public void clickShortlist() {
-        shortlistButton.click();
+        try {
+            shortlistButton.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", shortlistButton);
+        }
     }
 
     public void clickAddPhotos() {
-        addPhotosButton.click();
+        try {
+            addPhotosButton.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();", addPhotosButton);
+        }
     }
 }

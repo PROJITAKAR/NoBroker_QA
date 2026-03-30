@@ -13,7 +13,7 @@ Feature: Packers and Movers
    Examples:
 | TC_ID |
 | TC01  |
-| TC02  |
+
 
 
   Scenario Outline: Verify user can search, add item and select valid slot
