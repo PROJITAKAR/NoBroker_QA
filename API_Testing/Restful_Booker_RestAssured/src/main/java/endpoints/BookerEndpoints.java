@@ -27,4 +27,23 @@ public class BookerEndpoints {
         return req.header("Cookie", "token=" + token)
                 .delete("/booking/" + id);
     }
+    
+    public static Response getBooking_allIds(RequestSpecification req) {
+    	return req.get("/booking/");
+    	
+    }
+    
+    public static Response getBookingByName(RequestSpecification req, String firstname, String lastname) {
+
+
+        return req
+                .queryParam("firstname", firstname)
+                .queryParam("lastname", lastname)
+                .get("/booking");
+    }
+    
+    public static Response getBookingByDate(RequestSpecification req,String checkin,String checkout) {
+    	return req.queryParam("checkin", checkin,"checkout",checkout)
+    			.get("/booking");
+    }
 }

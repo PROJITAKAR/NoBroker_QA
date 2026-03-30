@@ -8,6 +8,11 @@ import org.testng.annotations.BeforeClass;
 public class BaseTest {
 
     protected RequestSpecification request;
+    protected static int id;
+    protected String firstname;
+    protected String lastname;
+    protected String checkin;
+    protected String checkout;
 
     @BeforeClass
     public void setup() {

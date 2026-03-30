@@ -11,7 +11,7 @@ public class ConfigManager {
     static {
         try {
             FileInputStream fis = new FileInputStream(
-                System.getProperty("user.dir") + "/src/test/resources/config.properties"
+                System.getProperty("user.dir") + "/src/test/resources/config/config.properties"
             );
             prop.load(fis);
         } catch (IOException e) {
