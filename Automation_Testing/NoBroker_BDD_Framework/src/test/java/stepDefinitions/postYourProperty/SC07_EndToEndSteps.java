@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import managers.PageObjectManager;
 import pageObjects.PostYourProperty.AmenitiesPage;
 import pageObjects.PostYourProperty.LocalityDetailsPage;
 import pageObjects.PostYourProperty.PropertyDetailsPage;
@@ -15,12 +16,13 @@ import utils.DriverFactory;
 public class SC07_EndToEndSteps {
 
 	WebDriver driver = DriverFactory.getDriver();
-	LocalityDetailsPage localityPage = new LocalityDetailsPage(driver);
-	AmenitiesPage amenityPage = new AmenitiesPage(driver);
-	SchedulePage schedule = new SchedulePage(driver);
-	SuccessPage successPage = new SuccessPage(driver);
-	PropertyDetailsPage propertyDetail = new PropertyDetailsPage(driver);
-	RentalDetailsPage rentalPage = new RentalDetailsPage(driver);
+	private PageObjectManager pm = new PageObjectManager(driver);
+	private LocalityDetailsPage localityPage = pm.localityDetailsPage();
+	private AmenitiesPage amenityPage = pm.amenitiesPage();
+	private SchedulePage schedule = pm.schedulePage();
+	private SuccessPage successPage = pm.successPage();
+	private PropertyDetailsPage propertyDetail = pm.propertyDetailsPage();
+	private RentalDetailsPage rentalPage = pm.rentalDetailsPage();
 
 	@When("the user selects {string} as Apartment Type and {string} as BHK")
 	public void select_apartment_bhk(String type, String bhk) throws Exception {

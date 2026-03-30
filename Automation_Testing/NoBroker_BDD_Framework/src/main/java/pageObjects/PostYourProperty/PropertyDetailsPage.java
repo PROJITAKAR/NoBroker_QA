@@ -137,7 +137,10 @@ public class PropertyDetailsPage {
 	public void clickYesButton() throws InterruptedException, AWTException {
 		Thread.sleep(5000);
 
-		if (driver instanceof HasCdp) {
+		if (driver.getClass().getName().toLowerCase().contains("chrome") 
+		        || driver.getClass().getName().toLowerCase().contains("edge")) {
+			
+			System.out.println(driver.getClass().getName().toLowerCase());
 			HasCdp cdpDriver = (HasCdp) driver;
 
 			// Step 1: Start inside viewport center
@@ -152,25 +155,28 @@ public class PropertyDetailsPage {
 			}
 
 		}  else {
-			Thread.sleep(3000);
+		    Robot robot = new Robot();
 
-			Robot robot = new Robot();
+		    // Correct absolute screen coordinates
+		    Point windowPos = driver.manage().window().getPosition();
+		    Dimension windowSize = driver.manage().window().getSize();
 
-			// 🔥 Step 1: Ensure cursor starts INSIDE browser
-			Point loc = apartmentTypeDropdown.getLocation();
-			Dimension size = apartmentTypeDropdown.getSize();
+		    int centerX = windowPos.getX() + (windowSize.getWidth() / 2);
+		    int centerY = windowPos.getY() + (windowSize.getHeight() / 2);
 
-			int insideX = loc.getX() + size.getWidth() / 2;
-			int insideY = loc.getY() + size.getHeight() / 2;
+		    // Step 1: Move inside browser first
+		    robot.mouseMove(centerX, centerY);
+		    Thread.sleep(800);
 
-			robot.mouseMove(insideX, insideY);
-			Thread.sleep(1000);
+		    // Step 2: Slowly move UP towards top of browser
+		    for (int y = centerY; y > windowPos.getY(); y -= 20) {
+		        robot.mouseMove(centerX, y);
+		        Thread.sleep(30);
+		    }
 
-			// 🔥 Step 2: Move OUTSIDE browser (TRIGGER)
-			Dimension windowSize = driver.manage().window().getSize();
-
-			robot.mouseMove(windowSize.getWidth() + 300, windowSize.getHeight() + 300);
-			Thread.sleep(2000); // 🔥 IMPORTANT: let popup appear
+		    // Step 3: Move ABOVE browser window entirely
+		    robot.mouseMove(centerX, windowPos.getY() - 100);
+		    Thread.sleep(2500); // wait for popup to appear
 		}
 
 		Thread.sleep(2500);

@@ -8,6 +8,9 @@ import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebElement;
 
@@ -27,6 +30,10 @@ public class Hooks {
 	public void setup() {
 		driver = DriverFactory.getDriver();
 		driver.get("https://www.nobroker.in/");
+		String browser = DriverFactory.getBrowser();
+
+	    ExtentCucumberAdapter.getCurrentScenario()
+        .assignCategory(String.valueOf(browser));
 	}
 
 	// Try loading cookies FIRST (skip login)
@@ -52,7 +59,7 @@ public class Hooks {
 		System.out.println("Cookies invalid/expired → Performing login");
 
 		LoginPage loginPage = new LoginPage(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		Thread.sleep(5000);
 		loginPage.loginClick();

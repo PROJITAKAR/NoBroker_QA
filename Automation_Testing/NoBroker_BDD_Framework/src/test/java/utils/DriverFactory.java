@@ -1,5 +1,7 @@
 package utils;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,21 +20,17 @@ public class DriverFactory {
 
     // Initialize driver
     public static void initDriver(String browser) {
+    	
 
-        // store browser per thread
+        if (browser == null) {
+            browser = "chrome";
+        }
+
         browserName.set(browser);
 
         WebDriver localDriver;
 
         switch (browser.toLowerCase()) {
-
-            case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--disable-notifications");
-                chromeOptions.addArguments("--disable-infobars");
-                chromeOptions.addArguments("--disable-extensions");
-                localDriver = new ChromeDriver(chromeOptions);
-                break;
 
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
@@ -44,13 +42,20 @@ public class DriverFactory {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 localDriver = new FirefoxDriver(firefoxOptions);
                 break;
-
+                
+            case "chrome":
             default:
-                throw new IllegalArgumentException("Browser not supported: " + browser);
+            	ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--disable-infobars");
+                chromeOptions.addArguments("--disable-extensions");
+                localDriver = new ChromeDriver(chromeOptions);
+                break;
         }
 
         localDriver.manage().window().maximize();
-
+        localDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        localDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.set(localDriver);
     }
 
@@ -61,7 +66,8 @@ public class DriverFactory {
 
     // Get browser name for current thread
     public static String getBrowser() {
-        return browserName.get();
+    	String b = browserName.get();
+        return (b != null) ? b : "chrome";
     }
 
     // Quit driver safely
