@@ -36,6 +36,16 @@ Scenario: Search property with valid inputs
 
     When user applies PG filters
     Then filtered PG listings should be displayed
+    
+@Chatbot @Positive
+Scenario: Verify chatbot message sending functionality
+  When user selects Rent tab
+  And user selects city and locality
+  And user clicks search
+  When user clicks on chatbot start button
+  And user enters a message in chatbot
+  And user clicks on send button
+  Then message should be sent successfully
 
 
   @Rent @Flatmate @Positive
@@ -44,7 +54,6 @@ Scenario: Search property with valid inputs
     And user selects Flatmate option
     And user searches with valid inputs
     Then Flatmate results should be displayed
-
     When user handles popup and applies filters
     Then filtered Flatmate listings should be displayed
 

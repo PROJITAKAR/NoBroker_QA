@@ -1,6 +1,7 @@
 package utils;
 
 import payloads.Auth;
+import constants.ApiConstants;
 import io.restassured.RestAssured;
 
 public class TokenManager {
@@ -15,7 +16,7 @@ public class TokenManager {
                 .baseUri(ConfigManager.get("base.url"))
                 .header("Content-Type", "application/json")
                 .body(auth)
-                .post("/auth")
+                .post(ApiConstants.AUTH)
                 .jsonPath()
                 .getString("token");
     }
