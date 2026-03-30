@@ -1,6 +1,7 @@
 package base;
 
 import utils.ConfigManager;
+import utils.TokenManager;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
@@ -19,5 +20,7 @@ public class BaseTest {
         request = RestAssured.given()
                 .baseUri(ConfigManager.get("base.url"))
                 .header("Content-Type", "application/json");
+        
+        token = TokenManager.getToken();
     }
 }

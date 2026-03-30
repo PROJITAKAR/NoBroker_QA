@@ -1,13 +1,12 @@
 package tests;
 
-import base.BaseTest;
-import endpoints.BookerEndpoints;
-import payloads.Booking;
-import payloads.BookingDates;
-import utils.TestDataBuilder;
-import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import base.BaseTest;
+import endpoints.BookerEndpoints;
+import io.restassured.response.Response;
+import utils.TestDataBuilder;
 
 public class CreateBookingTest extends BaseTest {
 
