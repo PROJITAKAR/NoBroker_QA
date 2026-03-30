@@ -95,13 +95,39 @@ public class SubServicesPage {
 
     public boolean isProceedButtonDisplayed() {
         try {
-            return proceedButton.isDisplayed();
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement btn = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//button[text()='Proceed']")
+                )
+            );
+            return btn.isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
 
     public void clickProceed() {
-        proceedButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        WebElement proceedBtn = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.xpath("//button[text()='Proceed']")
+            )
+        );
+
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", proceedBtn);
+
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {}
+
+        try {
+            proceedBtn.click();
+        } catch (Exception e) {
+            System.out.println("Normal click intercepted — using JS click");
+            js.executeScript("arguments[0].click();", proceedBtn);
+        }
     }
 }
