@@ -1,12 +1,10 @@
-package stepDefinitions;
 
+package stepDefinitions.Search_Filtering;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.openqa.selenium.chrome.ChromeOptions;
 import utils.DriverFactory;
 import pageObjects.LoginPage;
-import hooks.Hooks;
+//import hooks.Hooks;
 
 import io.cucumber.java.en.*;
 import pageObjects.SearchFilterPageObjects.FlatMateResults;
@@ -30,7 +28,7 @@ public class SearchFilterStepDefinition {
     public void openWebsite() {
 
 
-        driver = DriverFactory.getDriver();
+        driver = DriverFactory.getDriver();         
 
 
         Search_Filtering_TestData.loadExcel("Search_Filtering.xlsx", "Sheet1");
@@ -85,6 +83,7 @@ public class SearchFilterStepDefinition {
 
     @When("user selects Full House option")
     public void selectFullHouse() {
+    	home.ClickLocalitySection();
         home.selectBuyFullHouse();
     }
 
@@ -97,10 +96,12 @@ public class SearchFilterStepDefinition {
     @When("user selects Rent tab")
     public void selectRentTab() {
         home.clickRentTab();
+        home.ClickLocalitySection();
     }
 
     @When("user selects PG\\/Hostel option")
     public void selectPG() {
+    	home.ClickLocalitySection();
         home.selectPGHostel();
     }
 
@@ -114,10 +115,54 @@ public class SearchFilterStepDefinition {
     public void applyPGFilters() {
         pg.applyPGFilters();
     }
+    
+    // for chatbot button search
+    @When("user clicks on chatbot start button")
+    public void clickChatbot() {
+        pg = new PGresultsPage(driver);
 
+        pg.click_start_chat();
+    }
+    
+    //user type a message
+    @When("user enters a message in chatbot")
+    public void enterMessage() throws InterruptedException {
+        pg.enterChatMessage("Hello");
+    }
+    
+    @When("user clicks on send button")
+    public void clickSend() throws InterruptedException {
+        pg.clickSendButton();
+        Thread.sleep(3000);
+    }
+    @Then("message should be sent successfully")
+    public void verifyMessageSent() {
+        Assert.assertTrue(pg.isMessageDisplayed(), "Message not sent");
+    }
+
+//    @Then("filtered PG listings should be displayed")
+//    public void pgFiltered() {
+//        pg.clickFirstProperty();
+//        Assert.assertTrue(true, "PG filters applied");
+//    }
+    
     @Then("filtered PG listings should be displayed")
-    public void pgFiltered() {
+    public void pgFiltered() throws InterruptedException {
+
+        String parent = driver.getWindowHandle();
         pg.clickFirstProperty();
+        Thread.sleep(3000);
+        
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(parent)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+        driver.close();
+
+        driver.switchTo().window(parent);
+
         Assert.assertTrue(true, "PG filters applied");
     }
 
@@ -142,13 +187,25 @@ public class SearchFilterStepDefinition {
     @When("user handles popup and applies filters")
     public void flatmateFilters() {
         flat.handlePopup();
-        flat.resetFilters();
         flat.applyFlatmateFilters();
     }
 
     @Then("filtered Flatmate listings should be displayed")
-    public void flatmateFiltered() {
+    public void flatmateFiltered() throws InterruptedException {
+
+        String parent = driver.getWindowHandle();
         flat.clickFirstProperty();
+        Thread.sleep(3000);
+
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(parent)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+        driver.close();
+
+        driver.switchTo().window(parent);
         Assert.assertTrue(true, "Flatmate filters applied");
     }
 
@@ -173,7 +230,7 @@ public class SearchFilterStepDefinition {
     }
 
     @Then("Property Status dropdown should be visible")
-    public void property_status_dropdown_should_be_visible() {
+    public void property_status_dropdown_should_be_visible() throws InterruptedException {
         home.isPropertyStatusVisible();
         Assert.assertTrue(true);
     }
@@ -190,10 +247,13 @@ public class SearchFilterStepDefinition {
     @Given("user has applied filters")
     public void user_has_applied_filters() {
         home.clickRentTab();
+        home.ClickLocalitySection();
         home.selectPGHostel();
         home.selectCity(this.city);
         home.selectLocality(this.locality);
         home.clickSearch();
+        
+        
 
         pg = new PGresultsPage(driver);
         pg.applyPGFilters();
