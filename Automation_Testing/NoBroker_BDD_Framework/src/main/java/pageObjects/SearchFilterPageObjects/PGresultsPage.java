@@ -22,6 +22,14 @@ public class PGresultsPage {
     @FindBy(id = "resetButton")
     WebElement resetButton;
 
+    @FindBy(xpath = "//div[@type=\"button\"]")
+    WebElement Chatbot_button;
+    
+    @FindBy(xpath = "//textarea[@placeholder='Type a message...']")
+    WebElement Chatbot_msg;
+    
+    @FindBy(xpath = "//button[.//img[@alt='send'] and not(@disabled)]")
+    WebElement chatbot_send_btn;
 
     @FindBy(id = "pg_boys")
     WebElement boys;
@@ -69,8 +77,46 @@ public class PGresultsPage {
         }
     }
     
+    public void click_start_chat() {
+
+        WebElement chatBtn = wait.until(
+            ExpectedConditions.visibilityOf(Chatbot_button)
+        );
+
+        wait.until(ExpectedConditions.elementToBeClickable(chatBtn));
+        chatBtn.click();
+
+        wait.until(ExpectedConditions.visibilityOf(Chatbot_msg));
+    }
+    
+    public void enterChatMessage(String message) throws InterruptedException {
+
+        WebElement msgBox = wait.until(
+            ExpectedConditions.visibilityOf(Chatbot_msg)
+        );
+        msgBox.click();
+        Thread.sleep(1000);
+        msgBox.sendKeys(message);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    
+    public void clickSendButton() {
+    	WebElement sendButton = wait.until(ExpectedConditions.visibilityOf(chatbot_send_btn));
+    	sendButton.click();
+    }
+    
+    public boolean isMessageDisplayed() {
+        return driver.getPageSource().contains("Hello");
+    }
+    
+    
     public void resetFilters() {
     	handleMetroPopup();
+    	//Thread.sleep(3000);
         safeClick(resetButton);
     }
 

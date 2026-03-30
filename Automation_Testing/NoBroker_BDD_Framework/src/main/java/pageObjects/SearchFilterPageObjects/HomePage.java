@@ -1,5 +1,7 @@
 package pageObjects.SearchFilterPageObjects;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.time.Duration;
 import java.util.List;
 
@@ -68,9 +70,9 @@ public class HomePage {
             WebElement dropdown = wait.until(
                 ExpectedConditions.elementToBeClickable(cityDropdown)
             );
-            ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView(true);", dropdown
-            );
+//            ((JavascriptExecutor) driver).executeScript(
+//                "arguments[0].scrollIntoView(true);", dropdown
+//            );
             dropdown.click();
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -88,6 +90,13 @@ public class HomePage {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+    
+    public void ClickLocalitySection() {
+        WebElement input = wait.until(
+                ExpectedConditions.elementToBeClickable(localityInput)
+            );
+        input.click();
     }
 
     public void selectLocality(String locality) {
@@ -121,13 +130,13 @@ public class HomePage {
             Thread.currentThread().interrupt();
         }
     }
-
     public void clickSearch() {
         try {
             Thread.sleep(500);
             WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(searchButton));
             try {
                 btn.click();
+                Thread.sleep(3000);
             } catch (ElementClickInterceptedException e) {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
             }
@@ -164,12 +173,17 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(buyFullHouse)).click();
     }
 
-    public void isBHKDropdownVisible() {
-        wait.until(ExpectedConditions.visibilityOf(bhkDropdown));
+    public void isBHKDropdownVisible() throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(bhkDropdown)).click();
+        Thread.sleep(3000);
+        bhkDropdown.click();
     }
 
-    public void isPropertyStatusVisible() {
-        wait.until(ExpectedConditions.visibilityOf(propertyStatusDropdown));
+    public void isPropertyStatusVisible() throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(propertyStatusDropdown)).click();
+        Thread.sleep(3000);
+        propertyStatusDropdown.click();
+        
     }
 
 

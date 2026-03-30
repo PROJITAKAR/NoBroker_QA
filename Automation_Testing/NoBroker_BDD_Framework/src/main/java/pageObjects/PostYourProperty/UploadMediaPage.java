@@ -21,7 +21,7 @@ public class UploadMediaPage {
     // Constructor
     public UploadMediaPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // 🔥 Initialize once
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40)); // 🔥 Initialize once
         PageFactory.initElements(driver, this);
     }
 
@@ -95,7 +95,6 @@ public class UploadMediaPage {
 
         Thread.sleep(10000);
 
-        // ⚠️ still not recommended
          driver.navigate().refresh();
     }
 
