@@ -2,9 +2,9 @@ package endpoints;
 
 
 import constants.ApiConstants;
-import payloads.Booking;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import payloads.Booking;
 
 public class BookerEndpoints {
 
@@ -29,7 +29,22 @@ public class BookerEndpoints {
                 .delete("/booking/" + id);
     }
     
-    public static Response healthCheck(RequestSpecification req) {
-        return req.get(ApiConstants.PING);
+    public static Response getBooking_allIds(RequestSpecification req) {
+    	return req.get("/booking/");
+    	
+    }
+    
+    public static Response getBookingByName(RequestSpecification req, String firstname, String lastname) {
+
+
+        return req
+                .queryParam("firstname", firstname)
+                .queryParam("lastname", lastname)
+                .get("/booking");
+    }
+    
+    public static Response getBookingByDate(RequestSpecification req,String checkin,String checkout) {
+    	return req.queryParam("checkin", checkin,"checkout",checkout)
+    			.get("/booking");
     }
 }

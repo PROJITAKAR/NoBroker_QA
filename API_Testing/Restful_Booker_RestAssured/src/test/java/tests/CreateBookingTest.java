@@ -1,24 +1,27 @@
 package tests;
 
-import base.BaseTest;
-import endpoints.BookerEndpoints;
-import payloads.Booking;
-import payloads.BookingDates;
-import utils.TestDataBuilder;
-import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import base.BaseTest;
+import endpoints.BookerEndpoints;
+import io.restassured.response.Response;
+import utils.TestDataBuilder;
+
 public class CreateBookingTest extends BaseTest {
 
-	@Test(groups = "booking")
-
+    @Test
     public void testCreateBooking() {
 
 
         Response response = BookerEndpoints.createBooking(request, TestDataBuilder.createBookingPayload());
         id = response.path("bookingid");
         //System.out.println(id);
+        
+        firstname = response.path("booking.firstname");
+        lastname = response.path("booking.lastname");
+        checkin = response.path("booking.bookingdates.checkin");
+        checkout = response.path("booking.bookingdates.checkout");
         
         System.out.println(response.asPrettyString());
 
