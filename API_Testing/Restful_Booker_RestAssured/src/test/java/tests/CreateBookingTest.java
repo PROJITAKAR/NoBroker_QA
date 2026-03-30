@@ -13,15 +13,20 @@ import org.testng.annotations.Test;
 
 public class CreateBookingTest extends BaseTest {
 
-    @Test(groups = "booking")
-    public void testCreateBooking(ITestContext context) {
+    @Test
+    public void testCreateBooking() {
 
 
         Response response = BookerEndpoints.createBooking(request, TestDataBuilder.createBookingPayload());
+        id = response.path("bookingid");
+        //System.out.println(id);
+        
+        firstname = response.path("booking.firstname");
+        lastname = response.path("booking.lastname");
+        checkin = response.path("booking.bookingdates.checkin");
+        checkout = response.path("booking.bookingdates.checkout");
+        
         System.out.println(response.asPrettyString());
-        int bookingId = response.path("bookingid");
-        ContextManager.setBookingId(context, bookingId);
-
 
         Assert.assertEquals(response.getStatusCode(), 200);
     }

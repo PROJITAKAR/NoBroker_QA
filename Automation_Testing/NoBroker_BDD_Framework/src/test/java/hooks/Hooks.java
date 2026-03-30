@@ -1,3 +1,4 @@
+
 package hooks;
 
 import io.cucumber.java.Before;
@@ -42,7 +43,7 @@ public class Hooks {
 
 		CookieManager.loadCookies(driver);
 		driver.navigate().refresh();
-		Thread.sleep(10000); // small wait
+		Thread.sleep(1000); // small wait
 	}
 
 	// Only login if needed
