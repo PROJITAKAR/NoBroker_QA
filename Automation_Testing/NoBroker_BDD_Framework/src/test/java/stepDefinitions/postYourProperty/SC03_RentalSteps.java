@@ -6,14 +6,16 @@ import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import managers.PageObjectManager;
 import pageObjects.PostYourProperty.RentalDetailsPage;
 import utils.DriverFactory;
 import utils.ExcelUtil;
 
 public class SC03_RentalSteps {
 
-    WebDriver driver = DriverFactory.getDriver();
-    RentalDetailsPage rentalPage = new RentalDetailsPage(driver);
+	WebDriver driver = DriverFactory.getDriver();
+	private PageObjectManager pm = new PageObjectManager(driver);
+	private RentalDetailsPage rentalPage = pm.rentalDetailsPage();
     Map<String, String> data;
     
     @Given("the user loads rental test data {string} from sheet {string}")
