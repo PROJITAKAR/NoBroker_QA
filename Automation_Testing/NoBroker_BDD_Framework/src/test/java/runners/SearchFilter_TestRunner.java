@@ -9,14 +9,14 @@ import utils.DriverFactory;
 @CucumberOptions(
     features  = "C:\\Users\\Suvam Nath\\Desktop\\QA\\NoBroker_QA\\Automation_Testing\\NoBroker_BDD_Framework\\src\\test\\resources\\FeatureFiles\\SearchFilter.feature",
     glue      = { "stepDefinitions.Search_Filtering", "hooks" },
-    plugin    = {
-        "pretty",
-        "html:target/cucumber-report.html"
-    },
-    monochrome = true,
-    dryRun     = false
-    //tags       = "@Smoke"
-)
+    plugin = {
+	        "pretty",
+	        "html:target/cucumber-reports.html",
+	        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
+	    monochrome = true,
+	    dryRun = false,
+	    tags = "@Buy"
+	)
 public class SearchFilter_TestRunner extends AbstractTestNGCucumberTests {
 
     @BeforeClass

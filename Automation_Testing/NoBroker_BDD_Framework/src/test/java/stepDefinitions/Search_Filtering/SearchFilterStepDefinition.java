@@ -115,6 +115,30 @@ public class SearchFilterStepDefinition {
     public void applyPGFilters() {
         pg.applyPGFilters();
     }
+    
+    // for chatbot button search
+    @When("user clicks on chatbot start button")
+    public void clickChatbot() {
+        pg = new PGresultsPage(driver);
+
+        pg.click_start_chat();
+    }
+    
+    //user type a message
+    @When("user enters a message in chatbot")
+    public void enterMessage() throws InterruptedException {
+        pg.enterChatMessage("Hello");
+    }
+    
+    @When("user clicks on send button")
+    public void clickSend() throws InterruptedException {
+        pg.clickSendButton();
+        Thread.sleep(3000);
+    }
+    @Then("message should be sent successfully")
+    public void verifyMessageSent() {
+        Assert.assertTrue(pg.isMessageDisplayed(), "Message not sent");
+    }
 
 //    @Then("filtered PG listings should be displayed")
 //    public void pgFiltered() {
@@ -206,7 +230,7 @@ public class SearchFilterStepDefinition {
     }
 
     @Then("Property Status dropdown should be visible")
-    public void property_status_dropdown_should_be_visible() {
+    public void property_status_dropdown_should_be_visible() throws InterruptedException {
         home.isPropertyStatusVisible();
         Assert.assertTrue(true);
     }
