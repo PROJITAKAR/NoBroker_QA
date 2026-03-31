@@ -20,9 +20,9 @@ Feature: Post Your Property – Residential Rental on NoBroker
 
   # ---------------------------------------------------------------
   # SCENARIO 1 — Property Type & City: Valid Selection  [NON-PARAMETERISED] [POSITIVE]
-  # TC_NoBroker_03 | TS_NoBroker_02
+  # TC_NoBroker_03 
   # ---------------------------------------------------------------
-  @Sc_1 @All
+  @Sc_1 
   Scenario: SC_01 — Successfully select Property Type, Ad Type and City and navigate to Property Details
     Given the user is on the "Post Your Property" page
     When the user selects Residential as Property Type and Rent as Ad Type and "Pune" as City
@@ -31,7 +31,7 @@ Feature: Post Your Property – Residential Rental on NoBroker
 
   # ---------------------------------------------------------------
   # SCENARIO 2 — Property Details: Multiple Valid Configurations  [PARAMETERISED] [POSITIVE]
-  # TC_NoBroker_07 | TS_NoBroker_03
+  # TC_NoBroker_07 
   # ---------------------------------------------------------------
   @Sc_2 @All
   Scenario Outline: SC_02 — Submit valid Property Details with different apartment types and BHK configurations
@@ -51,7 +51,7 @@ Feature: Post Your Property – Residential Rental on NoBroker
 
   # ---------------------------------------------------------------
   # SCENARIO 3 — Rental Details: Valid Rent & Deposit Combinations  [PARAMETERISED] [POSITIVE]
-  # TC_NoBroker_17 | TS_NoBroker_05
+  # TC_NoBroker_17 
   # ---------------------------------------------------------------
   @Sc_3 @All
   Scenario Outline: SC_03 — Successfully submit Rental Details with valid rent and deposit values
@@ -71,7 +71,7 @@ Feature: Post Your Property – Residential Rental on NoBroker
 
   # ---------------------------------------------------------------
   # SCENARIO 4 — Photo Upload: Valid Image & Video Formats  [PARAMETERISED] [POSITIVE]
-  # TC_NoBroker_23 + TC_NoBroker_25 | TS_NoBroker_07
+  # TC_NoBroker_23 + TC_NoBroker_24 + TS_NoBroker_25
   # ---------------------------------------------------------------
   @Sc_4 @All
   Scenario Outline: SC_04 — Upload valid photos and videos in different formats and verify preview thumbnails
@@ -89,7 +89,7 @@ Feature: Post Your Property – Residential Rental on NoBroker
 
   # ---------------------------------------------------------------
   # SCENARIO 5 — Property Details: Empty Mandatory Fields  [NON-PARAMETERISED] [NEGATIVE]
-  # TC_NoBroker_08 | TS_NoBroker_03
+  # TC_NoBroker_08 
   # ---------------------------------------------------------------
   @Sc_5 @All
   Scenario: SC_05 — Show validation errors when Property Details mandatory fields are empty
@@ -101,7 +101,7 @@ Feature: Post Your Property – Residential Rental on NoBroker
 
   # ---------------------------------------------------------------
   # SCENARIO 6 — Rental Details: Deposit Less Than Rent  [NON-PARAMETERISED] [NEGATIVE]
-  # TC_NoBroker_18 | TS_NoBroker_05
+  # TC_NoBroker_18 
   # ---------------------------------------------------------------
   @Sc_6 @All
   Scenario: SC_06 — Show validation error when deposit amount is less than rent

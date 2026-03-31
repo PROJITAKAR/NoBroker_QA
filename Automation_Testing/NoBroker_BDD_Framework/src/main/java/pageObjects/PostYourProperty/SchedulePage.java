@@ -23,13 +23,6 @@ public class SchedulePage {
     @FindBy(name = "EVERYDAY")
     WebElement everydayOption;
 
-//    @FindBy(xpath = "//div[contains(text(),'Weekday')]")
-//    WebElement weekdayOption;
-//
-//    @FindBy(xpath = "//div[contains(text(),'Weekend')]")
-//    WebElement weekendOption;
-
-    // Time Inputs
     @FindBy(xpath = "//input[@placeholder='Start time']")
     WebElement startTimeInputdropdown;
     
@@ -43,11 +36,6 @@ public class SchedulePage {
     @FindBy(xpath = "//input[@placeholder='End time']/../../following-sibling::div//li[text()='06:00 PM']")
     WebElement endTimeInputOption;
 
-//    // Available All Day Checkbox
-//    @FindBy(xpath = "//input[@type='checkbox']")
-//    WebElement availableAllDayCheckbox;
-
-    // Buttons
     @FindBy(xpath = "//button[text()='Finish Posting']")
     WebElement finishPostingButton;
 
@@ -65,14 +53,6 @@ public class SchedulePage {
         }
         Thread.sleep(2000);
     }
-
-//    public void selectWeekday() {
-//        weekdayOption.click();
-//    }
-//
-//    public void selectWeekend() {
-//        weekendOption.click();
-//    }
 
     public void enterStartTime(String time) throws InterruptedException {
         try {
@@ -100,10 +80,6 @@ public class SchedulePage {
         Thread.sleep(2000);
     }
 
-//    public void selectAvailableAllDay() {
-//        availableAllDayCheckbox.click();
-//    }
-
     public void clickFinishPosting() throws InterruptedException {
         try {
             finishPostingButton.click();
@@ -125,18 +101,14 @@ public class SchedulePage {
     
     public void fillScheduleDetails(String day, String startTime, String endTime) throws InterruptedException {
 
-        // Availability
         if (day.equalsIgnoreCase("Everyday")) {
             selectEveryday();
         }
 
-        // Start Time
         enterStartTime(startTime);
         
-        // End Time
         enterEndTime(endTime);
         
-        // Finish Posting
         clickFinishPosting();
         
         System.out.println("Schedule Page completed");

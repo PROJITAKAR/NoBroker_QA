@@ -33,7 +33,7 @@ public class PropertyDetailsPage {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 	}
 
-	// ================= ELEMENTS =================
+    // ================= LOCATORS =================
 
 	@FindBy(xpath = "//button[text()='Yes']")
 	WebElement clickYes;
@@ -89,41 +89,6 @@ public class PropertyDetailsPage {
 
 	// ================= ACTION METHODS =================
 
-//	public void clickYesButton() throws Exception {
-//
-//	    Thread.sleep(3000);
-//
-//	    Robot robot = new Robot();
-//
-//	    // 🔥 Step 1: Ensure cursor starts INSIDE browser
-//	    Point loc = apartmentTypeDropdown.getLocation();
-//	    Dimension size = apartmentTypeDropdown.getSize();
-//
-//	    int insideX = loc.getX() + size.getWidth()/2;
-//	    int insideY = loc.getY() + size.getHeight()/2;
-//
-//	    robot.mouseMove(insideX, insideY);
-//	    Thread.sleep(1000);
-//
-//	    // 🔥 Step 2: Move OUTSIDE browser (TRIGGER)
-//	    Dimension windowSize = driver.manage().window().getSize();
-//
-//	    robot.mouseMove(windowSize.getWidth() + 300, windowSize.getHeight() + 300);
-//	    Thread.sleep(2000);  // 🔥 IMPORTANT: let popup appear
-//
-//	    // 🔥 Step 3: Now directly find popup (DON'T move back yet)
-//	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//
-//	    WebElement yesButton = wait.until(
-//	        ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Yes']"))
-//	    );
-//
-//	    // 🔥 Step 4: Move slightly back near button ONLY IF needed
-//	    robot.mouseMove(insideX, insideY);
-//	    Thread.sleep(500);
-//
-//	    yesButton.click();
-//	}
 
 	private void sendCdpMouseMove(HasCdp cdpDriver, double x, double y) {
 		Map<String, Object> params = new HashMap<>();
@@ -323,12 +288,12 @@ public class PropertyDetailsPage {
 
 	public void fillPropertyDetails(String area) throws Exception {
 
-		Thread.sleep(5000); // kept
+		Thread.sleep(5000); 
 
 		clickYesButton();
 
-		selectApartmentType(); // static
-		selectBHK("2 BHK"); // default
+		selectApartmentType();
+		selectBHK("2 BHK"); 
 		selectTotalFloor("3");
 		selectPropertyAge("5 to 10 year");
 		selectFacing("East");
@@ -336,7 +301,7 @@ public class PropertyDetailsPage {
 
 		clickSaveAndContinue();
 
-		Thread.sleep(5000); // kept
+		Thread.sleep(500); 
 
 		System.out.println("Property Details filled and submitted");
 	}

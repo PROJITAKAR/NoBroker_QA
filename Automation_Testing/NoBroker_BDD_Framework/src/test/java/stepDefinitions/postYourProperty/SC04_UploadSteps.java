@@ -48,7 +48,7 @@ public class SC04_UploadSteps {
 		boolean result = uploadPage.areMediaUploaded();
 
 		if (result) {
-			System.out.println("✅ Upload success and preview visible");
+			System.out.println("Upload success and preview visible");
 		} else {
 			throw new AssertionError("❌ Upload failed or preview not visible");
 		}
