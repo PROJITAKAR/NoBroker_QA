@@ -21,7 +21,7 @@ public class UploadMediaPage {
     // Constructor
     public UploadMediaPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40)); // 🔥 Initialize once
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // 🔥 Initialize once
         PageFactory.initElements(driver, this);
     }
 
@@ -47,6 +47,25 @@ public class UploadMediaPage {
 
     // ================= ACTION METHODS =================
     
+    private void waitForLoaderToDisappear() {
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                    By.xpath("//img[@alt='loading']")
+            ));
+        } catch (Exception e) {
+            System.out.println("⚠️ Loader issue. Refreshing page...");
+            driver.navigate().refresh();
+
+            try {
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                        By.xpath("//img[@alt='loading']")
+                ));
+            } catch (Exception ex) {
+                System.out.println("⚠️ Loader still problematic after refresh, continuing...");
+            }
+        }
+    }
+    
     public void goToGallery() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(navigateToGallery));
@@ -66,8 +85,7 @@ public class UploadMediaPage {
             ((JavascriptExecutor) driver)
                     .executeScript("arguments[0].value='" + filePath + "';", uploadImageInput);
         }
-        Thread.sleep(15000);
-//        driver.navigate().refresh();
+        waitForLoaderToDisappear();
     }
 
     public void uploadVideo(String filePath) throws InterruptedException {
@@ -93,9 +111,9 @@ public class UploadMediaPage {
                     .executeScript("arguments[0].value='" + filePath + "';", uploadVideoInput);
         }
 
-        Thread.sleep(10000);
+        waitForLoaderToDisappear();
+        driver.navigate().refresh();
 
-         driver.navigate().refresh();
     }
 
     public void clickSaveAndContinue() throws InterruptedException {
