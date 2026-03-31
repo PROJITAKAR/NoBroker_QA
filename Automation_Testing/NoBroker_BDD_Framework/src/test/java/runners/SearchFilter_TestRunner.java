@@ -14,7 +14,7 @@ import utils.DriverFactory;
 	        "html:target/cucumber-reports.html",
 	        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 	    monochrome = true,
-	    dryRun = false,
+	    dryRun = false
 	    //tags = "@Regression"
 	    //tags = "@Chatbot"
 	)
