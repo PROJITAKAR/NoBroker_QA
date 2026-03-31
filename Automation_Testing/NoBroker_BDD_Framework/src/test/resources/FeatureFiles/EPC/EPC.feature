@@ -39,6 +39,5 @@ Feature: NoBroker Home Services Booking Flow
     Examples:
   | TC_ID       |
   | TC_NB_03_01 |
-  | TC_NB_03_02 |
     
       

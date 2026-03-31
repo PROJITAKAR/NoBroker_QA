@@ -47,7 +47,7 @@ public class Hooks {
 	@Before(value = "@LoginRequired", order = 2)
 	public void loginSetup() throws Exception {
 
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 
 		if (isLoggedIn()) {
 			System.out.println("Already logged in via cookies");

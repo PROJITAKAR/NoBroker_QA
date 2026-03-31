@@ -22,7 +22,7 @@ public class AmenitiesPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // LOCATORS
+    // ================= LOCATORS =================
     @FindBy(id = "inc-btn-bathroom-counter-input-filed")
     WebElement bathroomPlus;
 
@@ -74,7 +74,7 @@ public class AmenitiesPage {
     @FindBy(id = "back")
     WebElement backButton;
 
-    // METHODS
+    // ================= ACTION METHODS =================
 
     public void increaseBathroom(int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
@@ -84,7 +84,7 @@ public class AmenitiesPage {
             } catch (Exception e) {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", bathroomPlus);
             }
-            Thread.sleep(500);
+            Thread.sleep(100);
         }
     }
 
@@ -97,7 +97,7 @@ public class AmenitiesPage {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", balconyPlus);
             }
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void selectWaterSupply() throws InterruptedException {
@@ -108,7 +108,7 @@ public class AmenitiesPage {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", waterSupplyDropdown);
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", waterSupplyOption);
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void selectPetAllowed() throws InterruptedException {
@@ -117,7 +117,7 @@ public class AmenitiesPage {
         } catch (Exception e) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", petAllowedYes);
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void selectGym() throws InterruptedException {
@@ -135,7 +135,7 @@ public class AmenitiesPage {
         } catch (Exception e) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nonVegYes);
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void selectGatedSecurity() throws InterruptedException {
@@ -144,7 +144,7 @@ public class AmenitiesPage {
         } catch (Exception e) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", gatedSecurityYes);
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void selectWhoWillShowProperty() throws InterruptedException {
@@ -155,7 +155,7 @@ public class AmenitiesPage {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", showPropertyDropdown);
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", showPropertyOption);
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void selectPropertyCondition() throws InterruptedException {
@@ -166,7 +166,7 @@ public class AmenitiesPage {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", propertyConditionDropdown);
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", propertyConditionOption);
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void enterDirections(String text) throws InterruptedException {
@@ -178,7 +178,7 @@ public class AmenitiesPage {
             ((JavascriptExecutor) driver)
                     .executeScript("arguments[0].value='" + text + "';", directionsInput);
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void selectAmenities() throws InterruptedException {
@@ -199,7 +199,7 @@ public class AmenitiesPage {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", swimmingPool);
         }
 
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     public void clickSaveAndContinue() throws InterruptedException {
@@ -234,6 +234,6 @@ public class AmenitiesPage {
         selectAmenities();
         clickSaveAndContinue();
 
-        System.out.println("✅ Amenities Details filled and submitted");
+        System.out.println("Amenities Details filled and submitted");
     }
 }

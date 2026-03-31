@@ -11,8 +11,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverFactory {
+    // ThreadLocal for Driver
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
+    // ThreadLocal for Browser
     private static ThreadLocal<String> browserName = new ThreadLocal<>();
 
 
@@ -72,8 +74,8 @@ public class DriverFactory {
     public static void quitDriver() {
         if (driver.get() != null) {
             driver.get().quit();
-            driver.remove();          
-            browserName.remove();     
+            driver.remove();          // prevent memory leak
+            browserName.remove();     // equally important
         }
     }
 }

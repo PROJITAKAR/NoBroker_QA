@@ -24,6 +24,7 @@ public class SC07_EndToEndSteps {
 	private PropertyDetailsPage propertyDetail = pm.propertyDetailsPage();
 	private RentalDetailsPage rentalPage = pm.rentalDetailsPage();
 
+
 	@When("the user selects {string} as Apartment Type and {string} as BHK")
 	public void select_apartment_bhk(String type, String bhk) throws Exception {
 
@@ -102,10 +103,8 @@ public class SC07_EndToEndSteps {
 		if (day.equalsIgnoreCase("Everyday")) {
 			schedule.selectEveryday();
 		}
-		// Start Time
 		schedule.enterStartTime(start);
 
-		// End Time
 		schedule.enterEndTime(end);
 
 	}
@@ -119,18 +118,15 @@ public class SC07_EndToEndSteps {
 			throw new AssertionError("❌ Expected: " + msg + " but got: " + actualMsg);
 		}
 
-		System.out.println("✅ Success message verified: " + actualMsg);
+		System.out.println("Success message verified: " + actualMsg);
 	}
 
 	@Then("the success screen should show options for {string} and {string}")
 	public void success_options(String op1, String op2) {
-
-		SuccessPage successPage = new SuccessPage(DriverFactory.getDriver());
-
 		if (!successPage.areOptionsVisible()) {
 			throw new AssertionError("❌ Options not visible: " + op1 + ", " + op2);
 		}
 
-		System.out.println("✅ Options verified: " + op1 + " & " + op2);
+		System.out.println("Options verified: " + op1 + " & " + op2);
 	}
 }
