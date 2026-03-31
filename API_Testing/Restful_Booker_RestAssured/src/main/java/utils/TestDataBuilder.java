@@ -9,8 +9,8 @@ public class TestDataBuilder {
     public static Booking createBookingPayload() {
 
         Booking booking = new Booking();
-        booking.firstname = "Projita";
-        booking.lastname = "Kar";
+        booking.firstname = "John";
+        booking.lastname = "Doe";
         booking.totalprice = 1000;
         booking.depositpaid = true;
 
