@@ -28,13 +28,13 @@ public class HomePage {
     WebElement localityInput;
 
 
-    By suggestionContainer = By.xpath("//*[@role='option']");
-
+//    By suggestionContainer = By.xpath("//*[@role='option']");
+    By suggestionContainer = By.xpath(
+    	    "//div[@id='autocomplete-dropdown-container']//div[@role='option']");
+    
+    
     @FindBy(xpath =
-        "//button[normalize-space(text())='Search' or " +
-        "normalize-space(text())='SEARCH' or " +
-        "normalize-space(.)='Search' or " +
-        "normalize-space(.)='SEARCH']"
+        "//button[normalize-space()='Search']"
     )
     WebElement searchButton;
 
@@ -56,10 +56,10 @@ public class HomePage {
     WebElement propertyStatusDropdown;
 
 
-    @FindBy(xpath = "//label[.//input[@id='PG']]")
+    @FindBy(xpath = "//input[@id='PG']")
     WebElement rentPG;
 
-    @FindBy(xpath = "//label[.//input[@value='SHARED']]")
+    @FindBy(xpath = "//input[@id='SHARED']")
     WebElement rentFlatmates;
 
 
@@ -92,6 +92,8 @@ public class HomePage {
         }
     }
     
+
+    
     public void ClickLocalitySection() {
         WebElement input = wait.until(
                 ExpectedConditions.elementToBeClickable(localityInput)
@@ -112,9 +114,10 @@ public class HomePage {
 
             Thread.sleep(2500);
 
-            wait.until(ExpectedConditions.presenceOfElementLocated(suggestionContainer));
+  //          wait.until(ExpectedConditions.presenceOfElementLocated(suggestionContainer));
 
-            List<WebElement> options = driver.findElements(suggestionContainer);
+//            List<WebElement> options = driver.findElements(suggestionContainer);
+            List<WebElement> options = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(suggestionContainer));
 
             if (!options.isEmpty()) {
                 WebElement first = options.get(0);

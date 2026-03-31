@@ -33,20 +33,17 @@ public class Hooks {
 		driver.get("https://www.nobroker.in/");
 		String browser = DriverFactory.getBrowser();
 
-	    ExtentCucumberAdapter.getCurrentScenario()
-        .assignCategory(String.valueOf(browser));
+	    ExtentCucumberAdapter.getCurrentScenario().assignCategory(String.valueOf(browser));
 	}
 
-	// Try loading cookies FIRST (skip login)
 	@Before(order = 1)
 	public void loadSession() throws InterruptedException {
 
 		CookieManager.loadCookies(driver);
 		driver.navigate().refresh();
-		Thread.sleep(1000); // small wait
+		Thread.sleep(1000); 
 	}
 
-	// Only login if needed
 	@Before(value = "@LoginRequired", order = 2)
 	public void loginSetup() throws Exception {
 

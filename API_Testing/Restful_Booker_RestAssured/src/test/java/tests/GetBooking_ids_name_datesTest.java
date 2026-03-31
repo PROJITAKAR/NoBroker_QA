@@ -24,8 +24,9 @@ public class GetBooking_ids_name_datesTest extends BaseTest {
     public void testGetBookingAllIds() {
 
         Response response = BookerEndpoints.getBooking_allIds(getRequest());
-
+        
         System.out.println(response.asPrettyString());
+
 
         Assert.assertEquals(response.getStatusCode(), 200, "Status code mismatch");
 
