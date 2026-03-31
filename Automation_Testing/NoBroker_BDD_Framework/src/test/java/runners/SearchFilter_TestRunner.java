@@ -23,9 +23,7 @@ public class SearchFilter_TestRunner extends AbstractTestNGCucumberTests {
     @BeforeClass
     @Parameters("browser")
     public void setup(String browser) {
-        // ✅ Store browser globally so any thread can read it
         System.setProperty("browser", browser);
-        // ✅ Init driver on this thread
         DriverFactory.initDriver(browser);
     }
 }
