@@ -114,7 +114,7 @@ public class EPC_StepDefinition {
 	public void user_adds_a_service() throws InterruptedException {
 	    // Write code here that turns the phrase above into concrete actions
 		subServicesPage.addService();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 	    
 	}
 

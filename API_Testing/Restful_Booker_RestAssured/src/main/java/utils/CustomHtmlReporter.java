@@ -65,15 +65,19 @@ public class CustomHtmlReporter implements IReporter {
 		int f = failed.size();
 		int s = skipped.size();
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("<!DOCTYPE html><html lang='en'><head>").append("<meta charset='UTF-8'>")
-				.append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
-				.append("<title>Restful Booker API — Test Report</title>").append("<style>").append(css())
-				.append("</style>").append("</head><body>");
+        StringBuilder sb = new StringBuilder();
+        sb.append("<!DOCTYPE html><html lang='en'><head>")
+          .append("<meta charset='UTF-8'>")
+          .append("<meta name='viewport' content='width=device-width,initial-scale=1'>")
+          .append("<title>Restful Booker API — Test Report</title>")
+          .append("<style>").append(css()).append("</style>")
+          .append("</head><body>");
 
-		// Header
-		sb.append("<div class='header'>").append("<h1> Restful Booker API — Test Execution Report</h1>")
-				.append("<p class='meta'>Generated: ").append(timestamp).append("</p>").append("</div>");
+        // Header
+        sb.append("<div class='header'>")
+          .append("<h1> Restful Booker API — Test Execution Report</h1>")
+          .append("<p class='meta'>Generated: ").append(timestamp).append("</p>")
+          .append("</div>");
 
 		// Summary cards
 		sb.append("<div class='summary'>").append(card("Total", String.valueOf(total), "card-total"))
@@ -123,11 +127,11 @@ public class CustomHtmlReporter implements IReporter {
 
 		sb.append("</tbody></table></div>");
 
-		// Footer
-		sb.append("<div class='footer'>Restful Booker API Automation Suite &nbsp;|&nbsp; RestAssured + TestNG</div>");
-		sb.append("</body></html>");
-		return sb.toString();
-	}
+        // Footer
+        sb.append("<div class='footer'>Restful Booker API Automation Suite &nbsp;|&nbsp; RestAssured + TestNG</div>");
+        sb.append("</body></html>");
+        return sb.toString();
+    }
 
 	// ── Helpers ───────────────────────────────────────────────────────────────
 
