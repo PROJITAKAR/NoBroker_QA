@@ -135,14 +135,14 @@ public class CommonSteps {
 		} else if (page.equalsIgnoreCase("Rental Details")) {
 			startPosting.goToPropertyDetailsPage();
 			propertyDetail.fillPropertyDetails("600");
-			localityPage.fillLocalityDetails("Gurgaon", "Near Metro station");
+			localityPage.fillLocalityDetails("Pune", "Near Metro station");
 			Thread.sleep(1000);
 			Assert.assertTrue(driver.getCurrentUrl().contains("/rental"));
 			
 		} else if (page.equalsIgnoreCase("Photo Upload")) {
 			startPosting.goToPropertyDetailsPage();
 			propertyDetail.fillPropertyDetails("600");
-			localityPage.fillLocalityDetails("Gurgaon", "Near Metro station");
+			localityPage.fillLocalityDetails("Pune", "Near Metro station");
 			rentalPage.fillRentalDetails("2000", "3000");
 			amenitiesPage.fillAmenitiesDetails();
 			gallery.goToGallery();

@@ -19,7 +19,7 @@ import utils.DriverFactory;
 	        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 	    monochrome = true,
 	    dryRun = false,
-	    tags = "@Sc_4"
+	    tags = "@All"
 	)
 public class PostYourProperty_TestRunner extends AbstractTestNGCucumberTests{
 	@Override

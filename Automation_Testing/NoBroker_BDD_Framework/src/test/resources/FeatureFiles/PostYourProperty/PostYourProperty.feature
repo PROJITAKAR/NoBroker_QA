@@ -25,7 +25,7 @@ Feature: Post Your Property – Residential Rental on NoBroker
   @Sc_1 @All
   Scenario: SC_01 — Successfully select Property Type, Ad Type and City and navigate to Property Details
     Given the user is on the "Post Your Property" page
-    When the user selects Residential as Property Type and Rent as Ad Type and "Bangalore" as City
+    When the user selects Residential as Property Type and Rent as Ad Type and "Pune" as City
     And the user clicks "Start Posting Your AD For Free"
     Then the user should be navigated to the "Property Details" page
 
@@ -121,7 +121,7 @@ Feature: Post Your Property – Residential Rental on NoBroker
   Scenario: SC_07 — End-to-End: Complete full property posting journey and verify success
     # --- STEP 1: Property Type & City Selection ---
     Given the user is on the "Post Your Property" page
-    When the user selects Residential as Property Type and Rent as Ad Type and "Bangalore" as City
+    When the user selects Residential as Property Type and Rent as Ad Type and "Pune" as City
     And the user clicks "Start Posting Your AD For Free"
     Then the user should be navigated to the "Property Details" page
     # --- STEP 2: Property Details ---
