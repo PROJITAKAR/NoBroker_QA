@@ -42,9 +42,8 @@ Scenario: Verify chatbot message sending functionality
   When user selects Rent tab
   And user selects city and locality
   And user clicks search
-  When user clicks on chatbot start button
-  And user enters a message in chatbot
-  And user clicks on send button
+  When  user enters a message in chatbot
+  Then  user clicks on send button
   Then message should be sent successfully
 
 

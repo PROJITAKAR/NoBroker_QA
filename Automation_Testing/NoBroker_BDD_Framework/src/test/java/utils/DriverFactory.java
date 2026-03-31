@@ -11,10 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverFactory {
-    // 🔥 ThreadLocal for Driver
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    // 🔥 ThreadLocal for Browser
     private static ThreadLocal<String> browserName = new ThreadLocal<>();
 
 
