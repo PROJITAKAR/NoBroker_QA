@@ -15,7 +15,7 @@ import utils.DriverFactory;
 	        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 	    monochrome = true,
 	    dryRun = false
-	    //tags = "@Regression"
+	    //tags = "@Flatmate"
 	    //tags = "@Chatbot"
 	)
 public class SearchFilter_TestRunner extends AbstractTestNGCucumberTests {

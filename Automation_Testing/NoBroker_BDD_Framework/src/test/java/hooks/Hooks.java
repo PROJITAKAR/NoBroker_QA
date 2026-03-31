@@ -33,8 +33,7 @@ public class Hooks {
 		driver.get("https://www.nobroker.in/");
 		String browser = DriverFactory.getBrowser();
 
-	    ExtentCucumberAdapter.getCurrentScenario()
-        .assignCategory(String.valueOf(browser));
+	    ExtentCucumberAdapter.getCurrentScenario().assignCategory(String.valueOf(browser));
 	}
 
 	@Before(order = 1)

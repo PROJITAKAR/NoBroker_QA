@@ -72,8 +72,8 @@ public class DriverFactory {
     public static void quitDriver() {
         if (driver.get() != null) {
             driver.get().quit();
-            driver.remove();          // 🔥 prevent memory leak
-            browserName.remove();     // 🔥 equally important
+            driver.remove();          
+            browserName.remove();     
         }
     }
 }

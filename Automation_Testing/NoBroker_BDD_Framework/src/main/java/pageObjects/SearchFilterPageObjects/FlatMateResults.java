@@ -50,6 +50,9 @@ public class FlatMateResults {
 
     @FindBy(id = "4-wheeler")
     WebElement fourWheeler;
+    
+    @FindBy(id = "2-wheeler")
+    WebElement twoWheeler;
 
 
     By results = By.xpath("//div[contains(@class,'infinite-scroll-component')]//article");
@@ -61,7 +64,7 @@ public class FlatMateResults {
 
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 
-        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element); 
     }
 
 
@@ -85,7 +88,8 @@ public class FlatMateResults {
         safeClick(female);
         safeClick(furnishingFull);
         safeClick(apartment);
-        safeClick(fourWheeler);
+        //safeClick(fourWheeler);
+        safeClick(twoWheeler);
     }
 
     public void clickFirstProperty() {
