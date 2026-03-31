@@ -10,7 +10,7 @@ public class NavigationToPostYourProperty {
     
     WebDriver driver;
     
-    // Locate Elements
+    // ================= LOCATORS =================
     @FindBy(id = "main-menu")
     WebElement menu;
     
@@ -23,7 +23,7 @@ public class NavigationToPostYourProperty {
         PageFactory.initElements(driver, this);
     }
 
-    // Actions / Methods
+    // ================= ACTION METHODS =================
     public void clickPostProperty() {
         
         try {

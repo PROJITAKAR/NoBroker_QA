@@ -38,9 +38,9 @@ public class CommonSteps {
 
 	@Given("the user is on the NoBroker Homepage")
 	public void verify_homepage() throws InterruptedException {
-		Thread.sleep(500);
+		Thread.sleep(100);
 		String currentUrl = driver.getCurrentUrl();
-		Thread.sleep(500);
+		Thread.sleep(100);
 		Assert.assertTrue(currentUrl.contains("nobroker"), "Not on homepage");
 	}
 
@@ -54,22 +54,22 @@ public class CommonSteps {
 		} else if (button.equalsIgnoreCase("Post Now")) {
 			Thread.sleep(5000);
 			mainPropertyPage.clickPostNow();
-			Thread.sleep(5000);
+			Thread.sleep(500);
 			
 		} else if (button.equalsIgnoreCase("Start Posting Your AD For Free")) {
 			Thread.sleep(500);
 			startPosting.clickStartPost();
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			
 		} else if (button.equalsIgnoreCase("Save & Continue")) {
 			Thread.sleep(500);
 			propertyDetail.clickSaveAndContinue();
-			Thread.sleep(8000);
+			Thread.sleep(500);
 		}
 		else if (button.equalsIgnoreCase("Finish Posting")) {
 			Thread.sleep(500);
 			schedule.clickFinishPosting();
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		}
 	}
 
@@ -107,7 +107,7 @@ public class CommonSteps {
 					By.xpath("//div[@class='pyp-form-header-container' and text()='Property Details']")));
 		}
 
-		System.out.println("✅ Navigated to " + page + " page");
+		System.out.println("Navigated to " + page + " page");
 	}
 
 	@Then("the page should load successfully without errors")
@@ -121,40 +121,49 @@ public class CommonSteps {
 
 	@Given("the user is on the {string} page")
 	public void user_on_page(String page) throws Exception {
-		Thread.sleep(1000);
-		String currentUrl = driver.getCurrentUrl();
-		
-		if (page.equalsIgnoreCase("Post Your Property")) {
-			Thread.sleep(1000);
-			Assert.assertTrue(currentUrl.contains("list-your-property"));
-			
-		} else if (page.equalsIgnoreCase("Locality Details")) {
-			Thread.sleep(1000);
-			Assert.assertTrue(driver.getCurrentUrl().contains("/locality"));
-			
-		} else if (page.equalsIgnoreCase("Rental Details")) {
-			startPosting.goToPropertyDetailsPage();
-			propertyDetail.fillPropertyDetails("600");
-			localityPage.fillLocalityDetails("Pune", "Near Metro station");
-			Thread.sleep(1000);
-			Assert.assertTrue(driver.getCurrentUrl().contains("/rental"));
-			
-		} else if (page.equalsIgnoreCase("Photo Upload")) {
-			startPosting.goToPropertyDetailsPage();
-			propertyDetail.fillPropertyDetails("600");
-			localityPage.fillLocalityDetails("Pune", "Near Metro station");
-			rentalPage.fillRentalDetails("2000", "3000");
-			amenitiesPage.fillAmenitiesDetails();
-			gallery.goToGallery();
-			Thread.sleep(1000);
-			Assert.assertTrue(driver.getCurrentUrl().contains("/gallery"));
-			
-		} else if (page.equalsIgnoreCase("Property Details")) {
-			startPosting.goToPropertyDetailsPage();
-			Thread.sleep(1000);
-			Assert.assertTrue(driver.getCurrentUrl().contains("/property"));
-			
-		}
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    switch (page.toLowerCase()) {
+
+	        case "post your property":
+	            wait.until(ExpectedConditions.urlContains("list-your-property"));
+	            Assert.assertTrue(driver.getCurrentUrl().contains("list-your-property"));
+	            break;
+
+	        case "locality details":
+	            wait.until(ExpectedConditions.urlContains("/locality"));
+	            Assert.assertTrue(driver.getCurrentUrl().contains("/locality"));
+	            break;
+
+	        case "property details":
+	            startPosting.goToPropertyDetailsPage();
+	            wait.until(ExpectedConditions.urlContains("/property"));
+	            Assert.assertTrue(driver.getCurrentUrl().contains("/property"));
+	            break;
+
+	        case "rental details":
+	            startPosting.goToPropertyDetailsPage();
+	            propertyDetail.fillPropertyDetails("600");
+	            localityPage.fillLocalityDetails("Pune", "Near Metro station");
+	            wait.until(ExpectedConditions.urlContains("/rental"));
+	            Assert.assertTrue(driver.getCurrentUrl().contains("/rental"));
+	            break;
+
+	        case "photo upload":
+	            startPosting.goToPropertyDetailsPage();
+	            propertyDetail.fillPropertyDetails("600");
+	            localityPage.fillLocalityDetails("Pune", "Near Metro station");
+	            rentalPage.fillRentalDetails("2000", "3000");
+	            amenitiesPage.fillAmenitiesDetails();
+	            gallery.goToGallery();
+	            wait.until(ExpectedConditions.urlContains("/gallery"));
+	            Assert.assertTrue(driver.getCurrentUrl().contains("/gallery"));
+	            break;
+
+	        default:
+	            throw new IllegalArgumentException("Invalid page: " + page);
+	    }
 	}
 
 	@Then("all inputs should be accepted without validation errors on {string} page")
@@ -163,10 +172,10 @@ public class CommonSteps {
 		boolean errorPresent = false;
 
 		if (page.equalsIgnoreCase("Property Details")) {
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			errorPresent = propertyDetail.hasValidationError();
 		} else if (page.equalsIgnoreCase("Rental Details")) {
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			errorPresent = rentalPage.hasValidationError();
 		}
 
@@ -174,7 +183,7 @@ public class CommonSteps {
 			throw new AssertionError("❌ Validation error found on " + page + " page!");
 		}
 
-		System.out.println("✅ No validation error on " + page + " page");
+		System.out.println("No validation error on " + page + " page");
 	}
 
 	@Then("the user should remain on the {string} page")

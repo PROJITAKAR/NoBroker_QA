@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class UploadMediaPage {
 
     WebDriver driver;
-    WebDriverWait wait;   // 🔥 Global wait
+    WebDriverWait wait;  
 
     // Constructor
     public UploadMediaPage(WebDriver driver) {
@@ -95,7 +95,7 @@ public class UploadMediaPage {
 
         Actions actions = new Actions(driver);
 
-        // 🔥 Scroll 14 times
+        // Scroll 14 times
         for (int i = 0; i < 14; i++) {
             actions.sendKeys(Keys.ARROW_DOWN).perform();
             Thread.sleep(200); // so you can SEE the scrolling
@@ -103,7 +103,7 @@ public class UploadMediaPage {
 
         Thread.sleep(1000);
 
-        // 🔥 Upload video
+        // Upload video
         try {
             uploadVideoInput.sendKeys(filePath);
         } catch (Exception e) {
@@ -126,31 +126,7 @@ public class UploadMediaPage {
                     .executeScript("arguments[0].click();", saveAndContinueButton);
         }
     }
-
-    // 🔥 Combined flow
-    public void uploadMedia(String imagePath, String videoPath) throws InterruptedException {
-    	
-    	goToGallery();
-    	Thread.sleep(2000);
-
-        uploadImage(imagePath);
-        Thread.sleep(2000);
-
-        isImageThumbnailVisible();
-        Thread.sleep(1000);
-
-        uploadVideo(videoPath);
-        Thread.sleep(3000);
-
-        isVideoThumbnailVisible();
-        Thread.sleep(1000);
-
-        clickSaveAndContinue();
-        Thread.sleep(5000);
-
-        System.out.println("✅ Media uploaded successfully (Image + Video)");
-    }
-
+    
     public boolean isImageThumbnailVisible() {
         try {
             wait.until(ExpectedConditions.visibilityOf(imgThumbnail));
@@ -182,4 +158,28 @@ public class UploadMediaPage {
     public boolean areMediaUploaded() {
         return isImageThumbnailVisible() || isVideoThumbnailVisible();
     }
+
+    public void uploadMedia(String imagePath, String videoPath) throws InterruptedException {
+    	
+    	goToGallery();
+    	Thread.sleep(2000);
+
+        uploadImage(imagePath);
+        Thread.sleep(2000);
+
+        isImageThumbnailVisible();
+        Thread.sleep(1000);
+
+        uploadVideo(videoPath);
+        Thread.sleep(3000);
+
+        isVideoThumbnailVisible();
+        Thread.sleep(1000);
+
+        clickSaveAndContinue();
+        Thread.sleep(5000);
+
+        System.out.println("Media uploaded successfully (Image + Video)");
+    }
+
 }

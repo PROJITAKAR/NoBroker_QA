@@ -16,7 +16,7 @@ public class CookieManager {
 
     private static final String FILE_PATH = "cookies.json";
 
-    // ✅ Save cookies as JSON
+    // Save cookies as JSON
     public static void saveCookies(WebDriver driver) {
         try {
             File file = new File(FILE_PATH);
@@ -45,14 +45,14 @@ public class CookieManager {
             gson.toJson(cookieList, writer);
             writer.close();
 
-            System.out.println("✅ Cookies saved in JSON!");
+            System.out.println("Cookies saved in JSON!");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // ✅ Load cookies from JSON
+    // Load cookies from JSON
     public static void loadCookies(WebDriver driver) {
         try {
             File file = new File(FILE_PATH);
@@ -82,14 +82,14 @@ public class CookieManager {
                 driver.manage().addCookie(cookie);
             }
 
-            System.out.println("✅ Cookies loaded from JSON!");
+            System.out.println("Cookies loaded from JSON!");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // ✅ Validate cookies (expiry check)
+    // Validate cookies (expiry check)
     public static boolean areCookiesValid() {
 
         try {
@@ -122,7 +122,7 @@ public class CookieManager {
             return false;
         }
 
-        System.out.println("✅ All cookies valid");
+        System.out.println("All cookies valid");
         return true;
     }
 }

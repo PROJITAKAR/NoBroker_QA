@@ -21,7 +21,6 @@ import pageObjects.PostYourProperty.AmenitiesPage;
 import pageObjects.PostYourProperty.LocalityDetailsPage;
 import pageObjects.PostYourProperty.NavigationToPostYourProperty;
 import pageObjects.PostYourProperty.PostYourPropertyMainPage;
-import pageObjects.PostYourProperty.PreviewListingPage;
 import pageObjects.PostYourProperty.PropertyDetailsPage;
 import pageObjects.PostYourProperty.RentalDetailsPage;
 import pageObjects.PostYourProperty.SchedulePage;
@@ -113,11 +112,6 @@ public class PageObjectManager {
     private PostYourPropertyMainPage mainPage;
     public PostYourPropertyMainPage mainPage() {
         return (mainPage == null) ? mainPage = new PostYourPropertyMainPage(driver) : mainPage;
-    }
-
-    private PreviewListingPage previewListingPage;
-    public PreviewListingPage previewListingPage() {
-        return (previewListingPage == null) ? previewListingPage = new PreviewListingPage(driver) : previewListingPage;
     }
 
     private PropertyDetailsPage propertyDetailsPage;

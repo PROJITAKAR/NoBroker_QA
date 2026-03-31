@@ -42,50 +42,6 @@ public class LocalityDetailsPage {
     WebElement saveAndContinueButton;
 
     // ================= ACTION METHODS =================
-
-//    public void enterLocality(String locality) throws InterruptedException {
-//        Thread.sleep(1000);
-//        
-//        wait.until(ExpectedConditions.elementToBeClickable(localityDropdown));
-//        localityDropdown.clear();
-//        Thread.sleep(300);
-//        
-//        for (char c : locality.toCharArray()) {
-//            localityDropdown.sendKeys(String.valueOf(c));
-//            Thread.sleep(80);
-//        }
-//        
-//        Thread.sleep(2500);
-//        
-//        WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(15));
-//        
-//        try {
-//            WebElement suggestion = longWait.until(ExpectedConditions.elementToBeClickable(
-//                By.xpath(
-//                    "//div[@id='autocomplete-dropdown-container']" +
-//                    "//div[not(contains(@class,'loading')) and string-length(normalize-space(text()))>0][1]"
-//                )
-//            ));
-//            
-//            ((JavascriptExecutor) driver).executeScript(
-//                "arguments[0].scrollIntoView({block:'center'});", suggestion
-//            );
-//            Thread.sleep(300);
-//            
-//            try {
-//                suggestion.click();
-//            } catch (Exception e) {
-//                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", suggestion);
-//            }
-//            
-//        } catch (Exception e) {
-//            localityDropdown.sendKeys(Keys.ARROW_DOWN);
-//            Thread.sleep(500);
-//            localityDropdown.sendKeys(Keys.ENTER);
-//        }
-//        
-//        Thread.sleep(500);
-//    }
     
     public void enterLocality(String locality) throws InterruptedException {
 
@@ -96,7 +52,6 @@ public class LocalityDetailsPage {
             localityDropdown.clear();
             localityDropdown.sendKeys(locality);
 
-            // wait and click first suggestion
             WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//div[@id='autocomplete-dropdown-container']//div[1]")));
 
@@ -171,6 +126,6 @@ public class LocalityDetailsPage {
 
         clickSaveAndContinue();
 
-        System.out.println("✅ Locality Details filled and submitted");
+        System.out.println("Locality Details filled and submitted");
     }
 }

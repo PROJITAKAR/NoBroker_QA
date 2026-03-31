@@ -15,7 +15,7 @@ public class PostYourPropertyMainPage {
     
     WebDriver driver;
 
-    // Locate Elements
+    // ================= LOCATORS =================
     @FindBy(xpath = "//button[@id='postNow']")
     WebElement postNowBtn;
 
@@ -24,6 +24,8 @@ public class PostYourPropertyMainPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    // ================= ACTION METHODS =================
 
     public void clickPostNow() throws InterruptedException {
         Thread.sleep(3000);
@@ -39,7 +41,7 @@ public class PostYourPropertyMainPage {
             Thread.sleep(500);
             ((JavascriptExecutor) driver)
                 .executeScript("arguments[0].click();", postNowBtn);
-            System.out.println("✅ Clicked postNow button");
+            System.out.println("Clicked postNow button");
 
         } catch (Exception e) {
             try {
@@ -48,7 +50,7 @@ public class PostYourPropertyMainPage {
                         By.xpath("//div[@id='citySelectContainer']")
                     )
                 );
-                System.out.println("✅ Rare case — already on Start Posting AD section, skipping postNow");
+                System.out.println("Rare case — already on Start Posting AD section, skipping postNow");
             } catch (Exception ex) {
                 throw new RuntimeException("❌ postNow failed and not on Start AD page. URL: "
                     + driver.getCurrentUrl());

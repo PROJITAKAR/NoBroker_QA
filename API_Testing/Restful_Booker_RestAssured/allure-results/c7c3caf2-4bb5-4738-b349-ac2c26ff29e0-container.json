@@ -1,1 +1,0 @@
-{"uuid":"c7c3caf2-4bb5-4738-b349-ac2c26ff29e0","name":"RestAssured Suite","children":["491429de-af62-412f-8541-ed176e240ea8"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1774933088581,"stop":1774933096130}],"afters":[],"start":1774933088558,"stop":1774933132453}

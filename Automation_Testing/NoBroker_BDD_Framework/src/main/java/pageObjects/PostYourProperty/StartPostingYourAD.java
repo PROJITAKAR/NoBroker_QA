@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class StartPostingYourAD {
 	WebDriver driver;
 
-	// Locate Elements
+    // ================= LOCATORS =================
 	@FindBy(xpath = "//div[@id='citySelectContainer']")
 	WebElement citySelector;
 
@@ -28,6 +28,7 @@ public class StartPostingYourAD {
 	WebElement cityError;
 	
 	
+    // ================= ACTION METHODS =================
 
 	public StartPostingYourAD(WebDriver driver) {
 		this.driver = driver;
@@ -99,26 +100,8 @@ public class StartPostingYourAD {
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", startPost);
 		}
 
-		System.out.println("✅ Navigated to Property Details Page");
+		System.out.println("Navigated to Property Details Page");
 	}
-	
 	
 
-	public boolean isCityErrorDisplayed() {
-		try {
-			return cityError.isDisplayed();
-		} catch (Exception e) {
-			return false;
-		}
-	}
-	
-	
-
-	public String getCityErrorMessage() {
-		try {
-			return cityError.getText();
-		} catch (Exception e) {
-			return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].innerText;", cityError);
-		}
-	}
 }

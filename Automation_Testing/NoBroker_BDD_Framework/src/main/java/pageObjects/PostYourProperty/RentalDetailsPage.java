@@ -178,7 +178,6 @@ public class RentalDetailsPage {
 
 	public void selectFamilyTenant() throws InterruptedException {
 
-		// Scroll to element
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", familyOption);
 
 		try {
@@ -186,7 +185,6 @@ public class RentalDetailsPage {
 			familyOption.click();
 		} catch (Exception e) {
 
-			// 🔥 FORCE CLICK (bypass overlay)
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", familyOption);
 		}
 		Thread.sleep(500);
@@ -198,7 +196,6 @@ public class RentalDetailsPage {
 	public void selectFurnishing() throws InterruptedException {
 	    Thread.sleep(1000);
 
-	    // Step 1: Scroll to and click the control to open dropdown
 	    WebElement control = wait.until(ExpectedConditions.elementToBeClickable(
 	        By.xpath("//div[@id='furnishing']//div[contains(@class,'nb-select__control')]")
 	    ));
@@ -278,6 +275,12 @@ public class RentalDetailsPage {
 	public boolean hasValidationError() {
 		return validationErrors.size() > 0;
 	}
+	
+	public String getDepositValidationMessage() {
+
+		wait.until(ExpectedConditions.visibilityOf(rentAndDepositeValidation));
+		return rentAndDepositeValidation.getText();
+	}
 
 	// ================= MAIN FLOW =================
 
@@ -301,12 +304,8 @@ public class RentalDetailsPage {
 
 		clickSaveAndContinue();
 
-		System.out.println("✅ Rental Details filled and submitted");
+		System.out.println("Rental Details filled and submitted");
 	}
 
-	public String getDepositValidationMessage() {
-
-		wait.until(ExpectedConditions.visibilityOf(rentAndDepositeValidation));
-		return rentAndDepositeValidation.getText();
-	}
+	
 }

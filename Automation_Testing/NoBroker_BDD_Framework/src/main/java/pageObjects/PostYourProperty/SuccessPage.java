@@ -24,18 +24,14 @@ public class SuccessPage {
 
 	// ================= LOCATORS =================
 
-	// Success Message
 	@FindBy(xpath = "//div[contains(text(),'Congratulations')]")
 	WebElement successMessage;
 
-	// Buttons
 	@FindBy(id = "editProperty")
 	WebElement editButton;
 
 	@FindBy(id = "previewListing")
 	WebElement previewListingButton;
-
-	private static final String OPTION_XPATH = "//button[text()='%s']";
 
 
 	// ================= ACTION METHODS =================
@@ -43,7 +39,6 @@ public class SuccessPage {
 	public boolean isSuccessMessageDisplayed() {
 		return successMessage.isDisplayed();
 	}
-
 
 	public void clickEdit() {
 		editButton.click();
@@ -57,7 +52,6 @@ public class SuccessPage {
 		return successMessage.getText();
 	}
 
-
 	public boolean areOptionsVisible() {
 	    
 	    try {
@@ -67,23 +61,5 @@ public class SuccessPage {
 	    } catch (Exception e) {
 	        return false;
 	    }
-	}
-
-	public void verifyAndHandleSuccess() throws InterruptedException {
-
-		// Verify success message
-		if (isSuccessMessageDisplayed()) {
-			System.out.println("✅ Property posted successfully");
-		} else {
-			throw new AssertionError("❌ Success message not displayed");
-		}
-
-		Thread.sleep(2000);
-
-		// Optional action (you can choose one)
-		// clickEdit();
-		clickPreviewListing();
-
-		System.out.println("✅ Success Page verified");
 	}
 }
